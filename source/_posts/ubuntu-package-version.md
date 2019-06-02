@@ -3,6 +3,7 @@ title: ubuntu软件包版本问题
 date: 2019-05-31 17:57:41
 tags: linux
 categories: linux
+keywords: [ubuntu, 软件包, 版本]
 ---
 
 和朋友业余捣鼓项目，继续全(zhe)栈(teng)的感觉。在前东家申请了企业免费试用后，买买买之后就是安装软件。
