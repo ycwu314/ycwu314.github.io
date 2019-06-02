@@ -1,7 +1,7 @@
 ---
 title: '代码仓库，CI，项目管理的调研'
 date: 2019-06-01 21:50:43
-tags:
+tags: devops
 categories: devops
 ---
 
@@ -20,6 +20,7 @@ categories: devops
 
 于是调研了国内常见的码云、coding、阿里云code等。
 
+<!-- more -->
 # 码云 oschina
 
 good

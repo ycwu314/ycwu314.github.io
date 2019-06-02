@@ -1,3 +1,4 @@
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">{#
 #}{% set current = date(Date.now(), "YYYY") %}{#
 #}{% if theme.footer.beian.enable %}{#
@@ -37,6 +38,19 @@
   {% endif %}
 </div>
 
+<span id="busuanzi_container_site_pv">
+    本站总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;次
+	<span class="post-meta-divider">|</span>
+</span>
+
+<span id="busuanzi_container_site_uv">
+    访问用户&nbsp;<span id="busuanzi_value_site_uv"></span>&nbsp;
+	<span class="post-meta-divider">|</span>
+</span>
+
+<span class="post-count">共&nbsp;{{ totalcount(site) }}&nbsp;字</span>
+<br>
+
 {% if theme.footer.powered.enable %}
   <div class="powered-by">{#
   #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#
@@ -53,8 +67,7 @@
   #}{{ __('footer.theme') }} – {{ next_url('https://theme-next.org', 'NexT.' + theme.scheme, {class: 'theme-link'}) }}{#
   #}{% if theme.footer.theme.version %} v{{ version }}{% endif %}{#
 #}</div>
-<span class="post-meta-divider">|</span>
-<span class="post-count">共&nbsp;{{ totalcount(site) }}&nbsp;字</span>
+
 {% endif %}
 
 {% if theme.footer.custom_text %}

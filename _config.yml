@@ -91,3 +91,7 @@ post_wordcount:
   min2read: true          # 单篇 阅读时长
   totalcount: false       # 网站 字数统计
   separated_meta: true  
+  
+# Extensions
+## Plugins: http://hexo.io/plugins/
+plugins: hexo-generate-feed  
