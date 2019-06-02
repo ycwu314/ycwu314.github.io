@@ -62,7 +62,8 @@ drwxr-xr-x 7 root root 4096 May 31 09:23 ../
 
 # cat nginx.list 
 deb http://nginx.org/packages/ubuntu bionic nginx
-```bash
+```
+
 `nginx.list`修改为
 ```bash
 deb [arch=amd64]  http://nginx.org/packages/ubuntu bionic nginx
