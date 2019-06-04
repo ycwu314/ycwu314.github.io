@@ -96,3 +96,14 @@ post_wordcount:
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 plugins: hexo-generate-feed  
+
+
+
+# search
+search:
+  on: true
+  onload: false
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
