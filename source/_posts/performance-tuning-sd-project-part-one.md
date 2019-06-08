@@ -4,6 +4,7 @@ date: 2019-06-07 21:30:07
 tags: [java, 性能调优, SD项目]
 categories: SD项目
 keywords: [java, 性能调优]
+copyright: true
 ---
 
 总结SD项目的性能优化过程和思考，part one。
