@@ -1,13 +1,12 @@
 ---
-title: SD项目：性能优化，part 1
+title: SD项目：高并发的性能优化，part 1
 date: 2019-06-07 21:30:07
-tags: [java, 性能调优, SD项目]
+tags: [java, 性能调优, SD项目, 高并发]
 categories: SD项目
-keywords: [java, 性能调优]
-copyright: true
+keywords: [性能调优, 高并发, OmitStackTraceInFastThrow, 缓存优化, arthas]
 ---
 
-总结SD项目的性能优化过程和思考，part one。
+总结SD项目的性能优化过程和思考，part 1。
 
 # 背景说明
 
@@ -24,7 +23,7 @@ copyright: true
 在线人数由一个redis key存储。后端读取redis直接返回。
 在高并发的情况下，就是典型的热点redis key问题，直接拖慢这个key所在的redis实例。
 
-## 解决
+## 分析&解决
 
 对于数据一致性不高的场景，热点key容易解决，最简单的是增加本地jvm缓存，再由定时任务更新数据。也可以使用guava cache来实现。
 
@@ -56,8 +55,7 @@ java.lang.NullPointerException
 java.lang.IllegalArgumentException
 ```
 
-
-## 解决
+## 分析&解决
 
 dump stack trace是一个耗时操作。jvm默认做了性能优化，对于反复抛出的异常，生成一个不包含stack trace的异常返回。
 对应的开关参数是`OmitStackTraceInFastThrow`，默认开启。在测试环境把这个特性关闭：
@@ -94,7 +92,7 @@ dump stack trace是一个耗时操作。jvm默认做了性能优化，对于反�
 
 1W并发，直接跪了，RT > 10000ms。
 
-## 解决
+## 分析&解决
 
 一个接口包含多个服务调用，要看瓶颈在哪里，最直接的方式是每个调用前、后加上打点代码，打印调用时间。
 不过有了arthas，一切就简单多了。
@@ -168,7 +166,7 @@ step2，for循环串行查询片段数据，改为java8的`parallelStream`并发
 
 3W并发，RT 5000+ms
 
-## 解决
+## 分析&解决
 
 优化思路同“首页推荐歌曲片段列表”，在此不再重复。
 
@@ -196,7 +194,7 @@ v2.0设计思路是房间列表直接从缓存数据构建，从新建房间、�
 单压：1W并发查询房间列表，RT 3000+ms。
 混压：1W并发查询房间列表 + 1000并发创建房间，RT 15000+ms。触发数据库中间件慢查询警告。
 
-## 解决
+## 分析&解决
 
 从数据库控制台发现慢查询语句，伪代码如下
 ```sql
@@ -242,7 +240,7 @@ sql慢查询不仅影响单个接口性能，高并发情况下对系统整体�
 容器分配了50GB磁盘，logs已经使用了40+GB。
 以当前并发量的磁盘消耗速率来计算，线上环境也就只撑不过2天（因为有多个容器分摊）。
 
-## 解决
+## 分析&解决
 
 首先，分析后端都写了哪些日志文件：
 - access log。spring boot内嵌的tomcat写的access log。一个请求写入<1KB，方便排查问题，不需要找运维查询前置的Nginx查询访问日志，保留。
