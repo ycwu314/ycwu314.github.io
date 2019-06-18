@@ -80,7 +80,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/ycwu314/ycwu314.github.io
+  repository: git@github.com:ycwu314/ycwu314.github.io.git
   branch: master
 
   
