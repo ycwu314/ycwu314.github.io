@@ -315,7 +315,8 @@ scroll_to_more: true
 save_scroll: false
 
 # Automatically excerpt description in homepage as preamble text.
-excerpt_description: true
+# 使用文章的description字段作为摘要。会导致 more 标记失效！
+excerpt_description: false
 
 # Automatically Excerpt (Not recommend).
 # Use <!-- more --> in the post to control excerpt accurately.

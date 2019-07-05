@@ -4,6 +4,7 @@ date: 2019-07-02 10:13:43
 tags: [设计模式]
 categories: 设计模式
 keywords: [stateless4j, 状态机]
+description: 根据SD项目的技术选型需要，简单比较3个常见的状态机框架（spring statemachine、stateless4j、squirrel）。
 ---
 
 上一篇文章简单聊了状态模式。在实际应用，可以使用框架来实现状态机。
@@ -231,7 +232,7 @@ public class QuickStartSample {
 - github活跃
 
 缺点：
-- 内部使用的例子少
+- 要找缺点的话，内部使用的例子少
 
 # 结论
 

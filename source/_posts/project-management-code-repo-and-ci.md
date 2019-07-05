@@ -3,6 +3,7 @@ title: '代码仓库，CI，项目管理的调研'
 date: 2019-06-01 21:50:43
 tags: devops
 categories: devops
+description: 调研国内几个常用的代码托管服务（阿里云code、coding、码云）在代码托管、持续集成、自动构建等的优缺点。
 ---
 
 # 背景

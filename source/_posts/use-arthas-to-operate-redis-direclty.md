@@ -4,6 +4,7 @@ date: 2019-07-04 17:50:24
 tags: [arthas, java, 故障案例]
 categories: 故障案例
 keywords: [arthas]
+description: 容器化部署和生产环境隔离，不能直接访问中间件数据。使用arthas的tt命令找到一个中间件客户端的实例，然后通过`tt -i <index> -w 'target.xxx()'`直接访问中间件。
 ---
 
 现在是容器化部署，镜像都是干净的，只有基本的Linux和需要的runtime库，没有安装日常使用的各种中间件客户端，例如redis-cli。

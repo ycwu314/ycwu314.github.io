@@ -4,6 +4,7 @@ date: 2019-06-14 14:21:16
 tags: [java, jvm, SD项目, 高并发, 故障案例]
 categories: SD项目
 keywords: [高并发, jvm, 垃圾回收, young gc]
+description: 压测遇到频繁young gc问题。使用jstat -gcutil查看内存分区使用状况。计算cms收集器新生代大小遇到了问题。扩大新生代空间，减少young gc次数，单次gc耗时增加很少。
 ---
 
 这次分享SD项目压测过程中遇到的频繁young gc问题。
