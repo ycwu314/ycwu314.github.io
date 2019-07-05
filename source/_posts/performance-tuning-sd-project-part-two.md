@@ -9,7 +9,7 @@ keywords: [性能调优, 高并发, 缓存优化]
 总结SD项目的性能优化过程和思考，part 2。
 
 往期文章
-- % post_link performance-tuning-sd-project-part-one %}
+- % {post_link performance-tuning-sd-project-part-one %}
 
 # 加入游戏房间
 

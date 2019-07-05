@@ -5,12 +5,5 @@ Allow: /about/
 Disallow: /categories/
 Disallow: /tags/
 Disallow: /archives/
-Disallow: /vendors/
-Disallow: /js/
-Disallow: /css/
-Disallow: /fonts/
-Disallow: /vendors/
-Disallow: /fancybox/
-Disallow: /lib/
 Sitemap: https://ycwu314.github.io/sitemap.xml
 Sitemap: https://ycwu314.github.io/baidusitemap.xml
