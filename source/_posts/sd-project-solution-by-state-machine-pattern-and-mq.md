@@ -89,6 +89,9 @@ SD项目的一个核心功能是语音直播游戏房间。用户在游戏房间
 - {% post_link compare-state-machine-framework %}
 - {% post_link pitfall-on-stateless4j %}
 
+简化的房间状态机图：
+{% asset_img SD简化的状态机图.jpg %}
+
 ## 状态的持久化
 
 保存到mysql，外加redis作为缓存。
