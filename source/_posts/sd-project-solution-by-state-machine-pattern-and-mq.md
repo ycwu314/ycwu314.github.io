@@ -130,8 +130,9 @@ SD项目的一个核心功能是语音直播游戏房间。用户在游戏房间
 限制：
 - RocketMQ不支持任意精度的延迟，业务层自己做策略模块解决
 
-关于RocketMQ延迟消息，在这篇文章：
+RocketMQ延迟消息相关文章：
 - {% post_link rocketmq-delay-message %}
+- {% post_link delay-message-stratedgy %}
 
 ## 关于超时
 

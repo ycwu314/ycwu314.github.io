@@ -22,7 +22,7 @@ description: RocketMQ延迟消息的源码分析。
 ```java
 msg.setDelayTimeLevel(1);
 ```
-设置delayTimeLevel属性。
+设置delayTimeLevel属性。编号从1开始（见下文的`delayLevel2QueueId()`函数）
 
 # 延迟消息的存储
 
