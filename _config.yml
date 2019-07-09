@@ -16,8 +16,8 @@ timezone:
 url: https://ycwu314.github.io
 root: /
 #permalink: :year/:month/:day/:title/
-permalink: p/:title.html
-permalink_defaults: p/:title.html
+permalink: p/:title/
+permalink_defaults: p/:title/
 
 # Directory
 source_dir: source
