@@ -9,7 +9,7 @@ keywords: [性能调优, 高并发, 缓存优化]
 总结SD项目的性能优化过程和思考，part 2。
 
 往期文章
-- % {post_link performance-tuning-sd-project-part-one %}
+- {% post_link performance-tuning-sd-project-part-one %}
 
 # 加入游戏房间
 
@@ -44,7 +44,7 @@ keywords: [性能调优, 高并发, 缓存优化]
 
 ## 数据对比
 
-优化后：1000+并发加入大房间，客户端每1s只接受一条加入信令，不会崩溃。服务器端RT < 200ms。redis tps告警消失。
+优化后：1000+并发加入大房间，客户端每1s只接受一条加入信令，不会崩溃。TP99 < 200ms。redis tps告警消失。
 
 ## 思考
 
@@ -109,7 +109,7 @@ mqService.sendIncrLikeMsg(msg);
 
 ## 数据对比
 
-优化后：2000+ tps，RT 10ms。**redis tps告警消失**。
+优化后：2000+ tps，TP99 < 10ms。**redis tps告警消失**。
 
 ## 思考
 
@@ -168,5 +168,5 @@ UserInfo包含昵称、头像、设备信息。由用户服务维护，底层用
 
 ## 数据对比
 
-优化后，单压发送信令接口，1000人大房间，1000+ tps，RT 10ms。redis tps告警消失。
+优化后，单压发送信令接口，1000人大房间，1000+ tps，TP99 < 10ms。redis tps告警消失。
 
