@@ -7,6 +7,7 @@ keywords: [语音直播, 高并发, 性能优化, 重构, 故障案例]
 description: 语音直播房间项目文章汇总（SD项目）。包括系统设计、性能压测、高并发和优化经历、重构和故障案例
 ---
 语音直播房间项目文章汇总。
+2个主力后端研发，3个月，1500+ commit，996、007，纪念那段充满福报的经历😂。
 
 系统设计
 - {% post_link sd-project-solution-by-state-machine-pattern-and-mq %}
