@@ -35,3 +35,4 @@ description: 语音直播房间项目文章汇总（SD项目）。包括系统�
 故障案例
 - {% post_link arthas-debug-case %}
 - {% post_link accident-caused-by-mq-migration %}
+- {% post_link sd-project-operation-platform-cauased-an-accident %}
