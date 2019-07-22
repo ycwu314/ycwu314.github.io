@@ -3,7 +3,7 @@ title: 解决windows 10下java应用找不到pid
 date: 2019-07-05 11:22:11
 tags: [jvm, 故障案例]
 categories: jvm
-keywords: [jvm, hsperfdata, jps, arthas]
+keywords: [jvm, hsperfdata, jps, arthas, java.io.tmpdir]
 description: arthas, jps, jconsole等工具会从hsperfdata获取已经启动的java应用信息。如果对应的目录没有访问权限，就会找不到对应的pid。目录路径在临时目录java.io.tmpdir下面的hsperfdata_%USER%。
 ---
 
@@ -32,8 +32,6 @@ arthas找不到java pid，可能的原因有：
 3. 当前用户在hsperfdata目录没有访问权限，不能读写数据。
 
 很有可能是没有hsperfdata目录或者没有访问权限。
-
-<!-- more -->
 
 # 解决
 
