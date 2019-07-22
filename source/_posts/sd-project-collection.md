@@ -18,6 +18,7 @@ description: 语音直播房间项目文章汇总（SD项目）。包括系统�
 - {% post_link rocketmq-delay-message %}
 - {% post_link delay-message-stratedgy %}
 - {% post_link sd-project-signal-design %}
+- {% post_link an-audio-review-solution-with-ASR %}
 
 性能压测
 - {% post_link  performance-testing %} 

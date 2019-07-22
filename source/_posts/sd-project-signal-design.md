@@ -1,7 +1,7 @@
 ---
 title: SD项目信令设计总结
 date: 2019-06-19 10:57:04
-tags: [SD项目, 系统设计]
+tags: [SD项目, 架构设计]
 categories: SD项目
 keywords: [信令设计, 协议设计]
 ---
