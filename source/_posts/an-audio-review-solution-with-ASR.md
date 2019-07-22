@@ -25,7 +25,17 @@ description:
 
 # 语音审核方案
 
+## 产品的审核功能设计建议
+
+人们对隐私越来越看重，谁也不想自己做的事情被监控。因此，ugc内容避免在产品设计上突出“审核”、尤其是“人工审核”之类的字眼。这些字眼会对令人感到不适，缺乏隐私。
+
+个人觉得觉得审核设计由点注意：
+1. 举报功能。由用户触发，人人都是朝阳区热心群众呢。实际上，举报的实际功效是相当分化的，要么没人用，要么被玩坏。在运营后台可以看到各式沙雕的举报理由。
+因此，我建议“举报”按钮，可以做成固定几个选项，让用户选择就好了。
+2. 机器审核。机器是冰冷冷的，相比人工检查，更让人觉得隐私安全。可以突出全程机器审核，减轻用户的焦虑。
+
 ## 架构设计
+
 {% asset_img asr语音审核.png %}
 
 与ASR工作相关的流程：
@@ -38,6 +48,7 @@ description:
 
 ![](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/84442/cn_zh/1558427378727/SpeechRecognizer.png)
 
+[图片来源阿里云ASR](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/pic/84442/cn_zh/1558427378727/SpeechRecognizer.png)
 
 ## 热词管理
 
