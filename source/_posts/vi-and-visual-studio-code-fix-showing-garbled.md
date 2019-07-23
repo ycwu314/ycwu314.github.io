@@ -92,6 +92,10 @@ Unicode也是一种字符编码方法，不过它是由国际组织设计，可�
 
 UCS只是规定如何编码，并没有规定如何传输、保存这个编码。UTF-8、UTF-7、UTF-16都是被广泛接受的方案。UTF-8的一个特别的好处是它与ISO- 8859-1完全兼容。UTF是 “UCS Transformation Format”的缩写。
 
+**UTF-8是Unicode的一种实现!**
+**UTF-8是Unicode的一种实现!**
+**UTF-8是Unicode的一种实现!**
+
 ## UTF的字节序和BOM
 
 >UTF-8以字节为编码单元，没有字节序的问题。UTF-16以两个字节为编码单元，在解释一个UTF-16文本前，首先要弄清楚每个编码单>元的字节序。例如“奎”的 Unicode编码是594E，“乙”的Unicode编码是4E59。如果我们收到UTF-16字节流“594E”，那么这是“奎” >还是 “乙”？
@@ -122,7 +126,6 @@ if (bomIn.hasBOM()) {
 ## 兼容性
 
 从ASCII、GB2312、GBK（对应cp936）到GB18030的编码方法是向下兼容的。而Unicode只与ASCII兼容。
-
 
 # 参考资料
 

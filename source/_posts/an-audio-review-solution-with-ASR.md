@@ -1,8 +1,8 @@
 ---
 title: 基于ASR的语音审核方案
 date: 2019-07-22 14:39:29
-tags: [SD项目]
-categories: [架构设计]
+tags: [SD项目, 架构设计]
+categories: [SD项目]
 keywords: [ASR, 语音审核]
 description: 使用ASR技术对语音直播进行机器监控，及时识别有害内容并做干预，避免平台被牵连。
 ---
