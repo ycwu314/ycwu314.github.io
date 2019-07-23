@@ -1,5 +1,5 @@
 ---
-title: 解决vi和vscode中文显示乱码
+title: 解决vi和vscode中文显示乱码，以及聊聊字符编码
 date: 2019-07-18 21:03:06
 tags: [技巧]
 categories: [技巧, linux]
@@ -67,7 +67,6 @@ GB 18030 与 GB 2312-1980 和 GBK 兼容，共收录汉字70244个。2000年，�
 支持中国国内少数民族的文字，不需要动用造字区。
 GB 18030 编码是一二四字节变长编码。
 
-
 ## code page，cp936
 
 >Windows的内核已经采用Unicode编码，这样在内核上可以支持全世界所有的语言文字。但是由于现有的大量程序和文档都采用了某种特定语言的编码，例如GBK，Windows不可能不支持现有的编码，而全部改用Unicode。
@@ -126,6 +125,11 @@ if (bomIn.hasBOM()) {
 ## 兼容性
 
 从ASCII、GB2312、GBK（对应cp936）到GB18030的编码方法是向下兼容的。而Unicode只与ASCII兼容。
+
+## 一个字符编码的例子
+
+Windows的默认字符编码是GBK，对于跨平台编程不友好，可以参见这个例子
+- {% post_link fix-intellij-properties-file-garbled %}
 
 # 参考资料
 
