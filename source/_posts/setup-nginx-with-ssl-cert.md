@@ -59,6 +59,17 @@ TLS1.0、TLS1.1计划在2020年被废弃，直接忽略。
 
 ssl_ciphers配置使用的加密套件，使用OpenSSL的格式，具体可以参照[ciphers.html](https://www.openssl.org/docs/man1.1.0/man1/ciphers.html)
 
+比如
+>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+代表的含义是：
+>TLS - the protocol used
+>ECDHE - the key exchange mechanism
+>ECDSA - the algorithm of the authentication key
+>AES - the symmetric encryption algorithm
+>128 - the key size of the above
+>GCM - the mode of the above
+>SHA256 - the MAC used by the algorithm
+
 经常见到`HIGH:!aNULL`之类的配置。`HIGH`是一个ciphers宏，代表一系列组合。`!`代表不使用该cipher。使用命令查看配置的ciphers。
 ```bash
 openssl ciphers -V 'HIGH:!aNULL'
@@ -91,6 +102,8 @@ cipher安全性的一些经验
 ```
 ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
 ```
+
+ps. 如果想要“Cipher Strength”得分更高，就把128bit相关的加密套件都去掉。
 
 {% asset_img slug cipher兼容性.png %}
 再次测试，发现对ios8.4、osx10.10、ie11兼容性不好。不过都是化石级的系统了，直接忽略。
