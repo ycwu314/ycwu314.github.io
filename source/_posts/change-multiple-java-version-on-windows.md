@@ -1,5 +1,5 @@
 ---
-title: Windows上切换多个java版本
+title: Windows上切换java8和java11
 date: 2019-07-18 10:19:01
 tags: [java, 技巧]
 categories: [java]
