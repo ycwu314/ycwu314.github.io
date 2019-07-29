@@ -1,10 +1,10 @@
 ---
-title: 状态机框架选型简单比较
+title: java状态机框架选型简单比较
 date: 2019-07-02 10:13:43
-tags: [设计模式]
+tags: [设计模式, 系统设计]
 categories: 设计模式
-keywords: [stateless4j, 状态机]
-description: 根据SD项目的技术选型需要，简单比较3个常见的状态机框架（spring statemachine、stateless4j、squirrel）。
+keywords: [stateless4j, spring statemachine, squirrel, java状态机选型]
+description: 根据SD项目的技术选型需要，对3个常见的java状态机选型简单比较（spring statemachine、stateless4j、squirrel）。statelss4j功能最简单，适合二次改造，但已经停止维护。spring statemachine比较重型，能够和spring全家桶方便集成。squirrel在功能和设计复杂中比较平衡，推荐使用。
 ---
 
 上一篇文章简单聊了状态模式。在实际应用，可以使用框架来实现状态机。

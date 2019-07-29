@@ -3,8 +3,8 @@ title: RocketMQ延迟消息
 date: 2019-07-07 15:58:27
 tags: [RocketMQ]
 categories: [RocketMQ]
-keywords: [RocketMQ, 延迟消息]
-description: RocketMQ延迟消息的源码分析。
+keywords: [RocketMQ, 延迟消息, 消息延迟时间]
+description: RocketMQ延迟消息的源码分析。发送消息时设置delayTimeLevel属性。真正保存的topic是SCHEDULE_TOPIC_XXXX，队列是delayTimeLevel。ScheduleMessageService包含一个Timer线程，执行DeliverDelayedMessageTimerTask，对于到期的延迟消息，发送到原来的目标topic。
 ---
 
 基于RocketMQ v4.5.1源码。
@@ -15,7 +15,7 @@ description: RocketMQ延迟消息的源码分析。
 ```java
     private String messageDelayLevel = "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h";
 ```
-定义了18中延迟级别。
+定义了18中延迟级别。消息延迟时间支持1秒、5秒直到2小时。也可以自定义，但是不太建议。**不支持任意精度的延迟**。
 
 # 消费者发送延迟消息
 
@@ -172,4 +172,4 @@ ScheduleMessageService.this.updateOffset(this.delayLevel, nextOffset);
 # 总结
 
 ScheduleMessageService设计采用Timer类，而不是ScheduledExecutorService，有点坑。Timer类是单线程设计，一旦堆积的延迟消息多，可能发送滞后。
-**RocketMQ的延迟消息≠定时消息，不支持任意精度的延迟**（阿里云上的RocketMQ商业版支持）。
+**RocketMQ的延迟消息≠定时消息，不支持任意精度的延迟**（但是阿里云上的RocketMQ商业版支持）。

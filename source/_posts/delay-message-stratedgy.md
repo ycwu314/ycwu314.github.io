@@ -1,10 +1,10 @@
 ---
-title: 延迟消息策略
+title: RocketMQ延迟消息补偿策略
 date: 2019-07-08 09:36:01
 tags: [RocketMQ, SD项目]
 categories: SD项目
-keywords: [延迟消息, RocketMQ]
-description: 
+keywords: [延迟消息, 补偿策略, RocketMQ]
+description: 普通版的RocketMQ延迟消息不支持任意精度的时间延迟，因此需要自定义补偿策略。
 ---
 
 上次分析了RocketMQ的延迟消息机制。要注意的是，RocketMQ的是延迟消息，并非任意精度的定时消息。如果业务上需要任秒级别意精度的定时消息，就要做workaround的办法了。
