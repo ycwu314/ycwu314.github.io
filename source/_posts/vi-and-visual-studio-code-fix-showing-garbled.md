@@ -1,15 +1,15 @@
 ---
-title: 解决vi和vscode中文显示乱码，以及聊聊字符编码
+title: 解决vi和vscode中文乱码，以及聊聊字符编码
 date: 2019-07-18 21:03:06
 tags: [技巧]
 categories: [技巧, linux]
-keywords: [中文乱码, gbk, utf8, BOM, chcp, BOMInputStream]
-description: 从ASCII、GB2312、GBK（对应cp936）到GB18030的编码方法是向下兼容的。而Unicode只与ASCII兼容。使用chcp查看windows代码页。BOM是为了解决UTF-16的编码识别问题，标准的UTF-8是不需要的，但是可以支持。Windows默认对UTF-8都加上BOM，会导致Linux软件处理出异常。java可以使用BOMInputStream处理包含BOM的文件。
+keywords: [vscode 中文乱码, vi 中文乱码, gbk, utf8, BOM, chcp, BOMInputStream]
+description: vi和vscode设置不当都会出现中文乱码。从ASCII、GB2312、GBK（对应cp936）到GB18030的编码方法是向下兼容的。而Unicode只与ASCII兼容。使用chcp查看windows代码页。BOM是为了解决UTF-16的编码识别问题，标准的UTF-8是不需要的，但是可以支持。Windows默认对UTF-8都加上BOM，会导致Linux软件处理出异常。java可以使用BOMInputStream处理包含BOM的文件。
 ---
 
 域名备案要求显示站点内容，于是网上找了个静态页模板，再用nginx部署。需要在最下方需添加备案号且链接到工信部网站。
 
-# vi
+# vi中文乱码
 
 ssh服务器，vi加上去就好了。
 但是，vi打开乱码了。。。不用想，肯定是编码问题。我的控制台是utf8编码，估计是文件用了gbk、gb2312之类的编码。
@@ -25,7 +25,7 @@ set termencoding=utf-8
 - fileencoding：写入文件时采用的编码类型。
 - termencoding：输出到terminal采用的编码类型。
 
-# vscode
+# vscode中文乱码
 
 备案信息是加上去了，但是刷新页面看，基本看不清，得手动调下css。索性把文件拷贝到本地编辑好了。
 vscode打开又是乱码。。。尼玛，太矬了。。。
@@ -35,7 +35,7 @@ vscode打开又是乱码。。。尼玛，太矬了。。。
 
 意外收获：安装xshell、xftp，打开xshell并且ssh登录后，`Ctrl`+`Alt`+`F`可以直接打开xftp，非常方便。
 
-# 编码相关
+# 扩展：编码和字符集
 
 既然今晚跟编码方式这么有缘，就顺手整理下编码相关的知识。
 对于字符编码，通常关注编码方式（定长、变长、编码字节数、特殊控制字符）、支持字符数、和不同字符编码的兼容性。
