@@ -1,13 +1,13 @@
 ---
-title: postman使用pre-request script计算md5
+title: postman自动计算md5加密验签
 date: 2019-07-30 00:45:08
 tags: [测试, 技巧]
 categories: [测试]
 keywords: [postman, md5加密, CryptoJS, 自动化测试]
-description: 使用postman进行自动化测试，可以利用CryptoJS生成md5加密。验签字段需要设置为postman的环境变量。
+description: postman可以发送请求的时候自动计算md5加密验签。原理是利用CryptoJS计算md5，验签字段需要设置为postman的环境变量。
 ---
 
-接口加了验签逻辑，具体是md5(salt+时间戳)。被某君吐槽说测试不方便啊能不能先关掉。其实没有必要打开又关闭验签功能，postman的pre-request script功能完全可以模拟客户端加密过程。
+接口加了加密验签逻辑，具体是md5(salt+时间戳)。被某君吐槽说测试不方便啊能不能先关掉。其实没有必要打开又关闭验签功能，postman的pre-request script功能完全可以模拟客户端加密过程。
 
 # 创建环境变量
 
@@ -23,7 +23,7 @@ var sign = CryptoJS.MD5(salt + tm).toString()
 postman.setEnvironmentVariable('tm', tm);
 postman.setEnvironmentVariable('sign', sign);
 ```
-使用CryptoJS计算md5。然后把`tm`、`sign`设置为环境变量。注意url参数的写法，是用双花括号包住环境变量：`tm={{tm}}`
+使用CryptoJS计算md5加密。然后把`tm`、`sign`设置为环境变量。注意url参数的写法，是用双花括号包住环境变量：`tm={{tm}}`
 
 {% asset_img pre_request_script.png %}
 
