@@ -4,12 +4,12 @@ date: 2019-07-05 11:22:11
 tags: [jvm, 故障案例]
 categories: jvm
 keywords: [java.io.tmpdir, hsperfdata, jps, arthas, jvm]
-description: arthas, jps, jconsole等工具会从hsperfdata获取已经启动的java应用信息。如果对应的目录没有访问权限，就会找不到对应的pid。目录路径在临时目录java.io.tmpdir下面的hsperfdata_%USER%。
+description: arthas, jps, jconsole等工具会从hsperfdata获取已经启动的java应用信息。如果对应的目录没有访问权限，就会找不到对应的pid。目录路径在临时目录java.io.tmpdir下面的hsperfdata_%USER%，Windows 10默认用户没有读写权限。
 ---
 
 # 问题描述
 
-之前写了 [使用arthas直接操作redis](https://ycwu314.github.io/p/use-arthas-to-operate-redis-direclty.html) 遇到一个问题：
+在Windows 10系统，之前写了 [使用arthas直接操作redis](https://ycwu314.github.io/p/use-arthas-to-operate-redis-direclty.html) 遇到一个问题：
 ```
 λ java -jar arthas-boot.jar
 [INFO] arthas-boot version: 3.1.1
@@ -59,4 +59,6 @@ C:\Users\ycwu\AppData\Local\Temp\
 
 ps. linux系统的hsperfdata默认是在`/tmp/hsperfdata_<user>`
 
+# 小结
 
+Windows 10的`java.io.tmpdir`里的`hsperfdata`目录默认访问权限有问题，导致jps等工具找不到Java pid。手动设置一下就好了。

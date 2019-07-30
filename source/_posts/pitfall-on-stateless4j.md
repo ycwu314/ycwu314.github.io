@@ -3,11 +3,11 @@ title: stateless4j踩坑经历
 date: 2019-07-02 15:31:59
 tags: [设计模式, 状态模式, 故障案例]
 categories: 故障案例
-keywords: [stateless4j]
-description: stateless4j框架太久没有更新，master分支代码和maven repository上的版本有差异。建议使用master分支代码打包一份jar，上传到私服。
+keywords: [stateless4j, java状态机]
+description: stateless4j是一个轻量级的java状态机框架，但是太久没有更新，master分支代码和maven repository上的版本有差异。建议使用master分支代码打包一份jar，上传到私服。
 ---
 
-上次聊了状态机框架选型，最后采用stateless4j。这次继续聊下stateless4j使用的坑。
+上次聊了java状态机框架选型，最后采用stateless4j。这次继续聊下stateless4j使用的坑。
 
 往期文章：
 - {% post_link compare-state-machine-framework %}
@@ -64,5 +64,4 @@ master代码
 
 # 解决
 
-拉下master分支，重新打包2.5.1，放到内部仓库。
-
+在stateless4j repo拉下master分支，重新打包2.5.1，放到内部仓库。

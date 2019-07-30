@@ -3,11 +3,11 @@ title: orchestration vs choreography
 date: 2019-07-17 20:12:44
 tags: [微服务, soa]
 categories: [微服务]
-keywords: [orchestration, choreography, 编排, 协同]
-description: orchestration是编排，中心化地控制相关服务。choreography是协同，服务之间通过去中心化的方式交互（例如订阅某个消息topic）。
+keywords: [orchestration vs choreography, 编排, 协同]
+description: 服务化架构中，orchestration vs choreography是两个容易混淆的概念。orchestration是编排，中心化地控制相关服务。choreography是协同，服务之间通过去中心化的方式交互（例如订阅某个消息topic）。
 ---
 
-不管是微服务还是SOA，都会涉及到2个容易混淆的概念：orchestration（编排）和choreography（协同，这是我喜欢的翻译）。
+不管是微服务还是SOA，都会涉及到2个容易混淆的概念：orchestration vs choreography。orchestration（编排）和choreography（协同，这是我喜欢的翻译）。
 
 # 概念
 
@@ -61,5 +61,6 @@ Choreography：customer service向topic发送“customer create event”，其�
 
 # 总结
 
+orchestration vs choreography要怎么选择呢？
 No silver bullet。
-我的经验是，关键的、核心的、复杂的、一致性要求高的业务流程，更适合Orchestration方式。非关键的、简单的、一致性要求不高的业务流程，用Choreography即可。
+我的经验是，关键的、少量的、核心的、复杂的、一致性要求高的业务流程，更适合Orchestration方式。非关键的、简单的、一致性要求不高的业务流程，用Choreography即可。

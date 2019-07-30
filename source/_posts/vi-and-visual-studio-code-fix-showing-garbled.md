@@ -3,8 +3,8 @@ title: 解决vi和vscode中文乱码，以及聊聊字符编码
 date: 2019-07-18 21:03:06
 tags: [技巧]
 categories: [技巧, linux]
-keywords: [vscode 中文乱码, vi 中文乱码, gbk, utf8, BOM, chcp, BOMInputStream]
-description: vi和vscode设置不当都会出现中文乱码。从ASCII、GB2312、GBK（对应cp936）到GB18030的编码方法是向下兼容的。而Unicode只与ASCII兼容。使用chcp查看windows代码页。BOM是为了解决UTF-16的编码识别问题，标准的UTF-8是不需要的，但是可以支持。Windows默认对UTF-8都加上BOM，会导致Linux软件处理出异常。java可以使用BOMInputStream处理包含BOM的文件。
+keywords: [vscode 中文乱码, vi 中文乱码, utf8 BOM, chcp, BOMInputStream]
+description: vi中文乱码、vscode中文乱码是编码设置问题。从ASCII、GB2312、GBK（对应cp936）到GB18030的编码方法是向下兼容的。而Unicode只与ASCII兼容。使用chcp查看windows代码页。BOM是为了解决UTF-16的编码识别问题，标准的UTF-8是不需要的，但是可以支持。Windows默认对UTF-8都加上BOM，会导致Linux软件处理出异常。java可以使用BOMInputStream处理包含BOM的文件。
 ---
 
 域名备案要求显示站点内容，于是网上找了个静态页模板，再用nginx部署。需要在最下方需添加备案号且链接到工信部网站。
