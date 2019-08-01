@@ -3,7 +3,7 @@ title: nginx配置SSL证书，以及ssl_ciphers选择
 date: 2019-07-22 22:44:32
 tags: [nginx, https, devops]
 categories: [nginx]
-keywords: [ssl_ciphers, ssllabs.com, 加密套件]
+keywords: [nginx配置ssl, ssl_ciphers, ssllabs.com]
 description: nginx的ssl_ciphers决定服务器使用的加密套件，屏蔽不安全的加密套件能够提高安全性。ssllabs.com能够测试证书和服务器ssl配置安全性。ciphers的选择影响对旧系统、旧设备的兼容性。
 ---
 

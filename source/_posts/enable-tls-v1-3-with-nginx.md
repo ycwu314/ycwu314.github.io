@@ -3,7 +3,7 @@ title: nginx开启TLSv1.3
 date: 2019-07-24 16:24:42
 tags: [nginx, devops, https]
 categories: [nginx]
-keywords: [tls1.3, LD_LIBRARY_PATH]
+keywords: [nginx tls1.3, LD_LIBRARY_PATH]
 description: 开启tls1.3，需要openssl v1.1.1以上版本，并且以此构建nginx。升级openssl可能需要更新LD_LIBRARY_PATH环境变量。
 ---
 
