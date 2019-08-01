@@ -3,7 +3,7 @@ title: Windows上切换多个java版本：java8和java11
 date: 2019-07-18 10:19:01
 tags: [java, 技巧]
 categories: [java]
-keywords: [多个java版本, java8, java11, setx, 查看java版本]
+keywords: [多个java版本, java8, java11, setx /m, 查看java版本]
 description: 使用setx命令修改windows的系统变量，切换多个java版本java8、java11。查看版本java -version
 ---
 
