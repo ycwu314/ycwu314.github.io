@@ -16,17 +16,16 @@ install:
 script:
   - hexo clean
   - hexo g
-  - pwd
-  - ls -al themes/next/source/lib
-
-after_script:
   - cd ./public
   - git init
   - git config user.name "ycwu314"
   - git config user.email "535215779@qq.com"
   - git add .
   - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"  # 提交记录包含时间 跟上面更改时区配合
-  - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:master  #Travis_Token是在Travis中配置环境变量的名称
+#  - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:master 
+  - git push --force --quiet "https://${GITEE_TOKEN}@${GITEE_REF}" master:master 
+
+after_script:
 
 branches:
   only:
@@ -34,5 +33,6 @@ branches:
 
 env:
  global:
-   - GH_REF: github.com/ycwu314/ycwu314.github.io.git  #设置GH_REF，注意更改yourname
+   - GH_REF: github.com/ycwu314/ycwu314.github.io.git
+   - GITEE_REF: gitee.com/ycwu314/ycwu314.git
 
