@@ -14,16 +14,22 @@ install:
   - npm install -g hexo-cli
 
 script:
-  - hexo clean
-  - hexo g
-  - cd ./public
-  - git init
-  - git config user.name "ycwu314"
-  - git config user.email "535215779@qq.com"
-  - git add .
-  - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"  # 提交记录包含时间 跟上面更改时区配合
+  - echo ${GITEE_SSH_PUB} > 1.txt
+  - cat 1.txt
+  # - hexo clean
+  # - hexo g
+  # - rm -rf public_gitee
+  # - mkdir public_gitee
+  # - cp -rf public public_gitee
+#  - cd ./public
+  # - cd public_gitee
+  # - git init
+  # - git config user.name "ycwu314"
+  # - git config user.email "535215779@qq.com"
+  # - git add .
+  # - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"  # 提交记录包含时间 跟上面更改时区配合
 #  - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:master 
-  - git push --force --quiet "https://${GITEE_TOKEN}@${GITEE_REF}" master:master 
+
 
 after_script:
 
@@ -34,5 +40,4 @@ branches:
 env:
  global:
    - GH_REF: github.com/ycwu314/ycwu314.github.io.git
-   - GITEE_REF: gitee.com/ycwu314/ycwu314.git
 
