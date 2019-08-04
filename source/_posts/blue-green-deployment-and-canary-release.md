@@ -4,7 +4,7 @@ date: 2019-07-22 20:24:24
 tags: [测试, 微服务]
 categories: [测试]
 keywords: [蓝绿部署, blue green deployment, 金丝雀发布, canary release, 线上验证]
-description: 蓝绿发布要有2套生产环境，分别做部署和验证、正式生产，并且切换使用。金丝雀发布每次更新的粒度小，风险更新，会有多个版本共存，适合做AB测试，实际中会结合滚动发布一起使用。线上部署和验证，要考虑流量切换、数据跟踪和验证、数据回滚等问题。
+description: 蓝绿发布（blue green deployment）要有2套生产环境，分别做部署和验证、正式生产，并且切换使用。金丝雀（canary release）发布每次更新的粒度小，风险更新，会有多个版本共存，适合做AB测试，实际中会结合滚动发布一起使用。线上部署和验证，要考虑流量切换、数据跟踪和验证、数据回滚等问题。
 ---
 
 软件部署是一个重要的环节，有多重要，值得烧香保平安😀。
@@ -26,7 +26,7 @@ description: 蓝绿发布要有2套生产环境，分别做部署和验证、正
 
 切勿在生产环境中使用一把梭部署。
 
-# 蓝绿部署
+# 蓝绿部署，blue green deployment
 
 {% asset_img blue_green_deployments.png %}
 引用Martin Fowler的图片[BlueGreenDeployment](https://martinfowler.com/bliki/BlueGreenDeployment.html)
@@ -53,7 +53,7 @@ description: 蓝绿发布要有2套生产环境，分别做部署和验证、正
 因此，设计好表结构，避免日后修改，非常重要。
 一点小技巧是，尽量做新增，而不是修改。新的扩展表、影子表、字段，回滚相对方便。
 
-# 金丝雀发布（灰度发布）
+# 金丝雀发布（灰度发布），canary release
 
 蓝绿部署，每次操作的单位是一个集群，粒度很大。
 金丝雀发布（canary release），是蓝绿部署的一种改善。每次发布，只针对进群中少量的机器进行更新，以及验证。一旦线上验证通过，再对其余实例进行更新，放大流量。
