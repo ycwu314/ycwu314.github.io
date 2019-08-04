@@ -15,7 +15,7 @@ install:
 
 script:
   - echo ${GITEE_SSH_PUB} > 1.txt
-  - cat 1.txt
+  - wc -c 1.txt
   # - hexo clean
   # - hexo g
   # - rm -rf public_gitee
