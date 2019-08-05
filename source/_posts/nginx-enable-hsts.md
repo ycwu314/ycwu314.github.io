@@ -1,7 +1,7 @@
 ---
 title: nginx配置hsts
 date: 2019-07-26 00:00:43
-tags: [nginx, https, devops]
+tags: [nginx, https, devops, web, 网络安全]
 categories: [nginx]
 keywords: [hsts, HTTP Strict Transport Security, SSL Strip, 中间人剥离攻击, Strict-Transport-Security]
 description: 中间人截获用户的http请求、并代替用户和服务器建立https连接，这就是SSL strip中间人剥离攻击。对此产生了HSTS（HTTP Strict Transport Security）header字段，在服务器第一个https响应返回的时候，指定该域名在有效期内都要使用https连接。预加载HSTS是完善HSTS机制要在第一个https响应返回后才生效的缺点。

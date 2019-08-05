@@ -1,10 +1,10 @@
 ---
 title: nginx开启ocsp stapling
 date: 2019-07-23 19:19:15
-tags: [nginx, https, devops]
+tags: [nginx, https, devops, 网络安全]
 categories: [nginx]
-keywords: [ocsp stapling, ssl_stapling, DigiCert ocsp, CRL, 证书吊销]
-description: OCSP stapling能够加快客户端建立tls连接。客户端要向CA服务器查询证书的有效状态，额外产生了完整的http请求，并且是阻塞的。OCSP stapling允许服务器端向CA查询证书链状态，缓存查询结果并向客户端返回。另一种查询证书是否吊销（revoke）的方式是维护CRL列表，但是会有更新不及时的问题。
+keywords: [ocsp stapling, ssl_stapling, CRL, 证书吊销,  OCSP must staple]
+description: OCSP stapling能够加快客户端建立tls连接。客户端要向CA服务器查询证书的有效状态，额外产生了完整的http请求，并且是阻塞的。OCSP stapling允许服务器端向CA查询证书链状态，缓存查询结果并向客户端返回。另一种查询证书是否吊销（revoke）的方式是维护CRL列表，但是会有更新不及时的问题。OCSP must staple是一种证书机制，要求浏览器必须响应OCSP结果。
 ---
 
 **客户端建立tls连接时，会发起完整的http请求，查询证书的状态（有效、撤销revoke），这个操作是阻塞的**。

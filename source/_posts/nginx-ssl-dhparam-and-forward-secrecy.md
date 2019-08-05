@@ -1,7 +1,7 @@
 ---
 title: nginx配置dhparam，以及聊聊forward secrecy
 date: 2019-07-24 00:20:55
-tags: [nginx, https, devops]
+tags: [nginx, https, devops, 网络安全]
 categories: [nginx]
 keywords: [nginx dhparam, nginx forward secrecy, 前向保密, premaster secret]
 description: DHE或者ECDHE算法能够包换premaster secret（前向保密）的交换，从而实现forward secrecy，nginx使用openssl默认生成的dhparam是1024bit，强度低；因此要手动生成高强度的dhparam。
