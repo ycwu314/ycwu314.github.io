@@ -12,7 +12,7 @@ cache:
 before_install:
   - export TZ='Asia/Shanghai' # 更改时区
   - gunzip .travis/travis.key.enc.gz
-  - openssl aes-256-cbc -in .travis/travis.key.enc -out ~/.ssh/id_rsa -d -k CtbBnkohJFSW27ga 
+  - openssl aes-256-cbc -in .travis/travis.key.enc -out ~/.ssh/id_rsa -d -k ${SSH_PWD} 
   - chmod 600 ~/.ssh/id_rsa
   - eval $(ssh-agent -s)
   - ssh-add
@@ -35,7 +35,6 @@ branches:
 
 env:
  global:
-   - GH_REF: github.com/ycwu314/ycwu314.github.io.git
 
 addons:
   ssh_known_hosts:
