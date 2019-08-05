@@ -8,20 +8,21 @@ cache:
         - node_modules # 缓存不经常更改的内容
 
 before_install:
-    - export TZ='Asia/Shanghai' # 更改时区
-
-install:
-  - npm install
-
-script:
+  - export TZ='Asia/Shanghai' # 更改时区
   - cd .travis
   - openssl aes-256-cfb -in travis.key.enc -out ~/.ssh/id_rsa -salt  -k ${SSH_PRIV_PWD} -d 
   - chmod 600 ~/.ssh/id_rsa
   - eval $(ssh-agent)
-  - ssh-add ~/.ssh/id_rsa
+  - DISPLAY= SSH_ASKPASS= ssh-add ~/.ssh/id_rsa
   - ls -al ~./ssh
   - ssh -T git@gitee.com
   - ssh -T git@github.com
+
+install:
+#  - npm install
+
+script:
+
   # - hexo clean
   # - hexo g
   # - rm -rf public_gitee
