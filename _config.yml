@@ -80,12 +80,10 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repo:
-    gitee: git@gitee.com:ycwu314/ycwu314.git
+  repo: git@gitee.com:ycwu314/ycwu314.git
   branch: master
 - type: git
-  repo:
-    github: git@github.com:ycwu314/ycwu314.github.io.git
+  repo: git@github.com:ycwu314/ycwu314.github.io.git
   branch: master
   
 # Post wordcount display settings
