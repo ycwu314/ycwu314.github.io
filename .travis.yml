@@ -22,7 +22,7 @@ before_install:
   - git config --global user.email '535215779@qq.com'
 
 install:
-#  - npm install
+  - npm install -g hexo-cli
 
 script:
   - hexo clean
