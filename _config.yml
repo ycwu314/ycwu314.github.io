@@ -79,11 +79,14 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
+- type: git
   repo:
-    github: git@github.com:ycwu314/ycwu314.github.io.git
+  gitee: git@gitee.com:ycwu314/ycwu314.git
   branch: master
-
+- type: git
+  repo:
+  github: git@github.com:ycwu314/ycwu314.github.io.git
+  branch: master
   
 # Post wordcount display settings
 # Dependencies: https://github.com/willin/hexo-wordcount

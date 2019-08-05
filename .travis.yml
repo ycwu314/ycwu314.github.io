@@ -11,11 +11,16 @@ before_install:
     - export TZ='Asia/Shanghai' # 更改时区
 
 install:
-  - npm install -g hexo-cli
+  - npm install
 
 script:
-  - echo ${GITEE_SSH_PUB} > 1.txt
-  - wc -c 1.txt
+  - cd .travis
+  - openssl aes-256-cfb -in travis.key.enc -out ~/.ssh/id_rsa -salt  -k ${SSH_PRIV_PWD} -d 
+  - chmod 600 ~/.ssh/id_rsa
+  - cp known_hosts ~/.ssh/known_hosts
+  - ls -al ~./ssh
+  - ssh -T git@gitee.com
+  - ssh -T git@github.com
   # - hexo clean
   # - hexo g
   # - rm -rf public_gitee
