@@ -19,7 +19,9 @@ description: 使用travis部署gitee和github，用openssl aes加密ssh私钥后
 # travis入坑
 
 travis是一个自动化构建和部署平台。支持GitHub。要注意的是，travis.org支持public项目，travis.com支持private项目。
-使用travis之后，可以本地提交md文件，远程生成博客。以后文章变多之后，部署就相当方便。
+使用travis之后有2个好处：
+- 在线修改md文件，直接提交就生效。改个做别字什么的好方便了。
+- 可以本地提交md文件，远程生成博客。以后文章变多之后，部署就相当方便。
 
 ## 使用token部署
 
