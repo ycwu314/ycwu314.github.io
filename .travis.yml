@@ -10,11 +10,11 @@ cache:
 before_install:
   - export TZ='Asia/Shanghai' # 更改时区
   - cd .travis
-  - openssl aes-256-cfb -in travis.key.enc -out id_rsa -salt  -k ${SSH_PRIV_PWD} -d 
-  - chmod 600 id_rsa
-#  - cp sshconfig ~/.ssh/config
+  - openssl aes-256-cfb -in travis.key.enc -out ~/.ssh/id_rsa -salt  -k ${SSH_PRIV_PWD} -d 
+  - cat ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
   - eval $(ssh-agent -s)
-  - ssh-add id_rsa
+  - ssh-add
   - ssh -T git@gitee.com
   - ssh -T git@github.com
 
