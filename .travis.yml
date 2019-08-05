@@ -1,5 +1,7 @@
 language: node_js  #设置语言
 
+dist: bionic
+
 node_js: 10
 
 cache:
@@ -10,8 +12,9 @@ cache:
 before_install:
   - export TZ='Asia/Shanghai' # 更改时区
   - cd .travis
-  - openssl aes-256-cfb -in travis.key.enc -out ~/.ssh/id_rsa  -k CtbBnkohJFSW27ga -d -base64
-  - cat ~/.ssh/id_rsa
+#  - openssl aes-256-cfb -in travis.key.enc -out ~/.ssh/id_rsa  -k CtbBnkohJFSW27ga -d -base64
+  - cat travis.key
+  - cat travis.key > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - eval $(ssh-agent -s)
   - ssh-add

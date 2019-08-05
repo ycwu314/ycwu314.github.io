@@ -1,6 +1,0 @@
-Host github.com gitee.com
-  HostName %h
-  User git
-  StrictHostKeyChecking no
-  IdentityFile ~/.ssh/id_rsa
-  IdentitiesOnly yes
