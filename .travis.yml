@@ -18,30 +18,16 @@ before_install:
   - chmod 600 ~/.ssh/id_rsa
   - eval $(ssh-agent -s)
   - ssh-add
-  - ssh -T git@gitee.com
-  - ssh -T git@github.com
+  - git config --global user.name 'ycwu314'
+  - git config --global user.email '535215779@qq.com'
 
 install:
 #  - npm install
 
 script:
-
-  # - hexo clean
-  # - hexo g
-  # - rm -rf public_gitee
-  # - mkdir public_gitee
-  # - cp -rf public public_gitee
-#  - cd ./public
-  # - cd public_gitee
-  # - git init
-  # - git config user.name "ycwu314"
-  # - git config user.email "535215779@qq.com"
-  # - git add .
-  # - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"  # 提交记录包含时间 跟上面更改时区配合
-#  - git push --force --quiet "https://${Travis_Token}@${GH_REF}" master:master 
-
-
-after_script:
+  - hexo clean
+  - hexo g
+  - hexo d
 
 branches:
   only:
