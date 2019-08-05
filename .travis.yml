@@ -17,7 +17,8 @@ script:
   - cd .travis
   - openssl aes-256-cfb -in travis.key.enc -out ~/.ssh/id_rsa -salt  -k ${SSH_PRIV_PWD} -d 
   - chmod 600 ~/.ssh/id_rsa
-  - cp known_hosts ~/.ssh/known_hosts
+  - eval $(ssh-agent)
+  - ssh-add ~/.ssh/id_rsa
   - ls -al ~./ssh
   - ssh -T git@gitee.com
   - ssh -T git@github.com
@@ -46,3 +47,7 @@ env:
  global:
    - GH_REF: github.com/ycwu314/ycwu314.github.io.git
 
+addons:
+  ssh_known_hosts:
+    - gitee.com
+    - github.com
