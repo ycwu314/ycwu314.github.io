@@ -20,7 +20,7 @@ before_install:
   - git config --global user.email '535215779@qq.com'
 
 install:
-  - npm install -g hexo-cli
+  - npm install -g hexo-cli --save
 
 script:
   - hexo clean
