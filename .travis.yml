@@ -10,7 +10,7 @@ cache:
 before_install:
   - export TZ='Asia/Shanghai' # 更改时区
   - cd .travis
-  - openssl aes-256-cfb -in travis.key.enc -out ~/.ssh/id_rsa -salt  -k jD2Mxl9Beynmu61EcAJi3NSpT8Vht4fgLPdbYCWaIUGqF07OHvsorZX5KkQzwRhWOcqF6hp0VNDCvljmRzfdtk4l7rRYrPbgoroowyFHVqYoJTehTawvpjnMUEqs3R4P -d 
+  - openssl aes-256-cfb -in travis.key.enc -out ~/.ssh/id_rsa  -k CtbBnkohJFSW27ga -d 
   - cat ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - eval $(ssh-agent -s)
