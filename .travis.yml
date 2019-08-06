@@ -18,22 +18,21 @@ before_install:
   # - ssh-add
   # - git config --global user.name 'ycwu314'
   # - git config --global user.email '535215779@qq.com'
-  - wget https://chromedriver.storage.googleapis.com/75.0.3770.140/chromedriver_linux64.zip --no-check-certificate
+  - wget https://chromedriver.storage.googleapis.com/76.0.3809.68/chromedriver_linux64.zip --no-check-certificate
   - unzip chromedriver_linux64.zip
   - CHROME_DRIVER_PATH=`pwd`
   - echo "export CHROME_DRIVER_PATH=${CHROME_DRIVER_PATH}" >> ~/.profile
   - echo "export PATH=$PATH:${CHROME_DRIVER_PATH}" >> ~/.profile
   - source ~/.profile
-
+  - chmod u+x .travis/deploy_gitee.js
+  - npm install selenium-webdriver@3.6.0 --save
+  - which google-chrome-stable
+  - google-chrome-stable --version
 
 install:
   # - pwd
   # - npm install -g hexo --save
-  - npm install selenium-webdriver@3.6.0 --save
-  - which google-chrome-stable
-  - google-chrome-stable --version
-  - chmod u+x .travis/deploy_gitee.js
-  - node ./travis/deploy_gitee.js
+  - node .travis/deploy_gitee.js
 
 script:
   # - hexo clean
