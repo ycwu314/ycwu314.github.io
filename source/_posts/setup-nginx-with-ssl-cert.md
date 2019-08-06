@@ -3,11 +3,11 @@ title: nginx配置SSL证书，以及ssl_ciphers选择
 date: 2019-07-22 22:44:32
 tags: [nginx, https, devops]
 categories: [nginx]
-keywords: [nginx配置ssl, ssl_ciphers, ssllabs.com]
-description: nginx的ssl_ciphers决定服务器使用的加密套件，屏蔽不安全的加密套件能够提高安全性。ssllabs.com能够测试证书和服务器ssl配置安全性。ciphers的选择影响对旧系统、旧设备的兼容性。
+keywords: [nginx配置ssl, ssl_ciphers, ssl_session_timeout, ssl_session_cache]
+description: nginx配置ssl比较简单。nginx的ssl_ciphers决定服务器使用的加密套件，屏蔽不安全的加密套件能够提高安全性。ssllabs.com能够测试证书和服务器ssl配置安全性。ciphers的选择影响对旧系统、旧设备的兼容性。开启ssl_session_cache可以提高性能。
 ---
 
-新域名备案一直等待回复，只能先使用旧域名和响应SSL证书。
+新域名备案一直等待回复，只能先使用旧域名和相应SSL证书。
 
 # 准备
 
@@ -37,7 +37,7 @@ ssl_protocols TLSv1.2;
 }
 ```
 
-## ssl_session_timeout，ssl_session_cache
+## ssl_session_timeout, ssl_session_cache
 
 ssl握手是一个消耗cpu资源的操作。因此在多个worker进程之间共享ssl session可以提升性能。
 1M的缓存大概包含4000个session，默认的缓存超时时间为5分钟。考虑到小程序用完就走的场景，通常设置5min够用了。

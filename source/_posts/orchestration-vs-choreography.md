@@ -1,9 +1,9 @@
 ---
-title: orchestration vs choreography
+title: orchestration vs choreography，编排vs编制（协同）
 date: 2019-07-17 20:12:44
 tags: [微服务, soa]
 categories: [微服务]
-keywords: [orchestration vs choreography, 编排, 协同]
+keywords: [orchestration vs choreography, 编排 vs 编排]
 description: 服务化架构中，orchestration vs choreography是两个容易混淆的概念。orchestration是编排，中心化地控制相关服务。choreography是协同，服务之间通过去中心化的方式交互（例如订阅某个消息topic）。
 ---
 

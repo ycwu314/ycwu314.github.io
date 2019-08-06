@@ -9,7 +9,7 @@ description: stateless4j是一个轻量级的java状态机框架，但是太久�
 
 上次聊了java状态机框架选型，最后采用stateless4j。这次继续聊下stateless4j使用的坑。
 
-往期文章：
+stateless4j的demo参照往期文章：
 - {% post_link compare-state-machine-framework %}
 
 # 问题
