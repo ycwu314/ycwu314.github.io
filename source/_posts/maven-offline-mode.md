@@ -90,7 +90,7 @@ Downloaded from alimaven: http://maven.aliyun.com/nexus/content/groups/public/or
 
 # 小结
 
-以后考虑maven依赖下载问题，要考虑
+以后遇到maven依赖下载问题，要考虑
 - central repo镜像配置
 - 本地jar包损坏
 - maven离线模式
