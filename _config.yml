@@ -5,8 +5,8 @@
 # Site
 title: ycwu314
 subtitle:
-description:
-keywords:
+description: 
+keywords: [java, 微服务, 分布式系统, 架构设计]
 author: ycwu314
 language: zh-CN
 timezone:
@@ -99,8 +99,6 @@ post_wordcount:
 ## Plugins: http://hexo.io/plugins/
 plugins: hexo-generate-feed  
 
-
-
 # search
 search:
   on: true
@@ -114,5 +112,3 @@ search:
 # 自动生成sitemap
 sitemap:
   path: sitemap.xml
-baidusitemap:
-  path: baidusitemap.xml

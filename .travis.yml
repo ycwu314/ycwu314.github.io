@@ -10,34 +10,23 @@ cache:
         - node_modules # 缓存不经常更改的内容
 
 before_install:
-  # - export TZ='Asia/Shanghai' # 更改时区
-  # - gunzip .travis/travis.key.enc.gz
-  # - openssl aes-256-cbc -in .travis/travis.key.enc -out ~/.ssh/id_rsa -d -k ${SSH_PWD} 
-  # - chmod 600 ~/.ssh/id_rsa
-  # - eval $(ssh-agent -s)
-  # - ssh-add
-  # - git config --global user.name 'ycwu314'
-  # - git config --global user.email '535215779@qq.com'
-  - wget https://chromedriver.storage.googleapis.com/76.0.3809.68/chromedriver_linux64.zip --no-check-certificate
-  - unzip chromedriver_linux64.zip
-  - CHROME_DRIVER_PATH=`pwd`
-  - echo "export CHROME_DRIVER_PATH=${CHROME_DRIVER_PATH}" >> ~/.profile
-  - echo "export PATH=$PATH:${CHROME_DRIVER_PATH}" >> ~/.profile
-  - source ~/.profile
-  - chmod u+x .travis/deploy_gitee.js
-  - npm install selenium-webdriver@3.6.0 --save
-  - which google-chrome-stable
-  - google-chrome-stable --version
+  - export TZ='Asia/Shanghai' # 更改时区
+  - gunzip .travis/travis.key.enc.gz
+  - openssl aes-256-cbc -in .travis/travis.key.enc -out ~/.ssh/id_rsa -d -k ${SSH_PWD} 
+  - chmod 600 ~/.ssh/id_rsa
+  - eval $(ssh-agent -s)
+  - ssh-add
+  - git config --global user.name 'ycwu314'
+  - git config --global user.email '535215779@qq.com'
 
 install:
-  # - pwd
-  # - npm install -g hexo --save
-  - node .travis/deploy_gitee.js
+  - pwd
+  - npm install -g hexo --save
 
 script:
-  # - hexo clean
-  # - hexo g
-  # - hexo d
+  - hexo clean
+  - hexo g
+  - hexo d
 
 branches:
   only:
@@ -47,7 +36,6 @@ env:
  global:
 
 addons:
-  chrome: stable
   ssh_known_hosts:
     - gitee.com
     - github.com
