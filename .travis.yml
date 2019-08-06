@@ -33,7 +33,7 @@ install:
   - which google-chrome-stable
   - google-chrome-stable --version
   - chmod u+x .travis/deploy_gitee.js
-  - node deploy_gitee.js
+  - node ./travis/deploy_gitee.js
 
 script:
   # - hexo clean
