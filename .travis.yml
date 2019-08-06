@@ -25,11 +25,15 @@ before_install:
   - echo "export PATH=$PATH:${CHROME_DRIVER_PATH}" >> ~/.profile
   - source ~/.profile
 
+
 install:
   # - pwd
   # - npm install -g hexo --save
   - npm install selenium-webdriver@3.6.0 --save
   - which google-chrome-stable
+  - google-chrome-stable --version
+  - chmod u+x .travis/deploy_gitee.js
+  - node deploy_gitee.js
 
 script:
   # - hexo clean
