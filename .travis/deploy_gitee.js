@@ -1,7 +1,7 @@
 
+console.log(1)
 var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
-    until = webdriver.until,
     Key = webdriver.Key;
 
 var chrome = require('selenium-webdriver/chrome');
@@ -13,6 +13,7 @@ options.addArguments("--disable-gpu");
 // chrome driver要放在$PATH
 options.setChromeBinaryPath("/usr/bin/google-chrome-stable");
 
+console.log(2)
 (async function example() {
     let driver = await new webdriver.Builder().forBrowser('chrome').setChromeOptions(options).build();
     try {
@@ -30,3 +31,4 @@ options.setChromeBinaryPath("/usr/bin/google-chrome-stable");
         await driver.quit();
     }
 })();
+console.log(3)
