@@ -2,7 +2,7 @@
 title: hexo开启google analytics多域名支持
 date: 2019-08-07 16:19:48
 tags: [hexo, 技巧]
-categories: [技巧]
+categories: [hexo]
 keywords: [google analytics 多域名, GA track_id, google-analytics.swig, ERR_BLOCKED_BY_CLIENT]
 description: hexo next已经集成GA插件。GA部署多域名，需要修改google-analytics.swig。adblock插件会拦截GA加载，导致ERR_BLOCKED_BY_CLIENT报错。
 ---
