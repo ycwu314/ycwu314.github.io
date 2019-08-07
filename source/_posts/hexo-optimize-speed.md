@@ -43,7 +43,7 @@ description:
 
 首页文章比较多，默认下载所有图片，导致加载瀑布时间变长。理想的情况是，只加载前面的图片，往下滚动再加载新的图片、或者在空闲时自动加载图片，实现图片的懒加载。
 这里使用的`hexo-lazyload-image`
-```s
+```
 npm install hexo-lazyload-image --save
 ```
 然后在项目的`_config.yml`增加配置
@@ -62,7 +62,7 @@ lazyload:
 hexo默认生成的html，有很多空行和空格。
 {% asset_img 文章未压缩.png %}
 默认带的css、js也是存在压缩的空间。这里使用`hexo-neat`插件
-```js
+```
 npm install hexo-neat --save
 ```
 然后在项目的`_config.yml`增加配置
@@ -112,8 +112,17 @@ next默认提供的有cloudfare、jsdelivr，感觉cloudfare要快些。
 {% asset_img fontawesome.png %}
 这个不知道怎么优化，以后再研究。
 
-
 # 优化效果
 
 {% asset_img desktop.png %}
 速度明显比以前快了😄
+
+# 小结
+
+用到的插件别忘了更新`.travis.yml`
+```yml
+install:
+  - npm install -g hexo --save
+  - npm install hexo-lazyload-image --save
+  - npm install hexo-neat --save
+```
