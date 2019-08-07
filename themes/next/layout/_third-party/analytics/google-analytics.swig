@@ -1,5 +1,4 @@
 {% if theme.google_analytics.enable %}
-  <script async src="" id="ga"></script>
   <script>
     var host = window.location.hostname;
     var track_id;
@@ -10,7 +9,10 @@
     }
 
     if(track_id){
-      ga.src = "https://www.googletagmanager.com/gtag/js?id=" + track_id;
+        var script = document.createElement("script");
+        script.src = "https://www.googletagmanager.com/gtag/js?id=" + track_id;
+        script.async = "async";
+        document.head.appendChild(script);
     }
   </script>
   <script>
