@@ -4,9 +4,9 @@
     var host = window.location.hostname;
     var track_id;
     if(host == 'ycwu314.gitee.io'){
-      track_id = {{ theme.google_analytics.gitee_tracking_id }};  
+      track_id = '{{ theme.google_analytics.gitee_tracking_id }}';  
     }else if(host == 'ycwu314.github.io'){
-      track_id = {{ theme.google_analytics.github_tracking_id }};
+      track_id = '{{ theme.google_analytics.github_tracking_id }}';
     }
 
     if(track_id){
