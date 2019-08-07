@@ -4,8 +4,8 @@
 
 # Site
 title: ycwu314
-subtitle:
-description: 
+subtitle: 潮的工地
+description: java, 微服务, 分布式系统, 架构设计
 keywords: [java, 微服务, 分布式系统, 架构设计]
 author: ycwu314
 language: zh-CN
@@ -79,9 +79,9 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-- type: git
-  repo: git@gitee.com:ycwu314/ycwu314.git
-  branch: master
+# - type: git
+#   repo: git@gitee.com:ycwu314/ycwu314.git
+#   branch: master
 - type: git
   repo: git@github.com:ycwu314/ycwu314.github.io.git
   branch: master
@@ -112,3 +112,32 @@ search:
 # 自动生成sitemap
 sitemap:
   path: sitemap.xml
+
+# npm install hexo-lazyload-image --save  
+lazyload:
+  enable: true 
+  onlypost: false  
+
+
+# 文件压缩，设置一些需要跳过的文件 
+# hexo-neat
+neat_enable: true
+# 压缩 html
+neat_html:
+  enable: true
+  exclude:
+# 压缩 css
+neat_css:
+  enable: true
+  exclude:
+    - '**/*.min.css'
+# 压缩 js
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - '**/*.min.js'
+    - '**/index.js'
+

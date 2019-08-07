@@ -82,7 +82,7 @@ google_analytics:
 以为直接修改src就会触发动态加载脚本。然而chrome F12观察，并没有加载脚本。查html相关资料
 >Changing the src, type, charset, async, and defer attributes dynamically has no direct effect; these attribute are only used at specific times described below.
 
-于是改为动态插入`<script>`标签，并且在`head`插入标签。
+于是改为动态插入`script`标签，并且在`head`插入标签。
 
 ```html
 {% if theme.google_analytics.enable %}
