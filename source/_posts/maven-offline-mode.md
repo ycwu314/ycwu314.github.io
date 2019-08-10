@@ -1,7 +1,7 @@
 ---
 title: 记一次maven offline mode引发的问题
 date: 2019-08-06 21:37:53
-tags: [maven, 技巧, devops]
+tags: [maven, 技巧, devops, 故障案例]
 categories: [技巧]
 keywords: [maven offline mode, idea work offline, dependency:go-offline, maven离线模式]
 description: maven offline mode只使用本地仓库并且不检查网络。dependency:go-offline可以检查所有依赖并且提前下载，使得offline模式工作正常。maven -o使用离线模式

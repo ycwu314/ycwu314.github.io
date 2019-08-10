@@ -1,5 +1,5 @@
 ---
-title: SD项目：频繁young gc的优化
+title: 一次young gc频繁的优化过程
 date: 2019-06-14 14:21:16
 tags: [java, jvm, SD项目, 高并发, 故障案例]
 categories: SD项目

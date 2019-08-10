@@ -3,7 +3,7 @@ title: 使用nginx stream模块做端口转发
 date: 2019-07-27 22:10:41
 tags: [nginx, ssh, linux, 技巧]
 categories: [nginx]
-keywords: [nginx stream, nginx unknown directive stream, 端口转发, nginx load_module, ngx_stream_module.so]
+keywords: [nginx unknown directive stream, 端口转发, nginx load_module, ngx_stream_module.so]
 description: stream是nginx的动态模块，要先加载，否则提示nginx unknown directive stream。在nginx.conf头部增加load_module /usr/lib/nginx/modules/ngx_stream_module.so; 即可。
 ---
 
@@ -45,7 +45,7 @@ stream {
 nginx: [emerg] unknown directive "stream" in /etc/nginx/nginx.conf:13
 nginx: configuration file /etc/nginx/nginx.conf test failed
 ```
-怎么不认识stream指令呢？`nginx -V`明明有stream模块
+`nginx unknown directive stream`？怎么不认识stream指令呢？`nginx -V`明明有stream模块
 ```
 --with-stream=dynamic
 ```

@@ -7,6 +7,6 @@ keywords: [架构图]
 description: SD项目架构图
 ---
 组件架构大图。点击查看大图。
-{% asset_img SD项目架构图.png %}
+{% asset_img SD项目架构图.webp %}
 
 

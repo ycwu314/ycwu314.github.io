@@ -281,6 +281,8 @@
     {#################}
     <div class="post-body{% if theme.han %} han-init-context{% endif %}{% if post.direction && post.direction.toLowerCase() === 'rtl' %} rtl{% endif %}" itemprop="articleBody">
 
+    <div style="text-align:center;font-size:14px;">--- 本文作者{{ config.author }}，转载请注明出处 {{ config.url }} ---</div>
+
       {# Gallery support #}
       {% if post.photos and post.photos.length %}
         <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
@@ -344,6 +346,10 @@
       {% else %}
         {{ post.content }}
       {% endif %}
+
+    <div style="text-align:center;font-size:14px;">### 本文作者{{ config.author }}，转载请注明出处 {{ post.permalink }} ###</div>
+
+
     </div>
 
     {% if theme.related_posts.enable and (theme.related_posts.display_in_home or not is_index) %}
