@@ -23,9 +23,9 @@ OpenSSL 1.1.1c  28 May 2019
 ```
 
 # 配置nginx
-```
+```nginx
 server{
-listen 443 ssl http2;
+    listen 443 ssl http2;
 }
 ```
 http2支持加密（h2）和非加密（h2c，HTTP/2 cleartext）协议。但浏览器上的实现都是h2。因此要配置ssl。

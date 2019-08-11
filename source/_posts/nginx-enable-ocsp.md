@@ -310,10 +310,12 @@ site.pem: good
 # nginx配置
 
 在server节点增加
-```bash
-ssl_stapling               on;
-ssl_stapling_verify        on;
-ssl_trusted_certificate    cert/ocsp/ocsp.cer;
+```nginx
+server {
+  ssl_stapling               on;
+  ssl_stapling_verify        on;
+  ssl_trusted_certificate    cert/ocsp/ocsp.cer;
+}
 ```
 `nginx -t`测试没问题后，`nginx -s reload`更新。
 

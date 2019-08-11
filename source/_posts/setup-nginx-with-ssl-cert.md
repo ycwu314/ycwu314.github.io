@@ -21,19 +21,19 @@ description: nginx配置ssl比较简单。nginx的ssl_ciphers决定服务器使�
 
 # nginx配置
 
-```bash
+```nginx
 server{
-listen 443 ssl;
-server_name "修改为您证书绑定的域名"; 
-ssl_certificate cert/cert.pem;          #将domain name.pem替换成您证书的文件名。
-ssl_certificate_key cert/cert.key;      #将domain name.key替换成您证书的密钥文件名。
-
-ssl_session_timeout 5m;
-ssl_session_cache shared:SSL:10m;
-
-ssl_prefer_server_ciphers on;         
-ssl_ciphers HIGH:!aNULL:!eNULL:!MD5:!RC4:!DES:!PSK:!EXPORT:!SHA:!SHA256;
-ssl_protocols TLSv1.2;   
+    listen 443 ssl;
+    server_name "修改为您证书绑定的域名"; 
+    ssl_certificate cert/cert.pem;          #将domain name.pem替换成您证书的文件名。
+    ssl_certificate_key cert/cert.key;      #将domain name.key替换成您证书的密钥文件名。
+    
+    ssl_session_timeout 5m;
+    ssl_session_cache shared:SSL:10m;
+    
+    ssl_prefer_server_ciphers on;         
+    ssl_ciphers HIGH:!aNULL:!eNULL:!MD5:!RC4:!DES:!PSK:!EXPORT:!SHA:!SHA256;
+    ssl_protocols TLSv1.2;   
 }
 ```
 
@@ -99,8 +99,10 @@ cipher安全性的一些经验
 推荐一个mozilla的站点 [Security/Server Side TLS](https://wiki.mozilla.org/Security/Server_Side_TLS)，里面有官方推荐的tls ciphers组合。一般情况选择`Intermediate compatibility (recommended)`就可以了。
 
 更新后的ciphers配置
-```
-ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+```nginx
+server {
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+}
 ```
 
 ps. 如果想要“Cipher Strength”得分更高，就把128bit相关的加密套件都去掉。

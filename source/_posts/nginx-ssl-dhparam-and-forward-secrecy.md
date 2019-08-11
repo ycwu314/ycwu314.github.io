@@ -67,9 +67,11 @@ openssl dhparam -out dhparam.pem 2048
 ```
 
 2. 更新配置server
-```
-ssl_dhparam cert/dhparam.pem;
-ssl_ecdh_curve X25519:prime256v1:secp384r1;
+```nginx
+server {
+    ssl_dhparam cert/dhparam.pem;
+    ssl_ecdh_curve X25519:prime256v1:secp384r1;
+}
 ```
 # 参考资料
 

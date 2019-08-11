@@ -14,7 +14,7 @@ description: nginx多个证书配置，在各自server增加证书即可。TLS S
 # 实践
 
 nginx部署多个TLS证书很简单，在不同的virtual host分别配置证书就搞定了。比如我有`a.com`和`b.com`两个域名，在`nginx.conf`分别配置2个server就可以了
-```
+```nginx
 server {
     listen 443 ssl http2;
     server_tokens off;
