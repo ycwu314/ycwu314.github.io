@@ -1,7 +1,7 @@
 ---
-title: travis部署github和gitee码云
+title: travis ci部署github和gitee码云
 date: 2019-08-05 15:18:24
-tags: [devops, 技巧, travis]
+tags: [travis ci, devops, 技巧, travis]
 categories: [devops]
 keywords: [travis 部署 gitee, openssl aes 加密, travis ssh, hexo 部署 码云]
 description: 使用travis部署gitee和github，用openssl aes加密ssh私钥后提交到仓库。密码提交到travis保管。travis.yml解密私钥之后用ssh-add加载。hexo deploy增加仓库地址。最后用hexo d部署。
