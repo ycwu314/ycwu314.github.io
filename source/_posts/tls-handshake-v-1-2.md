@@ -9,7 +9,7 @@ description: https tls握手，使用非对称加密进行session key生成，�
 
 # 前言
 
-http是明文传输，因此对于中间人攻击很脆弱。于是诞生了https加密传输。在http连接建立后，进行ssl/tls握手，升级为https。
+http是明文传输，因此对于中间人攻击很脆弱。于是诞生了https加密传输。在tcp三次握手建立连接后，再进行ssl/tls握手，升级为https。
 {% asset_img tls-ssl-handshake.webp %}
 (图片来源：cloudflare.com)
 
@@ -87,8 +87,9 @@ Client                                               Server
 
 ## ClientHello
 
-客户端发送支持的ciphers组合，生成client random，session id（如果有的话）、SNI。
-SNI是服务器名称指示（英语：Server Name Indication，缩写：SNI）。
+客户端发送支持的ciphers组合，生成client random，session id（如果有的话）、扩展字段例如SNI。
+SNI是服务器名称指示（英语：Server Name Indication，缩写：SNI）。具体可以参照
+- {% post_link https-sni-nginx-config %}
 
 ## ServerHello
 
