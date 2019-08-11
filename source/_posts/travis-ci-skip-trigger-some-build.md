@@ -41,4 +41,39 @@ if [[ $TRAVIS_COMMIT_MESSAGE != "skip" ]]; then hexo clean && hexo g && hexo d ;
 
 只要git commit message是以`[skip <KEYWORD>]`形式开头，travis可以自动跳过构建。
 
+推荐使用`[skip <KEYWORD>]`，太方便了。
 
+## 实践
+
+```
+C:\workspace\ycwu314.github.io\source\_posts (hexo -> origin)
+λ git add .
+warning: LF will be replaced by CRLF in source/_posts/travis-deploy-both-github-and-gitee.md.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in source/_posts/travis-ci-igonre-trigger-some-build.md.
+The file will have its original line endings in your working directory
+
+C:\workspace\ycwu314.github.io\source\_posts (hexo -> origin)
+λ git commit -m "[skip ci] test skip ci"
+[hexo 68cb27a] [skip ci] test skip ci
+ 2 files changed, 46 insertions(+), 2 deletions(-)
+ create mode 100644 source/_posts/travis-ci-igonre-trigger-some-build.md
+
+C:\workspace\ycwu314.github.io\source\_posts (hexo -> origin)
+λ git push origin hexo
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 1.73 KiB | 1.73 MiB/s, done.
+Total 6 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+remote:
+remote: GitHub found 6 vulnerabilities on ycwu314/ycwu314.github.io's default branch (1 high, 5 moderate). To find out more, visit:
+remote:      https://github.com/ycwu314/ycwu314.github.io/network/alerts
+remote:
+To github.com:ycwu314/ycwu314.github.io.git
+   9c5e76a..68cb27a  hexo -> hexo
+```
+
+然后上travis观察，嗯，nothing happens.
