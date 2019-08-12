@@ -281,7 +281,9 @@
     {#################}
     <div class="post-body{% if theme.han %} han-init-context{% endif %}{% if post.direction && post.direction.toLowerCase() === 'rtl' %} rtl{% endif %}" itemprop="articleBody">
 
-    <div style="text-align:center;font-size:14px;">--- 本文作者{{ config.author }}，转载请注明出处 <a href="{{ post.permalink }}">{{ post.permalink }}</a>  ---</div>
+      <div style="text-align:center;font-size:14px;">
+      本文作者{{ config.author }}，转载请注明出处 <a href="{{ post.permalink }}">{{ post.title }}</a> : {{ post.permalink }}
+      </div>
 
       {# Gallery support #}
       {% if post.photos and post.photos.length %}
@@ -347,9 +349,16 @@
         {{ post.content }}
       {% endif %}
 
-    <div style="text-align:center;font-size:14px;">### 本文作者{{ config.author }}，转载请注明出处 <a href="{{ post.permalink }}">{{ post.permalink }}</a>  ###</div>
-
-
+      <div style="text-align:center;font-size:14px;">
+      本文作者{{ config.author }}，转载请注明出处 <a href="{{ post.permalink }}">{{ post.title }}</a> : {{ post.permalink }}
+      </div>
+    
+    <!-- 首页文章不显示打赏码 -->
+    {% if !is_index %}
+      <div style="text-align:center;font-size:16px;font-weight:bold;">{{ theme.reward_settings.comment }}</div>
+      <img src="{{theme.reward.wechatpay}}" style="width: 50%; margin:0 auto" />
+    {% endif %}
+    
     </div>
 
     {% if theme.related_posts.enable and (theme.related_posts.display_in_home or not is_index) %}

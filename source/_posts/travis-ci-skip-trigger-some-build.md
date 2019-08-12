@@ -4,7 +4,7 @@ date: 2019-08-11 15:12:37
 tags: [travis ci, devops, 技巧]
 categories: [技巧]
 keywords: [travis跳过构建, TRAVIS_COMMIT_MESSAGE, travis skip building]
-description: travis跳过构建，可以在脚本使用TRAVIS_COMMIT_MESSAGE变量判断；或者以[skip \<keyword\>]形式提交commit message
+description: travis跳过构建，可以在脚本使用TRAVIS_COMMIT_MESSAGE变量判断；或者以[skip keyword]形式提交commit message
 ---
 
 # 问题背景
