@@ -141,3 +141,9 @@ neat_js:
     - '**/*.min.js'
     - '**/index.js'
 
+# npm install hexo-autonofollow --save
+nofollow:
+  enable: true
+  exclude:
+    - 'ycwu314.github.io'
+    - 'ycwu314.gitee.io'

@@ -23,6 +23,7 @@ install:
   - npm install -g hexo --save
   - npm install hexo-lazyload-image --save
   - npm install hexo-neat --save
+  - npm install hexo-autonofollow --save
 
 script:
   - hexo clean
