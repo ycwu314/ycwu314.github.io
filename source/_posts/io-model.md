@@ -99,6 +99,7 @@ netty使用了Channel这个概念。一个channel监听一个IO操作。一个�
 
 相关资料参见：
 - {% post_link reactor-pattern %}
+- {% post_link linux-select-epoll-poll %}
 
 # 信号驱动IO，signal driven IO
 
