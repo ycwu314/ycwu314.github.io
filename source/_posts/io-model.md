@@ -59,7 +59,21 @@ POSIX对同步、异步的定义
 2. 把就绪数据从内核空间复制到进程
 
 如果数据未ready，就一直阻塞。
-最简单直接的模型。但是一个用户进程只能阻塞一个IO操作。如果要同时阻塞多个IO操作，只能使用多线程。太多线程数会引起上下文切换开销占比变大，导致高并发性能瓶颈。
+最简单直接的模型。但是一个用户线程只能阻塞一个IO操作。伪代码如下
+```
+while(true){ 
+    socket = accept(); 
+    handle(socket) 
+} 
+```
+如果要同时阻塞多个IO操作，只能使用多线程。
+```
+while(true){ 
+    socket = accept(); 
+    new handler_thread(socket); 
+} 
+```
+线程的创建、销毁产生额外的性能损耗。使用线程池可以减少线程创建、销毁的开销。但是太多线程数依然会引起上下文切换开销占比变大，导致高并发性能瓶颈。
 
 # 非阻塞IO，non blocking IO
 
@@ -81,8 +95,10 @@ POSIX对同步、异步的定义
 多路复用最大的特点是，一个用户线程可以注册检查多个IO请求。传统的blocking io模型，一个用户线程只能检查一个IO请求。在高并发的情况下，多路复用能够减少IO线程数量，提高了高并发性能。
 
 多路复用模型使用了 Reactor 设计模式实现了这一机制。
+netty使用了Channel这个概念。一个channel监听一个IO操作。一个用户线程注册多个Channel，从而关注多个IO操作。 最大的好处是，一个线程可以处理多个IO操作：一个用户线程不停地select，获取已经就绪的Channel。
 
-TODO：详细讲解select、epoll、以及reactor模式。
+相关资料参见：
+- {% post_link reactor-pattern %}
 
 # 信号驱动IO，signal driven IO
 
