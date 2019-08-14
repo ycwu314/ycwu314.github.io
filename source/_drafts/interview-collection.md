@@ -12,8 +12,10 @@ keywords:
 - {% post_link reactor-pattern %}
 - {% post_link linux-select-epoll-poll %}
 
+# 多线程
+
+- {% post_link wait-vs-sleep %}
 
 
-{% asset_img slug [title] %}
-<!-- more -->
+
 
