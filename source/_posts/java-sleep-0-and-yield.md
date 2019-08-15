@@ -4,11 +4,14 @@ date: 2019-08-14 23:13:31
 tags: [java, 多线程]
 categories: [java]
 keywords: [sleep 0 yeild, ConvertSleepToYield, ConvertYieldToSleep, convert yield sleep]
-description: 
+description: sleep(0)和yeild的行为，受具体的jvm版本和os影响。sleep(0)通常会是yeild的语义，放弃该线程拥有的剩余时间片，并且通知调度器选择合适的线程使用。
 ---
 
 看到一个问题“sleep(0)的作用是什么”，发现底层牵涉还挺多内容。
 以下基于openjdk8的源码，hg id 87ee5ee27509。
+
+回顾线程状态状态机图：
+{% asset_img Multithread_TimedWaiting.png %}
 
 # java sleep和yield的源码
 
@@ -55,7 +58,6 @@ JVM_END
 sleep(0)和yield的底层实现行为，由变量`ConvertSleepToYield`和`ConvertYieldToSleep`控制。并且使用平台相关的`os::yield()`或者`os::sleep()`。
 
 <!-- more -->
-
 
 # linxu平台
 
