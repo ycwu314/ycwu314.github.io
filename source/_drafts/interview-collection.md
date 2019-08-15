@@ -14,8 +14,8 @@ keywords:
 
 # 多线程
 
-- {% post_link wait-vs-sleep %}
-
+- {% post_link java-wait-vs-sleep %}
+- {% post_link java-sleep-0-and-yield %}
 
 
 

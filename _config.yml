@@ -121,7 +121,7 @@ lazyload:
 
 # 文件压缩，设置一些需要跳过的文件 
 # hexo-neat
-neat_enable: true
+neat_enable: false
 # 压缩 html
 neat_html:
   enable: true
