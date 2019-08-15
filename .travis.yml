@@ -18,7 +18,7 @@ before_install:
   - ssh-add
   - git config --global user.name 'ycwu314'
   - git config --global user.email '535215779@qq.com'
-  - HEXO_NEAT_ENABLE_LINE=`grep -n neat_enable _config.yml | cut -d':' -f1`
+  - export HEXO_NEAT_ENABLE_LINE=`grep -n neat_enable _config.yml | cut -d':' -f1`
   - sed -i '${HEXO_NEAT_ENABLE_LINE}s/false/true/' _config.yml
 
 install:
