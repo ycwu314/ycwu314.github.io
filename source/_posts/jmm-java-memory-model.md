@@ -1,7 +1,7 @@
 ---
 title: 聊聊java内存模型
 date: 2019-08-16 14:44:24
-tags: [java, jmm]
+tags: [java, 多线程]
 categories: [java]
 keywords: [java内存模型, jmm, happens-before, as-if-serial]
 description: java内存模型规范了JVM和内存交互行为，解决多线程对共享变量的访问和修改的安全性，以及约束指令重排序；主要包括happens-before规则和as-if-serial语义。
