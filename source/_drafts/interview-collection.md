@@ -16,6 +16,6 @@ keywords:
 
 - {% post_link java-wait-vs-sleep %}
 - {% post_link java-sleep-0-and-yield %}
-
-
+- {% post_link jmm-java-memory-model %}
+- {% post_link java-volatile %}
 
