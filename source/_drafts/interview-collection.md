@@ -18,4 +18,4 @@ keywords:
 - {% post_link java-sleep-0-and-yield %}
 - {% post_link jmm-java-memory-model %}
 - {% post_link java-volatile %}
-
+- {% post_link java-synchronized %}
