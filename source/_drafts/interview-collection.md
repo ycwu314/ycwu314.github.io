@@ -1,5 +1,5 @@
 ---
-title: 面试集锦
+title: java面试集锦
 date: 2019-08-13 21:40:33
 tags:
 categories:
@@ -19,3 +19,6 @@ keywords:
 - {% post_link jmm-java-memory-model %}
 - {% post_link java-volatile %}
 - {% post_link java-synchronized %}
+- {% post_link java-threadpool %}
+- {% post_link java-threadlocal %}
+- {% post_link java-wait-notify %}
