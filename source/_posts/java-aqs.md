@@ -4,7 +4,7 @@ date: 2019-08-20 13:16:36
 tags: [java, 多线程, 高并发]
 categories: [java]
 keywords: [AbstractQueuedSynchronizer, java aqs]
-description:
+description: AbstractQueuedSynchronizer使用CLH节点构建双向链表。在head获得锁、释放锁。在tail加入等待队列。AQS支持共享锁、独占锁、条件队列。为了解决并发释放共享锁，增加了PROPAGATE状态。
 ---
 
 AbstractQueuedSynchronizer是JUC包的基础，解决了同步器的细节问题（同步状态、FIFO队列），ReentrantLock、Semaphore、CountDownLatch等类都使用了AQS。
@@ -407,7 +407,6 @@ PROPAGATE:  A releaseShared should be propagated to other
 在共享模式下，可以认为资源有多个，因此当前线程被唤醒之后，可能还有剩余的资源可以唤醒其他线程。**该状态用来表明后续节点会传播唤醒的操作。需要注意的是只有头节点才可以设置为该状态**
 
 找到一篇文章，对此思考比较深入，推荐阅读：[AbstractQueuedSynchronizer源码解读](https://www.cnblogs.com/micrari/p/6937995.html)
-
 >在AQS的共享锁中，一个被park的线程，不考虑线程中断和前驱节点取消的情况，有两种情况可以被unpark：一种是其他线程释放信号量，调用unparkSuccessor；另一种是其他线程获取共享锁时通过传播机制来唤醒后继节点。
 >可能会有队列中处于等待状态的节点因为第一个线程完成释放唤醒，第二个线程获取到锁，但还没设置好head，又有新线程释放锁，但是读到老的head状态为0导致释放但不唤醒，最终后一个等待线程既没有被释放线程唤醒，也没有被持锁线程唤醒。
 >PROPAGATE的引入是为了解决共享锁并发释放导致的线程hang住问题。
