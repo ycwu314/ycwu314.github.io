@@ -1,5 +1,5 @@
 ---
-title: java threadlocal
+title: ThreadLocal原理
 date: 2019-08-18 22:17:27
 tags: [java, 多线程, 高并发]
 categories: [java]
@@ -276,3 +276,4 @@ protected void beforeExecute(Thread t, Runnable r) { }
 protected void afterExecute(Runnable r, Throwable t) { }
 ```
 可以在此执行ThreadLocal的清理操作。
+ 
