@@ -1,5 +1,5 @@
 ---
-title: AbstractQueuedSynchronizer笔记
+title: Java AbstractQueuedSynchronizer笔记
 date: 2019-08-20 13:16:36
 tags: [java, 多线程, 高并发]
 categories: [java]

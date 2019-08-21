@@ -1,5 +1,5 @@
 ---
-title: semaphore原理
+title: Java Semaphore原理
 date: 2019-08-21 17:36:53
 tags: [java, 多线程, 高并发]
 categories: [java]
