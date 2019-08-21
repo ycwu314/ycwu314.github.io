@@ -3,7 +3,7 @@ title: AbstractQueuedSynchronizer笔记
 date: 2019-08-20 13:16:36
 tags: [java, 多线程, 高并发]
 categories: [java]
-keywords: [AbstractQueuedSynchronizer, java aqs]
+keywords: [AbstractQueuedSynchronizer, java aqs 详解]
 description: AbstractQueuedSynchronizer使用CLH节点构建双向链表。在head获得锁、释放锁。在tail加入等待队列。AQS支持共享锁、独占锁、条件队列。为了解决并发释放共享锁，增加了PROPAGATE状态。
 ---
 
@@ -63,9 +63,7 @@ waitStatus是节点的状态。
 - PROPAGATE：-3。releaseShared操作的时候要传递到其他节点。
 - 0：其他。
 
-非0数值表示这个节点不需要发送信号。
 对于普通同步节点，waitStatus初始化为0，如果是条件队列节点，则初始化为CONDITION。
-
 
 AQS是由CLH node构建的双向链表，head、tail分别指向链表的头部、尾部。
 {% asset_img clh-lock.png %}
@@ -144,7 +142,7 @@ private final boolean compareAndSetTail(Node expect, Node update) {
     return unsafe.compareAndSwapObject(this, tailOffset, expect, update);
 }
 ```
-入队发生在tail在一个无限循环中不停检查和重试，直至入队成功。
+在一个无限循环中不停检查和重试更新tail，直至入队成功。
 底层使用了Unsafe类，直接使用底层硬件提供的原子化操作，这里先不展开。
 
 # 获取互斥锁

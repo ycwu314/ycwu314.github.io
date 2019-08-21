@@ -12,6 +12,8 @@ description: 使用ThreadPoolExecutor创建线程池。ExecutorService是线程�
 使用java线程池，最简单的方式是Executors和ExecutorService。
 (图片来源：`https://www.logicbig.com/tutorials/core-java-tutorial/java-multi-threading/thread-pools.html`)
 
+<!-- more -->
+
 # Executors和ExecutorService
 
 ExecutorService提供了线程、线程池相关管理的抽象，包括提交任务（submit、execute）、关闭线程池。
@@ -84,7 +86,7 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 如果手动使用ThreadPoolExecutor创建线程池，那么新建线程池的时候就要考虑清楚适合业务场景的线程池配置，可控性更高。这也是阿里推荐使用ThreadPoolExecutor创建线程池的原因。
 
 接下来深入了解ThreadPoolExecutor的代码。
-<!-- more -->
+
 
 # 添加任务到线程池
 

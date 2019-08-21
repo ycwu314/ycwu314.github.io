@@ -31,6 +31,8 @@ synchronized用于代码块：
 不管是用在方法、还是代码块，本质是使用的锁不同。
 ps. synchronized关键字不能继承。
 
+<!-- more -->
+
 # java的锁
 
 在了解synchronized实现机制之前，先了解java的锁。
