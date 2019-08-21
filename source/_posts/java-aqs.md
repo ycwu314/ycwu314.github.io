@@ -68,16 +68,15 @@ waitStatus是节点的状态。
 AQS是由CLH node构建的双向链表，head、tail分别指向链表的头部、尾部。
 {% asset_img clh-lock.png %}
 ```java
-    private transient volatile Node head;
+private transient volatile Node head;
+private transient volatile Node tail;
 
-    private transient volatile Node tail;
-
-    /**
-     * The synchronization state.
-     */
-    private volatile int state;
+/**
+ * The synchronization state.
+ */
+private volatile int state;
 ```
-
+留意state字段，子类使用state字段存储同步状态。
 
 # AQS入队
 

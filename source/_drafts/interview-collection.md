@@ -23,15 +23,13 @@ keywords:
 - {% post_link java-wait-notify %}
 - {% post_link java-threadlocal %}
 - {% post_link java-aqs %}
-
+- {% post_link java-reentrantlock %}
+- {% post_link java-condition %}
 todo
 
 - {% post_link java-cas %}
-- {% post_link java-reentrantlock %}
 - {% post_link java-concurrenthashmap %}
 - {% post_link java-locksuport %}
-
-ConditionObject
 
 # 分布式
 
