@@ -106,7 +106,7 @@ private volatile int state;
 ```
 子类使用state字段存储同步状态。这里使用state记录线程获取锁的次数。
 
-ReentranLock是互斥锁，每次获取、释放的许可数都是1。
+ReentranLock是互斥锁，每次获取的许可数都是1。释放锁则可以一次释放多个许可。
 
 ## NonfairSync
 ```java
@@ -186,6 +186,11 @@ ReentrantLock和synchronized都是可重入锁。
 ReentrantLock底层使用AQS实现，synchronized使用java的隐式锁实现。
 ReentrantLock支持超时等待（tryLock）。
 在java6之前，synchronized性能要比ReentrantLock低。
+
+# ReentrantLock和Condition
+
+Condition是线程间通信的方式。Condition要绑定Lock。ReentrantLock提供了Condition支持。具体参见
+- {% post_link java-condition %}
 
 # 小结
 

@@ -425,6 +425,11 @@ else if (ws == 0 &&
     continue;                // loop on failed CAS
 ```
 
+# AQS和Condition
+
+AQS提供了ConditionObject，实现了条件队列。具体参见
+- {% post_link java-condition %}
+
 # 小结
 
 - AQS使用CLH节点，构建双向链表
