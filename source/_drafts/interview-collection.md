@@ -25,8 +25,9 @@ keywords:
 - {% post_link java-aqs %}
 - {% post_link java-reentrantlock %}
 - {% post_link java-condition %}
+- {% post_link java-semaphore %}
 todo
-
+- {% post_link java-countdownlactch %}
 - {% post_link java-cas %}
 - {% post_link java-concurrenthashmap %}
 - {% post_link java-locksuport %}
