@@ -18,6 +18,7 @@ keywords:
 - {% post_link java-sleep-0-and-yield %}
 - {% post_link jmm-java-memory-model %}
 - {% post_link java-volatile %}
+- {% post_link java-cas %}
 - {% post_link java-synchronized %}
 - {% post_link java-threadpool %}
 - {% post_link java-wait-notify %}
@@ -31,13 +32,13 @@ keywords:
 
 todo
 - {% post_link java-thread-state %}
-- {% post_link java-cas %}
 - {% post_link java-concurrenthashmap %}
 - {% post_link java-locksuport %}
 - {% post_link java-stampedlock %}
 - {% post_link java-readwritelock %}
 - {% post_link java-synchronous-queue %}
 - {% post_link java-longadder %}
+- {% post_link java-thread-join %}
 
 # 分布式
 
