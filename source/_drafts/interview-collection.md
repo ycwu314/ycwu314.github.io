@@ -27,6 +27,8 @@ keywords:
 - {% post_link java-condition %}
 - {% post_link java-semaphore %}
 - {% post_link java-countdownlactch %}
+- {% post_link java-cyclicbarrier %}
+
 todo
 - {% post_link java-thread-state %}
 - {% post_link java-cas %}
