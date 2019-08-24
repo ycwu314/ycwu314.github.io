@@ -283,7 +283,7 @@
 
       <div style="text-align:center;font-size:14px;">
       <p>
-      本文作者{{ config.author }}，转载请注明出处 <a href="{{ post.permalink }}">{{ post.title }}</a> : {{ post.permalink }} 
+      本文作者{{ config.author }}，未经允许请勿转载 <a href="{{ post.permalink }}">{{ post.title }}</a> : {{ post.permalink }} 
       </p>
       </div>
 
@@ -354,7 +354,7 @@
     <!-- 首页文章不显示转载提示、打赏码-->
     {% if not is_index %}
       <div style="text-align:center;font-size:14px;">
-      本文作者{{ config.author }}，转载请注明出处 <a href="{{ post.permalink }}">{{ post.title }}</a> : {{ post.permalink }}
+      本文作者{{ config.author }}，未经允许请勿转载 <a href="{{ post.permalink }}">{{ post.title }}</a> : {{ post.permalink }}
       </div>
 
       <div style="text-align:center;font-size:16px;font-weight:bold;">{{ theme.reward_settings.comment }}</div>

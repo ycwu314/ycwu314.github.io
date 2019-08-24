@@ -41,6 +41,8 @@ todo
 - {% post_link java-synchronous-queue %}
 - {% post_link java-longadder %}
 - {% post_link java-thread-join %}
+- {% post_link java-unsafe %}
+- {% post_link java-concurrenthashmap-resize %}
 
 # 分布式
 

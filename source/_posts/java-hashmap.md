@@ -91,6 +91,11 @@ static final int tableSizeFor(int cap) {
 
 ps. 阿里巴巴Java开发手册其中一条规定是，使用HashMap，要指定初始化容量大小。
 
+顺带提下，HashMap的最大容量限制是
+```java
+static final int MAXIMUM_CAPACITY = 1 << 30;
+```
+
 # HashMap put()
 
 向hashmap添加key-value，先计算这个key的hash值，最终调用putVal方法。
@@ -496,7 +501,7 @@ e.next = newTable[i]
 并发情况下，多个线程同时各自引发了resize，可能出现`next=e.next; e.next=newTalbe[i]=e`。
 具体阅读这个文章：[疫苗：JAVA HASHMAP的死循环](https://coolshell.cn/articles/9606.html)
 
-# HashMap小结
+# HashMap 小结
 
 - java8之前采用数组+链表的方式实现，通过链表处理冲突
 - java8之后采用数组+链表+红黑树的方式实现
@@ -509,4 +514,4 @@ e.next = newTable[i]
 
 - [openjdk 6 HashMap](http://hg.openjdk.java.net/jdk6/jdk6/jdk/file/tip/src/share/classes/java/util/HashMap.java)
 - [深入理解HashMap(四): 关键源码逐行分析之resize扩容](https://segmentfault.com/a/1190000015812438)
-- [疫苗：JAVA HASHMAP的死循环](https://coolshell.cn/articles/9606.html)
+
