@@ -31,6 +31,8 @@ keywords:
 - {% post_link java-cyclicbarrier %}
 - {% post_link java-concurrenthashmap %}
 - {% post_link java-hashmap %}
+- {% post_link exam-java-4-threads-write-abac-to-4-files %}
+
 todo
 - {% post_link java-linkedhashmap %}
 - {% post_link java-aqs-review %}

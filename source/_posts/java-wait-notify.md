@@ -3,7 +3,7 @@ title: wait、notify和生产者消费者模式
 date: 2019-08-18 21:01:38
 tags: [java, 多线程, 高并发]
 categories: [java]
-keywords: [虚假唤醒, java wait notify, wait notify 生产者 消费者, notfiy vs notifyAll, IllegalMonitorStateException]
+keywords: [虚假唤醒, java wait notify, wait notify 生产者 消费者, notfiy vs notifyAll, IllegalMonitorStateException, 线程间通信]
 description: wait、notify、notifyAll在使用之前都要先进入synchronized，否则抛出IllegalMonitorStateException。notify随机唤醒一个线程，notifyAll唤醒全部线程。虚假唤醒问题，要循环检测判断条件，不能直接if判断。
 ---
 

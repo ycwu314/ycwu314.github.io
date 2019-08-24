@@ -3,7 +3,7 @@ title: Condition原理，以及实现生产者消费者模式
 date: 2019-08-21 15:08:35
 tags: [java, 多线程, 高并发]
 categories: [java]
-keywords: [condition 源码, condition 原理, condition 生产者 消费者, ConditionObject]
+keywords: [condition 源码, condition 原理, condition 生产者 消费者, ConditionObject, 线程间通信]
 description: Condition接口实现线程间通信。底层使用AQS的ConditionObject
 ---
 
