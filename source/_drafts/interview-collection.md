@@ -32,6 +32,7 @@ keywords:
 - {% post_link java-concurrenthashmap %}
 - {% post_link java-hashmap %}
 - {% post_link exam-java-4-threads-write-abac-to-4-files %}
+- {% post_link java-thread-join %}
 
 todo
 - {% post_link java-linkedhashmap %}
@@ -42,7 +43,7 @@ todo
 - {% post_link java-readwritelock %}
 - {% post_link java-synchronous-queue %}
 - {% post_link java-longadder %}
-- {% post_link java-thread-join %}
+
 - {% post_link java-unsafe %}
 - {% post_link java-concurrenthashmap-resize %}
 
