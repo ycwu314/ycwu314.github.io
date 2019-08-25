@@ -360,7 +360,7 @@ https://blog.csdn.net/<br>
     <!-- 首页文章不显示转载提示、打赏码-->
     {% if not is_index %}
 
-      <h1>其他</h1>
+      <h1>题外话</h1>
       <p style="text-align:center;font-size:14px;">
       &#x672C;&#x6587;&#x4F5C;&#x8005;{{ config.author }}，&#x672A;&#x7ECF;&#x5141;&#x8BB8;&#x8BF7;&#x52FF;&#x8F6C;&#x8F7D; <a href="{{ post.permalink }}">{{ post.title }}</a> : {{ post.permalink }}
       </p>
