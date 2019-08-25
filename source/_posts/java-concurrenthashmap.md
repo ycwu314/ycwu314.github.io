@@ -1,5 +1,5 @@
 ---
-title: Java ConcurrentHashMap原理
+title: Java ConcurrentHashMap 原理
 date: 2019-08-23 00:34:04
 tags: [java, 多线程, 高并发]
 categories: [java]
@@ -7,8 +7,10 @@ keywords: [ConcurrentHashMap 详解]
 description:
 ---
 
-ConcurrentHashMap是并发安全的HashMap。HashMap的原理在这篇文章：
+ConcurrentHashMap是并发安全的HashMap。ConcurrentHashMap设计比较复杂，涉及的知识比较多，建议先看看：
 - {% post_link java-hashmap %}
+- {% post_link java-striped64 %}
+- {% post_link java-longadder %}
 
 同样以java8作为分析。
 
@@ -472,13 +474,14 @@ CounterCell的数据结构很简单，只有一个long类型的value保存计数
 ```
 在ide中查找引用，发现只在fullAddCount方法修改counterCells
 {% asset_img fullAddCount.PNG %}
-fullAddCount又有温馨提示了，具体要看LongAdder的设计。以后再单独文章介绍LongAdder。
+fullAddCount又有温馨提示了，具体要看LongAdder的设计。
 ```java
 // See LongAdder version for explanation
 private final void fullAddCount(long x, boolean wasUncontended) {
 ```
-TODO: Striped64、LongAdder文章：
+Striped64、LongAdder文章：
 - {% post_link java-striped64 %}
+- {% post_link java-longadder %}
 
 fullAddCount被addCount调用。
 ```java

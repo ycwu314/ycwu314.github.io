@@ -34,6 +34,7 @@ keywords:
 - {% post_link exam-java-4-threads-write-abac-to-4-files %}
 - {% post_link java-thread-join %}
 - {% post_link java-striped64 %}
+- {% post_link java-longadder %}
 todo
 - {% post_link java-linkedhashmap %}
 - {% post_link java-aqs-review %}
@@ -42,7 +43,7 @@ todo
 - {% post_link java-stampedlock %}
 - {% post_link java-readwritelock %}
 - {% post_link java-synchronous-queue %}
-- {% post_link java-longadder %}
+
 - {% post_link java-threadlocalrandom %}
 - {% post_link java-contended-avoid-false-sharing %}
 

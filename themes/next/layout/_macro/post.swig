@@ -281,12 +281,18 @@
     {#################}
     <div class="post-body{% if theme.han %} han-init-context{% endif %}{% if post.direction && post.direction.toLowerCase() === 'rtl' %} rtl{% endif %}" itemprop="articleBody">
 
-      <div style="text-align:center;font-size:14px;">
-      <p>
+      <p style="text-align:center;font-size:14px;">
       本文作者{{ config.author }}，未经允许请勿转载 <a href="{{ post.permalink }}">{{ post.title }}</a> : {{ post.permalink }} 
+      {% if not is_index %}
+      <br>
+      &#x6E29;&#x99A8;&#x63D0;&#x793A;&#xFF1A;&#x5982;&#x679C;&#x4E0D;&#x662F;&#x5728;&#x8FD9;&#x4E9B;&#x5730;&#x65B9;&#x770B;&#x5230;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#xFF0C;&#x90A3;&#x4E48;&#x4F60;&#x53EF;&#x80FD;&#x662F;&#x722C;&#x866B;&#x6587;&#x7AE0;&#x7684;&#x53D7;&#x5BB3;&#x8005;&#xFF1A;
+<br>https://ycwu314.github.io/<br>
+https://www.cnblogs.com/<br>
+https://blog.csdn.net/<br>
+&#x672A;&#x7ECF;&#x6388;&#x6743;&#x7684;&#x8F6C;&#x8F7D;&#xFF0C;&#x4E0D;&#x4EC5;&#x6253;&#x51FB;&#x539F;&#x521B;&#x79EF;&#x6781;&#x6027;&#xFF0C;&#x8FD8;&#x83B7;&#x53D6;&#x4E0D;&#x5230;&#x6700;&#x65B0;&#x7684;&#x6587;&#x7AE0;&#x66F4;&#x65B0;&#x4FE1;&#x606F;&#x3002;
+      {% endif %}
       </p>
-      </div>
-
+      
       {# Gallery support #}
       {% if post.photos and post.photos.length %}
         <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
@@ -353,11 +359,13 @@
 
     <!-- 首页文章不显示转载提示、打赏码-->
     {% if not is_index %}
-      <div style="text-align:center;font-size:14px;">
-      本文作者{{ config.author }}，未经允许请勿转载 <a href="{{ post.permalink }}">{{ post.title }}</a> : {{ post.permalink }}
-      </div>
 
-      <div style="text-align:center;font-size:16px;font-weight:bold;">{{ theme.reward_settings.comment }}</div>
+      <h1>其他</h1>
+      <p style="text-align:center;font-size:14px;">
+      &#x672C;&#x6587;&#x4F5C;&#x8005;{{ config.author }}，&#x672A;&#x7ECF;&#x5141;&#x8BB8;&#x8BF7;&#x52FF;&#x8F6C;&#x8F7D; <a href="{{ post.permalink }}">{{ post.title }}</a> : {{ post.permalink }}
+      </p>
+
+      <p style="text-align:center;font-size:16px;font-weight:bold;">{{ theme.reward_settings.comment }}</p>
       <img src="{{theme.reward.wechatpay}}" style="width: 50%; margin:0 auto" />
     {% endif %}
     
