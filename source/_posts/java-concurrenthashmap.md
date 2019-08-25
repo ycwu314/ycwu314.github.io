@@ -477,7 +477,8 @@ fullAddCount又有温馨提示了，具体要看LongAdder的设计。以后再�
 // See LongAdder version for explanation
 private final void fullAddCount(long x, boolean wasUncontended) {
 ```
-TODO: LongAdder文章
+TODO: Striped64、LongAdder文章：
+- {% post_link java-striped64 %}
 
 fullAddCount被addCount调用。
 ```java
@@ -557,7 +558,8 @@ static final class Segment<K,V> extends ReentrantLock implements Serializable {
 我的理解是：
 1. Java对synchronized优化，和ReentrantLock相差越来越少
 2. 随着ConcurrentHashMap扩容，并发度越大，单个槽位的竞争变少
-3. ConcurrentHashMap把所有节点（链表节点、红黑树、特殊状态节点）都抽象统一为Node类型，槽位也能直接存放数组，并且使用CAS更新。如果使用继续使用ReentrantLock，那么消耗大量存储空间（ReentrantLock底层使用AQS。同时所有Node都变成了ReentrantLock，完全没有这个必要）。
+3. ConcurrentHashMap把所有节点（链表节点、红黑树、特殊状态节点）都抽象统一为Node类型，槽位也能直接存放数组，并且优先使用CAS更新。CAS要比ReentrantLock更加轻量。
+4. 如果使用继续使用ReentrantLock，那么消耗大量存储空间（ReentrantLock底层使用AQS。同时所有Node都变成了ReentrantLock，完全没有这个必要）。
 
 # ConcurrentHashMap 小结
 
