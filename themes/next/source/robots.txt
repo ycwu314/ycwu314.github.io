@@ -5,5 +5,3 @@ Allow: /about/
 Allow: /categories/
 Allow: /tags/
 Allow: /archives/
-Sitemap: https://ycwu314.github.io/sitemap.xml
-Sitemap: https://ycwu314.github.io/baidusitemap.xml

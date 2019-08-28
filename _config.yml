@@ -97,7 +97,8 @@ post_wordcount:
   
 # Extensions
 ## Plugins: http://hexo.io/plugins/
-plugins: hexo-generate-feed  
+# 关闭 rss feed hexo-generate-feed  
+plugins: 
 
 # search
 search:
@@ -111,7 +112,7 @@ search:
   
 # 自动生成sitemap
 sitemap:
-  path: sitemap.xml
+  path: sitemap_J1dgM8rN2KaTRADZ.xml
 
 # npm install hexo-lazyload-image --save  
 lazyload:
