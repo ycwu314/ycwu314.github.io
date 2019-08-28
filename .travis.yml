@@ -29,6 +29,7 @@ install:
 script:
   - hexo clean
   - hexo g
+  - rm -f public/baidusitemap.xml public/atom.xml
   - hexo d
 
 branches:
