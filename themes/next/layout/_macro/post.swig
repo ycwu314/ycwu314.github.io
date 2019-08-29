@@ -287,8 +287,6 @@
       <br>
       &#x6E29;&#x99A8;&#x63D0;&#x793A;&#xFF1A;&#x5982;&#x679C;&#x4E0D;&#x662F;&#x5728;&#x8FD9;&#x4E9B;&#x5730;&#x65B9;&#x770B;&#x5230;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#xFF0C;&#x90A3;&#x4E48;&#x4F60;&#x53EF;&#x80FD;&#x662F;&#x722C;&#x866B;&#x6587;&#x7AE0;&#x7684;&#x53D7;&#x5BB3;&#x8005;&#xFF1A;
 <br>https://ycwu314.github.io/<br>
-https://www.cnblogs.com/<br>
-https://blog.csdn.net/<br>
 &#x672A;&#x7ECF;&#x6388;&#x6743;&#x7684;&#x8F6C;&#x8F7D;&#xFF0C;&#x4E0D;&#x4EC5;&#x6253;&#x51FB;&#x539F;&#x521B;&#x79EF;&#x6781;&#x6027;&#xFF0C;&#x8FD8;&#x83B7;&#x53D6;&#x4E0D;&#x5230;&#x6700;&#x65B0;&#x7684;&#x6587;&#x7AE0;&#x66F4;&#x65B0;&#x4FE1;&#x606F;&#x3002;
       {% endif %}
       </p>

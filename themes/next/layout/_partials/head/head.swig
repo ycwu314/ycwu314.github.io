@@ -2,8 +2,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="{{ theme.android_chrome_color }}"/>
-<meta http-equiv="Access-Control-Allow-Origin" content="https://carbon.now.sh">
-<meta http-equiv="X-Frame-Options" content="deny">
 
 {% if page.keywords %}
   <meta name="keywords" content="{{ page.keywords }}" />

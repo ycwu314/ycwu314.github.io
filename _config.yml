@@ -115,9 +115,10 @@ sitemap:
   path: sitemap_J1dgM8rN2KaTRADZ.xml
 
 # npm install hexo-lazyload-image --save  
+# 修改了default-image.json
 lazyload:
   enable: true 
-  onlypost: false  
+  onlypost: false
 
 
 # 文件压缩，设置一些需要跳过的文件 

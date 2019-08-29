@@ -21,6 +21,6 @@
   </li>
   <li class="post-copyright-license">
     <strong>{{ __('post.copyright.license_title') + __('symbol.colon') }} </strong>{#
-  #}本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-ND</a> 许可协议。未经允许请勿转载！{#
+  #}本博客所有文章除特别声明外，均为原创文章，未经允许请勿转载！{#
 #}</li>
 </ul>
