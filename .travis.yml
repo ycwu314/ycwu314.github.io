@@ -10,6 +10,7 @@ cache:
         - node_modules # 缓存不经常更改的内容
 
 before_install:
+  - python -V
   - export TZ='Asia/Shanghai' # 更改时区
   - gunzip .travis/travis.key.enc.gz
   - openssl aes-256-cbc -in .travis/travis.key.enc -out ~/.ssh/id_rsa -d -k ${SSH_PWD} 
@@ -27,12 +28,12 @@ install:
   - npm install hexo-autonofollow --save
 
 script:
-  - rm -f node_modules/hexo-lazyload-image/lib/default-image.json
-  - cp .travis/default-image.json node_modules/hexo-lazyload-image/lib/
-  - hexo clean
-  - hexo g
-  - rm -f public/baidusitemap.xml public/atom.xml
-  - hexo d
+  # - rm -f node_modules/hexo-lazyload-image/lib/default-image.json
+  # - cp .travis/default-image.json node_modules/hexo-lazyload-image/lib/
+  # - hexo clean
+  # - hexo g
+  # - rm -f public/baidusitemap.xml public/atom.xml
+  # - hexo d
 
 branches:
   only:

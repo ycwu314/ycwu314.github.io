@@ -6,5 +6,12 @@ categories: [java]
 keywords:
 description:
 ---
+<style>
+pre::before{
+    content:'before'
+}
+</style>
 
+```
 这只是个pa chong测试，java 多线程 test
+```
