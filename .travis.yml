@@ -10,7 +10,7 @@ cache:
         - node_modules # 缓存不经常更改的内容
 
 before_install:
-  - python -V
+  - python3 -V
   - export TZ='Asia/Shanghai' # 更改时区
   - gunzip .travis/travis.key.enc.gz
   - openssl aes-256-cbc -in .travis/travis.key.enc -out ~/.ssh/id_rsa -d -k ${SSH_PWD} 
