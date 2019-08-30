@@ -58,7 +58,7 @@ def do_replace(path, secret_map_file):
     f.close()
 
     # 防止在本地覆盖文件
-    if platform.system().index('Windows'):
+    if platform.system().find('Windows') > 0 :
         for line in output_lines:
             print(line, end='')
     else:
