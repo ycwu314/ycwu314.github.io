@@ -2,9 +2,9 @@ User-agent: Googlebot
 Allow: /
 Allow: /p/
 Allow: /about/
-Allow: /categories/
+#Allow: /categories/
 Allow: /tags/
-Allow: /archives/
+#Allow: /archives/
 Allow: /sitemap_*
 Disallow: /sitemap
 Disallow: /sitemap.xml
@@ -13,9 +13,9 @@ User-agent: Googlebot-Image
 Allow: /
 Allow: /p/
 Allow: /about/
-Allow: /categories/
+#Allow: /categories/
 Allow: /tags/
-Allow: /archives/
+#Allow: /archives/
 Allow: /sitemap_*
 Disallow: /sitemap
 Disallow: /sitemap.xml
@@ -24,9 +24,9 @@ User-agent: bingbot
 Allow: /
 Allow: /p/
 Allow: /about/
-Allow: /categories/
+#Allow: /categories/
 Allow: /tags/
-Allow: /archives/
+#Allow: /archives/
 Allow: /sitemap_*
 Disallow: /sitemap
 Disallow: /sitemap.xml
@@ -37,7 +37,7 @@ Allow: /p/
 Allow: /about/
 Allow: /categories/
 Allow: /tags/
-Allow: /archives/
+#Allow: /archives/
 Allow: /sitemap_*
 Disallow: /sitemap
 Disallow: /sitemap.xml

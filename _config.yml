@@ -23,7 +23,7 @@ permalink_defaults: p/:title/
 source_dir: source
 public_dir: public
 tag_dir: tags
-archive_dir: archives
+archive_dir: arch
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
@@ -79,12 +79,12 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-- type: git
-  repo: git@gitee.com:ycwu314/ycwu314.git
-  branch: master
 # - type: git
-#   repo: git@github.com:ycwu314/ycwu314.github.io.git
+#   repo: git@gitee.com:ycwu314/ycwu314.git
 #   branch: master
+- type: git
+  repo: git@github.com:ycwu314/ycwu314.github.io.git
+  branch: master
   
 # Post wordcount display settings
 # Dependencies: https://github.com/willin/hexo-wordcount

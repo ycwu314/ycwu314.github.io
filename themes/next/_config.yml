@@ -160,8 +160,8 @@ menu:
   home: / || home
   about: /about/ || user
   tags: /tags/ || tags
-  categories: /categories/ || th
-  archives: /archives/ || archive
+  #categories: /categories/ || th
+  #archives: /archives/ || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404.html || heartbeat
@@ -555,7 +555,7 @@ quicklink:
   # Add `quicklink: true` in Front-matter of the page or post you need
   # Home page and archive page can be controlled through home and archive options below
   home: true
-  archive: true
+  archive: false
 
   # Default (true) will initialize quicklink after the load event fires
   delay: true
