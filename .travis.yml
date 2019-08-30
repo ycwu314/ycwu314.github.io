@@ -10,6 +10,7 @@ cache:
         - node_modules # 缓存不经常更改的内容
 
 before_install:
+  - apt install -y dos2unix
   - python3 -V
   - export TZ='Asia/Shanghai' # 更改时区
   - gunzip .travis/travis.key.enc.gz
