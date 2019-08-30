@@ -5,6 +5,7 @@ Allow: /about/
 Allow: /categories/
 Allow: /tags/
 Allow: /archives/
+Allow: /sitemap_*
 Disallow: /sitemap
 Disallow: /sitemap.xml
 
@@ -15,6 +16,7 @@ Allow: /about/
 Allow: /categories/
 Allow: /tags/
 Allow: /archives/
+Allow: /sitemap_*
 Disallow: /sitemap
 Disallow: /sitemap.xml
 
@@ -25,6 +27,7 @@ Allow: /about/
 Allow: /categories/
 Allow: /tags/
 Allow: /archives/
+Allow: /sitemap_*
 Disallow: /sitemap
 Disallow: /sitemap.xml
 
@@ -35,6 +38,7 @@ Allow: /about/
 Allow: /categories/
 Allow: /tags/
 Allow: /archives/
+Allow: /sitemap_*
 Disallow: /sitemap
 Disallow: /sitemap.xml
 
