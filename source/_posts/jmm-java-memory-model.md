@@ -9,7 +9,7 @@ description: java内存模型规范了JVM和内存交互行为，解决多线程
 
 # 硬件架构
 
-{% asset_img java-memory-model-pc.png "java memory model" %}
+{% asset_img v1_java-memory-model-pc.png "java memory model" %}
 
 存储器的速度：缓存>内存。
 容量：缓存<内存。
@@ -23,16 +23,16 @@ cpu要读取数据，数据会经过内存、缓存。如果发生修改，则�
 # java内存结构
 
 最简化的java内存结构，是分为堆内存（heap）和栈内存（stack）。
-{% asset_img java-memory-model-1.png "java memory model"  %}
+{% asset_img v1_java-memory-model-1.png "java memory model"  %}
 stack是每个线程独占内存，用于存放本地变量和引用。heap是各个线程共享的内存，创建对象将存放在这个区域。下面这张图更为细致的展现了java内存结构
 
-{% asset_img java-memory-model-3.png "java memory model" %}
+{% asset_img v1_java-memory-model-3.png "java memory model" %}
 **Local variable**是本地变量，可以是原始类型( boolean, byte, short, char, int, long, float, double)，也可以是指向堆中对象的引用。
 
 # java内存模型和硬件架构的鸿沟
 
 硬件架构不会区分java的stack和heap。Java内存模型中stack、heap数据也可能出现在硬件的寄存器、缓存、内存。
-{% asset_img java-memory-model-gap.png "java memory model" %}
+{% asset_img v1_java-memory-model-gap.png "java memory model" %}
 数据跨越多个区域存储，就有可能产生问题：
 - 共享变量被多个线程修改后的可见性
 - 读、检查和写共享变量的竞争条件
@@ -40,7 +40,7 @@ stack是每个线程独占内存，用于存放本地变量和引用。heap是�
 ## 可见性
 
 考虑这样的情况，2个线程运行在2个cpu核心上，一开始都读取了`obj.count`，并且缓存到各自的cpu的cache。那么其中一个cpu修改了缓存中`obj.count`的值，在没有回写到内存之前，另一个cpu缓存中`obj.count`的值依然是旧的。
-{% asset_img java-memory-model-visibility.png "java memory model" %}
+{% asset_img v1_java-memory-model-visibility.png "java memory model" %}
 Java解决可见性问题，使用`volatile`关键字。
 
 ## 竞争条件

@@ -84,7 +84,7 @@ public final void wait() throws InterruptedException {
 }     
 ```
 
-{% asset_img Multithread_TimedWaiting.png "Timed Waiting" %}
+{% asset_img v1_Multithread_TimedWaiting.png "Timed Waiting" %}
 
 ## 测试sleep
 

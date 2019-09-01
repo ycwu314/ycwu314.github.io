@@ -48,13 +48,13 @@ POSIX对同步、异步的定义
 - asynchronous I/O (the POSIX aio_ functions)
  
 先上对比图，在后面的介绍中可以返回来比较
-{% asset_img comparison_of_5_io_models.png "io model comparison" %}
+{% asset_img v1_comparison_of_5_io_models.png "io model comparison" %}
 
 <!-- more -->
 
 # 阻塞IO，blocking IO
 
-{% asset_img blocking_io_model.png "blocking io" %}
+{% asset_img v1_blocking_io_model.png "blocking io" %}
 
 步骤
 1. 等待数据就绪
@@ -79,7 +79,7 @@ while(true){
 
 # 非阻塞IO，non blocking IO
 
-{% asset_img non_blocking_io_model.png "non blocking io" %}
+{% asset_img v1_non_blocking_io_model.png "non blocking io" %}
 
 步骤
 1. socket设置为non blocking。当数据未就绪，操作系统不会挂起进程，内核向用户进程返回错误码(EWOULDBLOCK) 
@@ -90,7 +90,7 @@ while(true){
 
 # IO多路复用，IO multiplexing
 
-{% asset_img io_multiplexing.png "io multiplexing" %}
+{% asset_img v1_io_multiplexing.png "io multiplexing" %}
 
 多路复用使用select函数或者epoll函数。这2个函数也是阻塞调用，**但是一次调用能够检查多个IO操作的状态**，一旦有就绪数据，才真正执行底层阻塞IO操作。
 
@@ -105,7 +105,7 @@ netty使用了Channel这个概念。一个channel监听一个IO操作。一个�
 
 # 信号驱动IO，signal driven IO
 
-{% asset_img signal_driven_io.png "signal driven io" %}
+{% asset_img v1_signal_driven_io.png "signal driven io" %}
 
 1. 通过一个system call，注册信号handler，并且立即返回
 2. 当数据就绪，由系统发送SIGIO信号，触发信号handler
@@ -114,7 +114,7 @@ netty使用了Channel这个概念。一个channel监听一个IO操作。一个�
 
 # 异步IO，asynchronous IO
 
-{% asset_img asynchronous_io.png "asynchronous io" %}
+{% asset_img v1_asynchronous_io.png "asynchronous io" %}
 
 >We call aio_read (the POSIX asynchronous I/O functions begin with aio_ or lio_) and pass the kernel the following:
 >

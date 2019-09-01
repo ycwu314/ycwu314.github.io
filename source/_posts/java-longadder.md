@@ -11,7 +11,7 @@ description: LongAdder继承了Striped64，是高效的计数器。
 相关文章：
 - {% post_link java-striped64 %}
 
-{% asset_img longadder.png longadder %}
+{% asset_img v1_longadder.png longadder %}
 <!-- more -->
 
 # LongAdder add 源码分析

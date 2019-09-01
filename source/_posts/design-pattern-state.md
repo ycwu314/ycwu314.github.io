@@ -37,7 +37,7 @@ description: 状态模式适合的场景：一个对象在其内部状改变时�
 - 抽象状态类（State）：定义与StateManager行为相关的接口
 - 具体状态类（ConcreteState）：实现具体与StateManager行为相关的接口
 
-{% asset_img state_class_diagram.png 状态模式类图 %}
+{% asset_img v1_state_class_diagram.png 状态模式类图 %}
 
 # demo
 

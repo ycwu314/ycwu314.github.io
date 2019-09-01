@@ -161,7 +161,7 @@ try {
 
 网上有的说法是，开启2个线程，分别读取子进程的stdout、stderr。
 不过，既然说是`By default`，就是有非默认的方式，其实就是使用`ProcessBuilder`类，重定向流。此功能从java7开始支持。
-{% asset_img ProcessBuilder_redirect.png "ProcessBuilder redirect" %}
+{% asset_img v1_ProcessBuilder_redirect.png "ProcessBuilder redirect" %}
 
 # ProcessBuilder和redirect
 

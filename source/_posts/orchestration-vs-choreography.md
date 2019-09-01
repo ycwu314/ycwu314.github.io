@@ -21,7 +21,7 @@ description: 服务化架构中，orchestration vs choreography是两个容易�
 >舞蹈编排
 >the representation of dancing by symbols as music is represented by notes
 
-{% asset_img orche-chore.png "orchestration vs choreography" %}
+{% asset_img v1_orche-chore.png "orchestration vs choreography" %}
 [图片来源](https://myalltech.wordpress.com/2017/05/12/orchestration-vs/)
 
 
@@ -44,13 +44,13 @@ choreography是去中心化的方式，服务之间的交互通过消息交换�
 二者的区别：
 >The choreography describes the interactions between multiple services, where as orchestration represents control from one party's perspective.
 
-{% asset_img orche-chore-2.png "orchestration vs choreography" %}
+{% asset_img v1_orche-chore-2.png "orchestration vs choreography" %}
 [图片来源](https://specify.io/assets/orchestration-vs-choreography-097566bf059109c51c8a95faaf3ea77092a626c2a63bc5f06ae0a7ade4a31378.png)
 
 # 例子
 
 新注册一个用户，客户服务（customer service）要通知积分服务（loyalty points service）初始化记录、通知邮政服务（post service）发送新客礼包、发送欢迎邮件（email service）。Orchestration和choreography风格的实现分别如下：
-{% asset_img customer-service.png %}
+{% asset_img v1_customer-service.png %}
 [图片来源](https://specify.io/assets/orchestration-vs-choreography-examples-88fe81d21b600c136f594d43421e4f9576552116c178e4fb7e7cf2b8fc5c065f.png)
 
 Orchestration: 由customer service作为中心服务，分别调用其他3个服务。如果发生异常，customer service会感知并且做出回滚或者补偿操作。

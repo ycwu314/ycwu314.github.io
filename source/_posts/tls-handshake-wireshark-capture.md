@@ -13,7 +13,7 @@ description: 使用wireshark对tls握手过程抓包。change cipher spec发生�
 - {% post_link tls-handshake-v-1-2 %}
 
 这次以访问baidu首页为例，使用wireshark抓包，对其中的步骤进行观察。无图无真相，先上图，点击放大。
-{% asset_img baidu_handshake_capture.webp tls握手抓包 %}
+{% asset_img v1_baidu_handshake_capture.webp tls握手抓包 %}
 <!-- more -->
 # 查询dns
 
@@ -34,15 +34,15 @@ seq=13，本机发送ack，正式建立tcp连接。
 # client hello
 
 从第14个包开始，正式进入tls握手阶段。留意protocol=TLSv1.2。
-{% asset_img client_hello.webp "client hello" %}
+{% asset_img v1_client_hello.webp "client hello" %}
 核心的字段是TLS版本，client random，客户端支持的cipher suites。
 还有其他扩展字段，比如之前提到的SNI，签名算法等。
-{% asset_img client_hello_extension.webp "client hello extension" %}
+{% asset_img v1_client_hello_extension.webp "client hello extension" %}
 
 # server hello
 
 第16个包开始是server hello阶段。
-{% asset_img server_hello.webp "server hello" %}
+{% asset_img v1_server_hello.webp "server hello" %}
 首先发送server random，以及协商使用的cipher suite
 ```
 Cipher Suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xc02f)
@@ -55,10 +55,10 @@ Cipher Suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xc02f)
 - SHA256： MAC 算法，用于创建消息摘要。后面的encrypted handshake message阶段用到。
 
 第20个包发送了服务器证书。注意这里是2个证书，是baidu的证书，以及签发baidu的上级机构的证书
-{% asset_img server_hello_certificate.webp "server hello certificate" %}
+{% asset_img v1_server_hello_certificate.webp "server hello certificate" %}
 
 打开baidu的证书。
-{% asset_img server_hello_certificate_detail.webp "server hello certificate" %}
+{% asset_img v1_server_hello_certificate_detail.webp "server hello certificate" %}
 可以看到几个关键信息：
 1. 这个证书的制作，`sha256WithRSAEncryption`，sha256是验签方式，使用的非对称加密方式是RSA
 2. `validity`记录证书的有效期
@@ -69,7 +69,7 @@ Cipher Suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xc02f)
 # server key exchange
 
 第20个包有意思。
-{% asset_img server_key_exchange.webp "server key exchange" %}
+{% asset_img v1_server_key_exchange.webp "server key exchange" %}
 上个文章提到，tls握手有2种模式：RSA握手、DH握手。这里再重复一下。
 RSA握手模式，client自己生成premaster secret，并且使用证书的public key去加密，再发送给server。一旦服务器私钥泄露，未来所有的tls握手都不安全了。
 DH握手模式，premaster secret由client、server根据DH parameter协商生成，安全性更高。
@@ -79,22 +79,22 @@ DH握手模式，premaster secret由client、server根据DH parameter协商生�
 # server hello done
 
 这个包很简单，没什么好说的。
-{% asset_img server_hello_done.webp "server hello done" %}
+{% asset_img v1_server_hello_done.webp "server hello done" %}
 
 # client exchange阶段
 
 第24个数据包内容很丰富。
-{% asset_img client_exchange.webp "client exchange" %}
+{% asset_img v1_client_exchange.webp "client exchange" %}
 
 ## client key exchange
 
 因为使用DH模式握手，client要回复它生产的client dh param
-{% asset_img client_key_exchange_dh_param.webp "client exchange"  %}
+{% asset_img v1_client_key_exchange_dh_param.webp "client exchange"  %}
 
 ## change cipher spec（client）
 
 这个包只有一个字节，但是干嘛呢？
-{% asset_img change_cipher_spec.webp "change cipher spec" %}
+{% asset_img v1_change_cipher_spec.webp "change cipher spec" %}
 
 发现对这个数据包理解不到位，最后找到Cisco的一篇文章：[SSL Introduction with Sample Transaction and Packet Exchange](https://www.cisco.com/c/en/us/support/docs/security-vpn/secure-socket-layer-ssl/116181-technote-product-00.html)
 
@@ -102,9 +102,9 @@ DH握手模式，premaster secret由client、server根据DH parameter协商生�
 >The message is sent by both the client and server in order to notify the receiving party that subsequent records are protected under the most recently negotiated Cipher Spec and keys.
 
 1. client和server都会发送`change cipher spec`报文
-{% asset_img change_cipher_spec_overview.webp "change cipher spec" %}
+{% asset_img v1_change_cipher_spec_overview.webp "change cipher spec" %}
 2. 这个报文的意义是，通知对方，使用最近协商的cipher和key，并且后续的报文都是加密的。
-{% asset_img encrypt_handshake_message.webp "encrypt handshake message" %}
+{% asset_img v1_encrypt_handshake_message.webp "encrypt handshake message" %}
 
 ## encrypted handshake message
 
@@ -130,7 +130,7 @@ verify_data
 # new session ticket
 
 server生成会话id。
-{% asset_img new_session_ticket.webp "new session ticket" %}
+{% asset_img v1_new_session_ticket.webp "new session ticket" %}
 
 # change cipher spec（server）
 
@@ -139,11 +139,11 @@ server生成会话id。
 # application data
 
 从这个阶段开始，client和server使用session key加密、解密数据通信。
-{% asset_img application_data.webp "application data" %}
+{% asset_img v1_application_data.webp "application data" %}
 
 # 其他：[TCP Spurious Retransmissions]
 
-{% asset_img tcp_spurious_retransimission.webp "tcp spurious retransimission" %}
+{% asset_img v1_tcp_spurious_retransimission.webp "tcp spurious retransimission" %}
 `spurious`的意思是虚假的。baidu服务器认为可能发生超时或者丢包，提前发起重传。具体以后再研究。
 
 

@@ -58,7 +58,7 @@ cpu指令中，有load、store指令。
 - store：将cpu缓存的数据刷新到内存中。
 
 有专门的load store unit，负责load/store指令的处理。
-{% asset_img load_store_unit.png "load store unit" %}
+{% asset_img v1_load_store_unit.png "load store unit" %}
 
 在此基础上，有2种内存屏障：Load Barrier和Store Barrier。内存屏障的作用
 - 禁止内存屏障两侧的指令重排序
@@ -95,7 +95,7 @@ Load2
 
 StoreLoad是最强的屏障语义，开销也是最大。不同架构的cpu，一般都会支持StoreLoad。
 **volatile在变量读、写之前分别插入内存屏障，禁止重排序**。普通变量、volatile变量的操作顺序和插入内存屏障关系如下
-{% asset_img volatile-load-store.png "volatile load store" %}
+{% asset_img v1_volatile-load-store.png "volatile load store" %}
 （图片来源：`https://stackoverflow.com/questions/51700223/a-puzzle-on-how-java-implement-volatile-in-new-memory-model-jsr-133`）
 
 # volatile和synchronized

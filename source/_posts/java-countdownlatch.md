@@ -18,7 +18,7 @@ CountDownLatch底层使用AQS实现。相关文章见：
 
 # CountDownLatch 源码分析
 
-{% asset_img CountDownLatch.png CountDownLatch %}
+{% asset_img v1_CountDownLatch.png CountDownLatch %}
 
 <!-- more -->
 

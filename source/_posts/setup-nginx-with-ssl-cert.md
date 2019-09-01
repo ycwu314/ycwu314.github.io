@@ -84,10 +84,10 @@ NULL、eNULL是根本不加密。
 >The "NULL" ciphers that is those offering no encryption. Because these offer no encryption at all and are a security risk they are not enabled via either the DEFAULT or ALL cipher strings. 
 
 使用`HIGH:!aNULL:!eNULL`就高枕无忧吗，不是的，下面是`ssllabs.com`的测试结果，TLS1.2页面
-{% asset_img slug ciphers.png ciphers %}
+{% asset_img slug v1_ciphers.png ciphers %}
 
 点击`Safari 10 / iOS 10`，发现一堆weak提示
-{% asset_img slug cbc_sha.png "cbc sha" %}
+{% asset_img slug v1_cbc_sha.png "cbc sha" %}
 
 cipher安全性的一些经验
 - CHACHA20是goolge几年前对移动设备的优化算法，速度比AES快，也省电，一度是google极力推荐的。但是自从ARMv7支持硬件AES加密之后，chacha20就比不上了。
@@ -107,7 +107,7 @@ server {
 
 ps. 如果想要“Cipher Strength”得分更高，就把128bit相关的加密套件都去掉。
 
-{% asset_img slug cipher兼容性.png "cipher comaptibility" %}
+{% asset_img slug v1_cipher兼容性.png "cipher comaptibility" %}
 再次测试，发现对ios8.4、osx10.10、ie11兼容性不好。不过都是化石级的系统了，直接忽略。
 
 至此，最基本的ssl证书已经配置能用。接下来再做优化。

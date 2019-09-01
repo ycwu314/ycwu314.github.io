@@ -96,7 +96,7 @@ Thread.sleep(deltaSleep);
 - 用语音查询的，明明已经返回了结果，却解析不了！
 
 只能`console.log()`打印出来对比
-{% asset_img wx.uploadFile.png "wx.uploadFile" %}
+{% asset_img v1_wx.uploadFile.png "wx.uploadFile" %}
 第一行是`wx.request()`发起文本查询。
 第二行是`wx.uploadFile()`上传语音文件后直接语音转文字，并且查询。
 

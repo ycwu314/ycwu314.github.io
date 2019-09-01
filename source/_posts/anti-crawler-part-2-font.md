@@ -13,7 +13,7 @@ description: 字体反爬，把部分字符映射到uft8的自定义字符区间
 - {% post_link anti-crawler-part-1 %}
 
 打开来看，显示如下
-{% asset_img font-anti-crawler.png 字体反爬效果 %}
+{% asset_img v1_font-anti-crawler.png 字体反爬效果 %}
 
 但是查看源码
 ```
@@ -89,7 +89,7 @@ FontCreator可以从ttc文件提取单个ttf文件。然后丢给fonttools处理
 zip -P <a_long_random_password> cmap.json
 ```
 如果是winrar操作，记得勾选“zip传统加密”
-{% asset_img zip传统加密.png zip传统加密 %}
+{% asset_img v1_zip传统加密.png zip传统加密 %}
 否则linux上解密报错
 ```
 unsupported compression method 99

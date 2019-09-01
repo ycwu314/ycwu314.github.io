@@ -8,7 +8,7 @@ description: 使用ThreadPoolExecutor创建线程池。ExecutorService是线程�
 ---
 
 频繁地创建和销毁线程，会浪费资源。因此产生了线程池，缓存并重用线程，提高性能。
-{% asset_img java-threadpool.webp "java threadpool" %}
+{% asset_img v1_java-threadpool.webp "java threadpool" %}
 使用java线程池，最简单的方式是Executors和ExecutorService。
 (图片来源：`https://www.logicbig.com/tutorials/core-java-tutorial/java-multi-threading/thread-pools.html`)
 

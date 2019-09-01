@@ -40,12 +40,12 @@ OCSP(Online Certificate Status Protocol):在线证书状态协议。
 ## Windows操作
 
 1. 打开网页，点击地址栏的证书
-{% asset_img 证书.png ssl证书 %}
+{% asset_img v1_证书.png ssl证书 %}
 
 中间证书是`Encryption Everywhere DV TLS CA - G1`，根证书是`DigiCert`。
 
 2. 使用导出证书向导，注意格式是**Base64编码X.509**
-{% asset_img 导出证书向导.png ssl导出证书向导 %}
+{% asset_img v1_导出证书向导.png ssl导出证书向导 %}
 
 分别得到middle.cer，root.cer。
 
@@ -323,7 +323,7 @@ server {
 # 验证
 
 ssllabs.com再次测试，查找ocsp。
-{% asset_img ocsp_yes.png ocsp %}
+{% asset_img v1_ocsp_yes.png ocsp %}
 
 或者直接使用openssl验证
 ```bash

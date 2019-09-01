@@ -15,7 +15,7 @@ description: 蓝绿发布（blue green deployment）要有2套生产环境，分
 
 # 一把梭部署
 
-{% asset_img 一把梭.jpg %}
+{% asset_img v1_一把梭.jpg %}
 图片来源网络，侵删。
 
 自信满满、或者已有跑路路线的朋友，可以使用此方式部署（开个玩笑~）。
@@ -28,7 +28,7 @@ description: 蓝绿发布（blue green deployment）要有2套生产环境，分
 
 # 蓝绿部署，blue green deployment
 
-{% asset_img blue_green_deployments.png 蓝绿部署 %}
+{% asset_img v1_blue_green_deployments.png 蓝绿部署 %}
 引用Martin Fowler的图片[BlueGreenDeployment](https://martinfowler.com/bliki/BlueGreenDeployment.html)
 
 蓝绿部署环境分为2个，一个蓝，一个绿，并且都是生产配置。
@@ -37,7 +37,7 @@ description: 蓝绿发布（blue green deployment）要有2套生产环境，分
 如果验证不通过，则流量切换回到蓝色环境。在绿色环境进行修复和验证。如此重复直到正式部署。
 正式上线后，另一个环境的资源可以被回收，避免浪费。
 
-{% asset_img blue_green_deployments_2.png 蓝绿部署 %}
+{% asset_img v1_blue_green_deployments_2.png 蓝绿部署 %}
 
 优点：
 - 做切换和部署简单
@@ -58,7 +58,7 @@ description: 蓝绿发布（blue green deployment）要有2套生产环境，分
 蓝绿部署，每次操作的单位是一个集群，粒度很大。
 金丝雀发布（canary release），是蓝绿部署的一种改善。每次发布，只针对进群中少量的机器进行更新，以及验证。一旦线上验证通过，再对其余实例进行更新，放大流量。
 
-{% asset_img canary-deployments.png 金丝雀发布 %}
+{% asset_img v1_canary-deployments.png 金丝雀发布 %}
 图片来源[CANARY DEPLOYMENTS WITH SERVERLESS AND AWS CODE PIPELINE](https://carloscastellanosvera.com/posts/canary-deployments-with-serverless-and-aws-code-pipeline/)
 
 从图上可以看到，**金丝雀发布过程，会出现2个服务版本共存的状态，这个共存状态可能持续好一段时间**。比如做A/B测试，验证新旧推荐算法对CTR的影响。
