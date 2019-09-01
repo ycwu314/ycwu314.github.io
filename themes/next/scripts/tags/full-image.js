@@ -14,6 +14,9 @@ function fullImage(args) {
   var alt   = args[1] || '';
   var title = args[2] || '';
   var width = args[3] || '';
+  if(alt.length ==0 ) {
+    alt = title;
+  }
 
   if (!img) {
     hexo.log.warn('Image src can NOT be empty');
