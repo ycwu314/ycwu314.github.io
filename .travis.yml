@@ -34,8 +34,8 @@ install:
   - npm install hexo-autonofollow --save
 
 script:
-  - rm -f node_modules/hexo-lazyload-image/lib/default-image.json
-  - cp .travis/default-image.json node_modules/hexo-lazyload-image/lib/
+  - rm -f node_modules/hexo/lib/plugins/helper/open_graph.js 
+  - cp .travis/open_graph.js node_modules/hexo/lib/plugins/helper/
   - hexo clean
   - hexo g
   - rm -f public/baidusitemap.xml public/atom.xml

@@ -20,12 +20,12 @@ description: 小站被恶意爬取，开始反爬经历。
 {% asset_img copy.png %}
 还有外链呢？别傻了，这是我保存在原文里面的。如果把这个链接去掉，就是彻底的文章搬运工了。
 不过这个站点已经是比较友（ruou）好（zhi）了，更加恶心的爬虫，会把文章内部的超链接都去掉，比如这个`http://www.liuhaihua.cn/archives/596486.html`
-{% asset_img copy-2.png %}
+{% asset_img copy-2.webp %}
 更大的麻烦在于推酷也来了，爬了好几十篇文章
-{% asset_img copy-3.png %}
+{% asset_img copy-3.webp %}
 推酷会保留完整的格式和链接出处，这一点倒是真的。但是这个爬虫网站，反爬能力却战五渣。通过tuicool让更多文章搬运站点复制了这个小站。
 爬虫文章的受害者，不是瞎说的：
-{% asset_img 你可能是爬虫文章的受害者.png %}
+{% asset_img 你可能是爬虫文章的受害者.webp %}
 这个文章是预先提交的，准备填坑。**连基本的数据清洗、机器文章质量打分都没有就直接入库**。爬虫文章基本不会更新的（纯属利益问题，不需要做更新），如果文中有误，即使作者修复了，也只会无脑传播出去原始爬到的版本。
 于是就有了这个反爬虫系列文章。
 
@@ -107,13 +107,13 @@ tuicool.com.		10	IN	A	**这里是ip地址**
 拿到ip地址之后，再用whois查询。看样子要通过[阿里云举报中心](https://report.aliyun.com)投诉了。
 
 这些爬虫站点的一大流量来源是搜索引擎。首先去全球最大的百家号搜索引擎举报侵权：
-{% asset_img baidu-report.png %}
+{% asset_img baidu-report.webp %}
 如果你真的点击进去
 {% asset_img 版权登记流程.png %}
 深感维权艰难。
 
 虽然由于不可描述的原因，谷歌不能正常访问。但是版权制度在国外比较完善。我向google提起侵权删除页面请求： [举报涉嫌侵犯版权的行为：Google 网页搜索](https://www.google.com/webmasters/tools/legal-removal-request?hl=zh-CN&pid=0&complaint_type=1)
-{% asset_img 版权删除.png %}
+{% asset_img 版权删除.webp %}
 一旦确认通过，在google搜索页面底部可以看到（LumenDatabase是寒蝉效应的数据库）
 >为了回应用户根据美国数字千年版权法案向我们提交的多项投诉，我们已从此页上移除了 2 个结果。如果需要，您可以访问 LumenDatabase.org，查看导致结果遭到移除的 DMCA 投诉内容： 投诉, 投诉.
 
@@ -163,7 +163,7 @@ rss: false
 如果觉得关闭sitemap、rss不方便，可以尝试发布无效内容，也叫爬虫投毒。在工作中，爬虫投毒更多用于竞争对手的防爬。
 先新建一个文章，空的内容，提交，等垃圾爬虫收录之后，再编辑原来的文章，写入真正的内容。这个过程，需要几天时间。
 前面提到，这类文章搬运工只会收录，不管更新。因此保护了站点内容。
-{% asset_img 你可能是爬虫文章的受害者.png %}
+{% asset_img 你可能是爬虫文章的受害者.webp %}
 但是写作体验就不好了。
 
 # 文章正文增加版权声明

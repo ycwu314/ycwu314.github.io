@@ -119,6 +119,7 @@ sitemap:
 lazyload:
   enable: true 
   onlypost: false
+  loadingImg: https://s2.ax1x.com/2019/09/01/npDr38.png
 
 
 # 文件压缩，设置一些需要跳过的文件 
