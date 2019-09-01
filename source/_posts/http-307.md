@@ -8,7 +8,7 @@ description: http 307返回码是Temporary Redirect，临时重定向，并且�
 ---
 
 刚才在做hexo页面优化，发现了本地测试返回http 307。以前没见过这个响应码，于是做一下调研。
-{% asset_img http_code_307.png %}
+{% asset_img http_code_307.png "http 307" %}
 
 相关文章：
 - {% post_link hexo-optimize-speed %}
@@ -22,6 +22,8 @@ description: http 307返回码是Temporary Redirect，临时重定向，并且�
 - 302：Temporarily Moved，临时重定向
 
 http 307和302的区别在于：**307要求客户端不改变原先的请求方法，对在Location头部中规定的URI进行访问。对于302，很多客户端的实现是，直接使用GET方式访问重定向地址**。
+
+<!-- more -->
 
 # 例子
 
@@ -57,7 +59,7 @@ next的`_config.yml`配置
 `//`写法的好处是，不需要关注协议，只需要关注URI路径。如果哪一天发生协议变更，比如http升级为全站https，那么代码完全都不用修改。
 
 但是这没有解释为什么返回了http 307。
-{% asset_img http_code_307.png %}
+{% asset_img http_code_307.png "http 307" %}
 仔细看看response header，除了`Location`指示重定向地址外，还有
 ```
 Non-Authoritative-Reason: HSTS
@@ -82,7 +84,7 @@ HSTS是HTTP严格传输安全（英语：HTTP Strict Transport Security），之
 # 小实验
 
 把next的`_config.yml`从`//`修改为`https://`，再测试
-{% asset_img http_code_200.png %}
+{% asset_img http_code_200.png "http 200" %}
 直接就是http 200了。
 
 # 小结

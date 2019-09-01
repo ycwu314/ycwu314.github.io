@@ -8,7 +8,7 @@ description: 服务化架构中，orchestration vs choreography是两个容易�
 ---
 
 不管是微服务还是SOA，都会涉及到2个容易混淆的概念：orchestration vs choreography。orchestration（编排）和choreography（协同，这是我喜欢的翻译）。
-
+<!-- more -->
 # 概念
 
 这2个概念容易混淆的原因，在于中文翻译太坑爹了，什么编排、编制，让人摸不着头脑。直接看英文解释就很好理解了。
@@ -21,7 +21,7 @@ description: 服务化架构中，orchestration vs choreography是两个容易�
 >舞蹈编排
 >the representation of dancing by symbols as music is represented by notes
 
-{% asset_img orche-chore.png %}
+{% asset_img orche-chore.png "orchestration vs choreography" %}
 [图片来源](https://myalltech.wordpress.com/2017/05/12/orchestration-vs/)
 
 
@@ -44,7 +44,7 @@ choreography是去中心化的方式，服务之间的交互通过消息交换�
 二者的区别：
 >The choreography describes the interactions between multiple services, where as orchestration represents control from one party's perspective.
 
-{% asset_img orche-chore-2.png %}
+{% asset_img orche-chore-2.png "orchestration vs choreography" %}
 [图片来源](https://specify.io/assets/orchestration-vs-choreography-097566bf059109c51c8a95faaf3ea77092a626c2a63bc5f06ae0a7ade4a31378.png)
 
 # 例子

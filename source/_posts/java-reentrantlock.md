@@ -22,7 +22,7 @@ ReentrantLock正如其名，是可重入的
 >可重入锁，也叫做递归锁，指的是同一线程 外层函数获得锁之后 ，内层递归函数仍然有获取该锁的代码，但不受影响。
 
 ReentrantLock底层使用了AQS工具类。ReentrantLock和AQS的关系如下：
-{% asset_img reentrantlock.png %}
+{% asset_img reentrantlock.png reentrantlock %}
 
 ReentrantLock的内部类Sync继承自AQS，还有FairSync、NonFairSync继承于Sync类。
 

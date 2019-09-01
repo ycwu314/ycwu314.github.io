@@ -11,6 +11,8 @@ description: nginx多个证书配置，在各自server增加证书即可。TLS S
 
 原来申请的正式域名备案通过，TLS证书也申请了。之前使用的临时域名和证书作为测试环境使用。于是要在单个ECS主机上配置nginx多个证书和多个域名。
 
+<!-- more -->
+
 # 实践
 
 nginx部署多个TLS证书很简单，在不同的virtual host分别配置证书就搞定了。比如我有`a.com`和`b.com`两个域名，在`nginx.conf`分别配置2个server就可以了
@@ -47,7 +49,7 @@ ps. 推荐一个nginx conf配置在线美化工具：[Nginx Beautifier](https://
 那是因为，域名是http的概念。client和server先建立了tcp连接，再经过TLS握手，才能实现https通信。在最初，这个过程，是没有域名的概念的！
 为了解决当个主机部署多个TLS证书的问题，带来了TLS的SNI扩展。
 
-{% asset_img tls-sni.webp %}
+{% asset_img tls-sni.webp "tls sni" %}
 （图片来源：`https://blogs.akamai.com/2017/03/reaching-toward-universal-tls-sni.html`）
 
 # SNI介绍
@@ -56,7 +58,7 @@ ps. 推荐一个nginx conf配置在线美化工具：[Nginx Beautifier](https://
 >服务器名称指示（英语：Server Name Indication，缩写：SNI）是TLS的一个扩展协议，在该协议下，在握手过程开始时客户端告诉它正在连接的服务器要连接的主机名称。这允许服务器在相同的IP地址和TCP端口号上呈现多个证书，并且因此允许在相同的IP地址上提供多个安全（HTTPS）网站（或其他任何基于TLS的服务），而不需要所有这些站点使用相同的证书。
 
 TLS SNI在client hello握手阶段，增加了一个扩展字段，表明想要和哪个域名建立TLS连接（注意是**明文**）。服务器根据SNI，选择证书并且下发。以下是TLS v1.2握手抓包
-{% asset_img client_hello_extension.webp %}
+{% asset_img client_hello_extension.webp "client hello" %}
 这个扩展字段，OpenSSL 0.9.8 版本开始支持。现代的浏览器和服务器都支持了。
 
 TLS v1.2的SNI是明文传输，这就可以被第三方直接截获，暴露了域名，甚至阻止建立https连接（等等，有人在敲门，我先收个快递）。。。这就是censorship问题了。

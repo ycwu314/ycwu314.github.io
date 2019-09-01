@@ -24,6 +24,8 @@ description: SOA关注的是遗留系统的集成和组件重用，落地上依�
 正因为单体应用部署的风险大，会有复杂、严格的流程限制部署频率。结果是迭代缓慢、单次升级内容巨大。
 解决单体应用的问题，关键是**垂直切分**。把一个大的单体应用，根据业务切分为多个应用。这就产生了SOA和微服务。
 
+<!-- more -->
+
 # SOA和微服务的共同点
 
 SOA（Service Oriented Architecture）和微服务架构（Micro Service Architecture，MSA）的共同点：
@@ -71,7 +73,7 @@ SOA的异构，源于各个遗留系统采用了不同的IT技术，采用RMI、
 异构系统需要解决发现、通信和互操作问题。
 SOA的方案是一套基于XML的通用协作语言，包括UDDI服务发现、SOAP互操作、WSDL服务描述语言、BPEL服务编排语言等。在SOA流行的时代，XML是业界推荐的跨平台数据交互方式。在落地上，主要是各个不同vendor厂商的ESB（Enterprise Service Bus，企业服务总线）方案。为了实现某些特性，例如分布式事务，又要捆绑vendor的全家桶。因此，SOA实际是被vendor捆绑的。
 
-{% asset_img ESB.svg %}
+{% asset_img ESB.svg ESB %}
 [图片来源于wikipedia](https://zh.wikipedia.org/wiki/%E4%BC%81%E4%B8%9A%E6%9C%8D%E5%8A%A1%E6%80%BB%E7%BA%BF#)
 
 微服务没有官方规定的方案，技术选型灵活。业界推荐使用语言无关的REST风格交互。或者是支持各个异构系统的RPC框架（thrift，protobuf等）。在服务发现上选择更多了，zookeeper、consul、eureka等是常见。

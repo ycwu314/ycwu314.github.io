@@ -11,6 +11,7 @@ description: maven offline mode只使用本地仓库并且不检查网络。depe
 
 前2天，老铁对接讯飞语音转文字api。讯飞使用gson做json转换，并且不兼容我们项目的FastJSON，必须引入gson包。
 但是神奇的事情发生了。老铁电脑上gson依赖包是红色的。我本地是正常拉到jar包。
+<!-- more -->
 
 # 解决过程
 
@@ -33,7 +34,7 @@ description: maven offline mode只使用本地仓库并且不检查网络。depe
 
 等开发完毕后，回头开始解决这个奇怪的问题。他有2台电脑，另一台电脑能够正常拉取gson包。
 由于在idea操作maven，怀疑是idea maven配置问题。打开有惊喜
-{% asset_img maven_work_offline.png %}
+{% asset_img maven_work_offline.png "maven work offline" %}
 不能拉取gson包的电脑，开启了`work offline`。取消这个选项，重新拉取依赖，问题就解决。
 
 # maven offline mode
@@ -85,7 +86,7 @@ Downloaded from alimaven: http://maven.aliyun.com/nexus/content/groups/public/or
 # 友情提示
 
 不要手抖点击这个按钮，会开启offline mode
-{% asset_img maven_offline_mode_button.png %}
+{% asset_img maven_offline_mode_button.png "maven offline mode" %}
 
 
 # 小结

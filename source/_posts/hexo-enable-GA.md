@@ -19,13 +19,14 @@ google_analytics:
   localhost_ignored: true
 ```
 `track_id`是“媒体资源设置”的“跟踪ID”。
-{% asset_img track_id.png %}
+{% asset_img track_id.png "ga track_id" %}
 
 如果只有一个站点，那么一切都很好。但是现在有 https://ycwu314.github.io/ 和 https://ycwu314.gitee.io/ 两个站点。如果流量归一的话，用一个track_id就可以。但是我想分别查看流量数据。只用一个track_id是不方便的。于是开始折腾一下。
 
 # hexo next接入GA源码分析
 
-在next项目全文查找`google_analytics`，最后定位接入GA统计的具体文件：`themes\next\layout\_third-party\analytics\google-analytics.swig`
+在next项目全文查找`google_analytics`，最后定位接入GA统计的具体文件：
+`themes\next\layout\_third-party\analytics\google-analytics.swig`
 ```html
 {% if theme.google_analytics.tracking_id %}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ theme.google_analytics.tracking_id }}"></script>
@@ -123,7 +124,7 @@ script async表示异步加载。
 # 测试
 
 测试的时候发现报错`net::ERR_BLOCKED_BY_CLIENT`
-{% asset_img ERR_BLOCKED_BY_CLIENT.png %}
+{% asset_img ERR_BLOCKED_BY_CLIENT.png ERR_BLOCKED_BY_CLIENT  %}
 adblock插件会拦截GA统计。关闭adblock之后就可以了。
 原来的博文路径是`hexo-enable-google-analytics`，触发adblock规则了😱
 

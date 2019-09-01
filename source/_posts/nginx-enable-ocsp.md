@@ -7,10 +7,11 @@ keywords: [ocsp stapling, ssl_stapling, CRL, 证书吊销,  OCSP must staple]
 description: OCSP stapling能够加快客户端建立tls连接。客户端要向CA服务器查询证书的有效状态，额外产生了完整的http请求，并且是阻塞的。OCSP stapling允许服务器端向CA查询证书链状态，缓存查询结果并向客户端返回。另一种查询证书是否吊销（revoke）的方式是维护CRL列表，但是会有更新不及时的问题。OCSP must staple是一种证书机制，要求浏览器必须响应OCSP结果。
 ---
 
+# OCSP stapling
+
 **客户端建立tls连接时，会发起完整的http请求，查询证书的状态（有效、撤销revoke），这个操作是阻塞的**。
 开启服务器的OCSP stapling功能，服务器会代替客户端查询证书状态，并且缓存响应结果，直接返回给客户端，从而省去客户端主动查询OCSP的耗时。
-
-# OCSP
+<!-- more -->
 
 OCSP(Online Certificate Status Protocol):在线证书状态协议。
 一张SSL证书（例如DigiCert签发的）有有效期，但是在有效期内可能会被撤销（revoke）。因此客户端需要有办法知道证书是否有效。
@@ -39,12 +40,12 @@ OCSP(Online Certificate Status Protocol):在线证书状态协议。
 ## Windows操作
 
 1. 打开网页，点击地址栏的证书
-{% asset_img 证书.png %}
+{% asset_img 证书.png ssl证书 %}
 
 中间证书是`Encryption Everywhere DV TLS CA - G1`，根证书是`DigiCert`。
 
 2. 使用导出证书向导，注意格式是**Base64编码X.509**
-{% asset_img 导出证书向导.png %}
+{% asset_img 导出证书向导.png ssl导出证书向导 %}
 
 分别得到middle.cer，root.cer。
 
@@ -322,7 +323,7 @@ server {
 # 验证
 
 ssllabs.com再次测试，查找ocsp。
-{% asset_img ocsp_yes.png %}
+{% asset_img ocsp_yes.png ocsp %}
 
 或者直接使用openssl验证
 ```bash

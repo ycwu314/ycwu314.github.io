@@ -10,7 +10,7 @@ description: ssh隧道（tunnel），又叫ssh端口转发（forwarding port）�
 # 问题
 
 我的mysql数据库使用阿里云RDS，默认情况下只能通过阿里云内网访问，除非走白名单申请才能开放外网访问权限。如下图所示：
-{% asset_img ssh转发.png %}
+{% asset_img ssh转发.png ssh转发 %}
 
 从系统安全性来说，对敏感的数据库资源进行网络隔离是很有必要的。但是日常开发来说，每次都要在ECS上运行mysql client操作就效率太低了。
 
@@ -19,7 +19,7 @@ description: ssh隧道（tunnel），又叫ssh端口转发（forwarding port）�
 
 虽然对mysql的操作来自公网，但是数据经过ssh隧道，是被加解密的，因此安全性还是有的。
 
-{% asset_img ssh转发2.png %}
+{% asset_img ssh转发2.png ssh转发 %}
 期望的效果是，mysql客户端连接本机的3307端口就可以访问远程的mysql。实际上是通过ECS做端口转发到RDS的3306端口。
 
 # 使用ssh命令做隧道
@@ -90,15 +90,15 @@ ssh -fNL 3307:<RDS内网地址>:3306 ecs_user@ecs_host
 习惯图形界面操作的也可以用xshell来完成端口转发。
 
 1. 新建连接到ECS的ssh配置
-{% asset_img ssh配置.png %}
+{% asset_img ssh配置.png ssh配置 %}
 
 2. `SSH`、`隧道`。源主机选择`localhost`，监听端口是3307。**目标主机、目标端口填RDS的内网地址和内网端口**。
-{% asset_img ssh隧道配置.png %}
+{% asset_img ssh隧道配置.png ssh隧道配置 %}
 
 3. xshell打开刚才配置的连接
 
 4. navicat配置。主机是localhost，端口3307，账号和密码填RDS的。
-{% asset_img navicat.png %}
+{% asset_img navicat.png navicat配置 %}
 
 注意这种方式，每次都要先打开xshell才能访问mysql。
 

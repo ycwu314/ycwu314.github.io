@@ -17,10 +17,10 @@ description: 中间人截获用户的http请求、并代替用户和服务器建
 rewrite  ^(.*)  https://$server_name$1 permanent;
 ```
 因为返回了301状态码，以后浏览器访问`xyz.com`都会自动变成`https://xyz.com`。
-
+<!-- more -->
 So far so good！但是，如果step1和step2之间有个不怀好意的中间人呢？浏览器以为是直接连接上`xyz.com`，并且建立了https连接。实际上却是浏览器和中间人建立了连接，中间人代替浏览器和`xyz.com`建立https连接。那么浏览器和`xyz.com`的所有交互都会被中间人窥探。
 这就是**SSL中间人剥离攻击**。
-{% asset_img sslstrip.png %}
+{% asset_img sslstrip.png sslstrip %}
 <a href="https://miro.medium.com/max/1313/0*Bvk4k7v6AfaCTyoT.png" rel="nofollow">图片来源</a>
 
 # HTTP Strict Transport Security
@@ -47,10 +47,10 @@ HSTS机制要在目标服务器第一个https响应后才生效。这还是留�
 >HSTS is supported in Google Chrome, Firefox, Safari, Opera, Edge and IE
 
 我的站点托管在GitHub Pages上，查看状态是
-{% asset_img check_hsts.png %}
+{% asset_img check_hsts.png hsts %}
 
 换我的项目地址试试
-{% asset_img check_hsts_condition.png %}
+{% asset_img check_hsts_condition.png hsts %}
 
 由此可见，申请加入预加载HSTS的条件是：
 - 对于http请求，必须跳转到https
@@ -76,7 +76,7 @@ server {
 ```
 
 再次提交，提示可以加入预加载HSTS名单了
-{% asset_img submit_hsts_preload.png %}
+{% asset_img submit_hsts_preload.png "hsts preload" %}
 
 # 副作用
 

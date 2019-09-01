@@ -8,7 +8,7 @@ description:
 ---
 
 今晚看《微服务设计》关于测试的章节，发现平时对stub和mock理解比较模糊，于是整理下资料。
-
+<!-- more -->
 # test double
 
 stub和mock都属于test double（替身）。《xUnit Test Patterns》这本书提到了5种test double：

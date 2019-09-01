@@ -15,7 +15,7 @@ ffmpeg -i a.mp3 b.wav
 - {% post_link miniapp-speech-to-text-experience %}
 
 问题变成怎样使用java调用系统的ffmpeg工具。在java中，封装了进程Process类，可以使用`Runtime.getRuntime().exec()`或者`ProcessBuilder`新建进程。
-
+<!-- more -->
 # 从Runtime.getRuntime().exec()说起
 
 最简单启动进程的方式，是直接把完整的命令作为`exec()`的参数。
@@ -161,7 +161,7 @@ try {
 
 网上有的说法是，开启2个线程，分别读取子进程的stdout、stderr。
 不过，既然说是`By default`，就是有非默认的方式，其实就是使用`ProcessBuilder`类，重定向流。此功能从java7开始支持。
-{% asset_img ProcessBuilder_redirect.png %}
+{% asset_img ProcessBuilder_redirect.png "ProcessBuilder redirect" %}
 
 # ProcessBuilder和redirect
 

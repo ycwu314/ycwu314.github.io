@@ -64,7 +64,7 @@ all is done
 
 加上join()方法后，main线程等待线程t结束后才继续执行。
 如果jstack做thread dump：
-{% asset_img thread-join.png %}
+{% asset_img thread-join.png "java thread join" %}
 main线程被挂起，等待唤醒。
 
 Thread.join()的说明很简单明了：等待线程死亡。

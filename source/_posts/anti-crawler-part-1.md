@@ -15,17 +15,17 @@ description: 小站被恶意爬取，开始反爬经历。
 然后，就给自己挖坑了。
 <!-- more -->
 
-{% asset_img crawler-sites.png %}
+{% asset_img crawler-sites.png 爬虫站点 %}
 都是些什么站点呢，打开一个看看`http://www.ishenping.com/ArtInfo/1377053.html`
-{% asset_img copy.png %}
+{% asset_img copy.png 文章搬运工 %}
 还有外链呢？别傻了，这是我保存在原文里面的。如果把这个链接去掉，就是彻底的文章搬运工了。
 不过这个站点已经是比较友（ruou）好（zhi）了，更加恶心的爬虫，会把文章内部的超链接都去掉，比如这个`http://www.liuhaihua.cn/archives/596486.html`
-{% asset_img copy-2.webp %}
+{% asset_img copy-2.webp 文章搬运工 %}
 更大的麻烦在于推酷也来了，爬了好几十篇文章
-{% asset_img copy-3.webp %}
+{% asset_img copy-3.webp 文章搬运工 %}
 推酷会保留完整的格式和链接出处，这一点倒是真的。但是这个爬虫网站，反爬能力却战五渣。通过tuicool让更多文章搬运站点复制了这个小站。
 爬虫文章的受害者，不是瞎说的：
-{% asset_img 你可能是爬虫文章的受害者.webp %}
+{% asset_img 你可能是爬虫文章的受害者.webp 你可能是爬虫文章的受害者 %}
 这个文章是预先提交的，准备填坑。**连基本的数据清洗、机器文章质量打分都没有就直接入库**。爬虫文章基本不会更新的（纯属利益问题，不需要做更新），如果文中有误，即使作者修复了，也只会无脑传播出去原始爬到的版本。
 于是就有了这个反爬虫系列文章。
 
@@ -80,7 +80,7 @@ description: 小站被恶意爬取，开始反爬经历。
 内容都进入别人的数据库，还能怎样呢？直到看到这篇文章，感谢作者分享维权经历： [博客园原创文章防剽窃、反爬虫指南（持续更新.....）](https://www.cnblogs.com/strengthen/p/10983408.html)
 
 于是我也照着做
-{% asset_img 推酷投诉.png %}
+{% asset_img 推酷投诉.png 投诉邮件 %}
 推酷官网邮件根本不鸟人。dig一下发现站点是部署在aliyun，
 ```
 # dig tuicool.com
@@ -107,9 +107,9 @@ tuicool.com.		10	IN	A	**这里是ip地址**
 拿到ip地址之后，再用whois查询。看样子要通过[阿里云举报中心](https://report.aliyun.com)投诉了。
 
 这些爬虫站点的一大流量来源是搜索引擎。首先去全球最大的百家号搜索引擎举报侵权：
-{% asset_img baidu-report.webp %}
+{% asset_img baidu-report.webp 百度举报 %}
 如果你真的点击进去
-{% asset_img 版权登记流程.png %}
+{% asset_img 版权登记流程.png 版权登记流程 %}
 深感维权艰难。
 
 虽然由于不可描述的原因，谷歌不能正常访问。但是版权制度在国外比较完善。我向google提起侵权删除页面请求： [举报涉嫌侵犯版权的行为：Google 网页搜索](https://www.google.com/webmasters/tools/legal-removal-request?hl=zh-CN&pid=0&complaint_type=1)
@@ -135,7 +135,7 @@ sitemap告诉搜索引擎可以被爬取的文章地址。能够批量提交url�
 对于垃圾爬虫文章站点来说，sitemap就相当于站点脱裤子了。
 sitemap是一个约定，默认地址是`/sitemap`或者`/sitemap.xml`
 绝大数的站点都会遵循这样的约定。当然这个路径是可以自定义的。
-{% asset_img sitemap.png %}
+{% asset_img sitemap.png 修改sitemap %}
 
 ## 关闭归档页面
 
@@ -163,7 +163,7 @@ rss: false
 如果觉得关闭sitemap、rss不方便，可以尝试发布无效内容，也叫爬虫投毒。在工作中，爬虫投毒更多用于竞争对手的防爬。
 先新建一个文章，空的内容，提交，等垃圾爬虫收录之后，再编辑原来的文章，写入真正的内容。这个过程，需要几天时间。
 前面提到，这类文章搬运工只会收录，不管更新。因此保护了站点内容。
-{% asset_img 你可能是爬虫文章的受害者.webp %}
+{% asset_img 你可能是爬虫文章的受害者.webp 你可能是爬虫文章的受害者 %}
 但是写作体验就不好了。
 
 # 文章正文增加版权声明

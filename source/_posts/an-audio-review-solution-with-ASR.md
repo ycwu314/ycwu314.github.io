@@ -36,7 +36,7 @@ description: 使用ASR技术对语音直播进行机器监控，及时识别有�
 
 ## 架构设计
 
-{% asset_img asr语音审核.png %}
+{% asset_img asr语音审核.png asr语音审核 %}
 
 与ASR工作相关的流程：
 - 由ASR从语音通道获取输入

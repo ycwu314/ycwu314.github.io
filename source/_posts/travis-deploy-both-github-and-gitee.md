@@ -15,7 +15,7 @@ description: 使用travis部署gitee和github，用openssl aes加密ssh私钥后
 最初考虑使用coding.net的pages服务，速度很快，但是试用下来有个问题：coding的默认域名，不提供顶级项目访问。导致Github生成的目录路径直接部署在coding.net会报错。这个问题可以解决，使用自己的域名指向coding提供的默认域名即可。但是coding会对自定义域名的pages进行流量挟持，放广告。不太想用了。
 
 后来发现gitee码云也提供pages服务，并且支持顶级项目访问路径。速度还好，于是就选定了。
-
+<!-- more -->
 # travis入坑
 
 travis是一个自动化构建和部署平台。支持GitHub。要注意的是，travis.org支持public项目，travis.com支持private项目。

@@ -24,7 +24,7 @@ Semaphore信号量用来控制同时访问某个特定资源的操作数量，�
 
 Semaphore和ReentrantLock类似，支持公平、非公平策略。也有Sync内部类继承自AQS。
 
-{% asset_img semaphore.png %}
+{% asset_img semaphore.png semaphore %}
 
 ```java
 abstract static class Sync extends AbstractQueuedSynchronizer {

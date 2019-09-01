@@ -14,7 +14,7 @@ keywords: [性能调优, 高并发, TieredCompilation]
 # 启动负载优化
 
 每次更新重启应用后压测，cpu load较高，RT较大，随后下降并稳定下来。
-
+<!-- more -->
 ## 分析&解决
 
 这是一个典型的问题，java应用重启后一段时间，如果请求tps很高，那么load会很高。

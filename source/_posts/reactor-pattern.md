@@ -11,11 +11,12 @@ description: reactor模式基于IO多路复用模型。acceptor线程负责和cl
 - {% post_link io-model %}
 
 其中一种模型是**IO多路复用**，并且产生了**Reactor模式**。这次就继续聊聊Reactor模式。
+<!-- more -->
 
 # 阻塞IO模型的性能瓶颈
 
 首先回顾下blocking io的处理流程
-{% asset_img blocking_io_model.png %}
+{% asset_img blocking_io_model.png "blocking io model" %}
 
 如果IO操作不能及时返回，那么整个线程就会被阻塞。
 ```
@@ -25,7 +26,7 @@ while(true){
 } 
 ```
 在阻塞模式，要提升高并发性能，只能增加线程数，使用`thread per connection`的模式。
-{% asset_img Thread-per-connection-thread-behavior.png %}
+{% asset_img Thread-per-connection-thread-behavior.png "thread per connection" %}
 ```
 while(true){ 
     socket = accept(); 
@@ -39,13 +40,13 @@ while(true){
 
 正因为阻塞IO的缺点，演化出非阻塞IO、IO多路复用等模型。reactor模式使用了IO多路复用模型。
 回顾IO多路复用流程
-{% asset_img io_multiplexing.png %}
+{% asset_img io_multiplexing.png "io multiplexing" %}
 
 IO多路复用使用select函数或者epoll函数，这2个函数也是阻塞调用，但是一次能够检查多个IO操作。
 那么，可以只使用一个主线程来检查IO状态，如果发现就绪，就交给另一个线程去处理底层的IO操作；主线程继续检查其他IO操作状态。
 这就是reactor模式的核心思想。
 
-{% asset_img reactor_pattern.png %}
+{% asset_img reactor_pattern.png "reactor pattern" %}
 
 典型的reactor模式包含以下组件：
 - dispatcher。派分器。注册、移除事件处理器。
@@ -54,20 +55,20 @@ IO多路复用使用select函数或者epoll函数，这2个函数也是阻塞调
 - event handler。通用的事件处理器。
 - concret event hanler。具体的某种类型的事件处理器。
 
-<!-- more -->
+
 
 
 组件之间的交互如下：
-{% asset_img reactor_components.png %}
+{% asset_img reactor_components.png "reactor组件" %}
 
 时序图如下：
-{% asset_img reactor_sequence_diagram.png %}
+{% asset_img reactor_sequence_diagram.png "reactor时序图" %}
 
 # 3种reactor模式
 
 ## Reactor单线程模型
 
-{% asset_img reactor_single_thread.png %}
+{% asset_img reactor_single_thread.png "reactor 单线程" %}
 对应NioEventLoop。所有的I/O操作都在同一个NIO线程上面完成。这个NIO线程，负责了和client建立连接，处理读写请求。
 
 问题
@@ -77,7 +78,7 @@ IO多路复用使用select函数或者epoll函数，这2个函数也是阻塞调
 
 ## Reactor多线程模型
 
-{% asset_img reactor_multithread.png %}
+{% asset_img reactor_multithread.png "reactor 多线程" %}
 
 - 一个专门的NIO线程，负责和client建立连接（acceptor线程）。
 - 专用的NIO线程池，负责IO读写操作。一个NIO线程可以处理多个链路，但是一个链路由一个NIO线程处理，避免发生竞争问题。 1个connection=1个channel=1个thread（解决并发的线程安全问题）
@@ -87,7 +88,7 @@ IO多路复用使用select函数或者epoll函数，这2个函数也是阻塞调
 
 ## 主从Reactor多线程模型 
 
-{% asset_img reactor_main_sub.png %}
+{% asset_img reactor_main_sub.png "reactor 主从模式" %}
 
 对应netty的NioEventLoopGroup。
 NIO线程池+acceptor线程池。

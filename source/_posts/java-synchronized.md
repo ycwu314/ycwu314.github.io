@@ -13,7 +13,7 @@ description: synchronzied使用了java的隐式锁机制（监视器锁、类锁
 - {% post_link java-volatile %}
 
 锁机制可以控制关键区域代码的访问。只有获得锁，才能执行关键区域代码。
-{% asset_img lock.png %}
+{% asset_img lock.png lock %}
 synchronized是java内置的隐式锁机制。
 
 # synchronized
@@ -114,7 +114,7 @@ synchronized修饰代码块，则会在进入和离开synchronized块处插入`m
 
 关于`monitorenter`、`monitorexit`的具体介绍，参考 [monitorenter/monitorexit](https://docs.oracle.com/javase/specs/jvms/se6/html/Instructions2.doc9.html)。
 简单来说，`monitorenter`、`monitorexit`是获得、释放objref关联的监视器（monitor）。之前提到，获取监视器锁的实例，才能执行关键区域的代码。
-{% asset_img critical-section.webp %}
+{% asset_img critical-section.webp "critical section" %}
 
 Monitor是依赖于底层的操作系统的Mutex Lock（互斥锁）来实现的线程同步。因此是一个重量级的锁。在java6之前，性能比较低。java6对synchronized做了优化，把锁分为4种状态，级别从低到高依次是：无锁、偏向锁、轻量级锁和重量级锁。锁状态只能升级不能降级。
 
@@ -134,7 +134,7 @@ public synchronized int test(int);
 ```
 发现synchronized方法，flags多了`ACC_SYNCHRONIZED`。
 
-{% asset_img method-flags.webp %}
+{% asset_img method-flags.webp ACC_SYNCHRONIZED %}
 
 在Class文件的方法表中将该方法的access_flags字段中的synchronized标志位置1，表示该方法是同步方法并使用调用该方法的对象或该方法所属的Class在JVM的内部对象表示Klass做为锁对象。
 
@@ -143,7 +143,7 @@ public synchronized int test(int);
 java对象头主要包括两部分数据：Mark Word（标记字段）、Klass Pointer（类型指针）。
 Mark Word用于存储对象自身的运行时数据。Klass Point是对象指向它的类元数据的指针。
 这里面核心的是mark word。
-{% asset_img mark-word.webp %}
+{% asset_img mark-word.webp "mark word" %}
 
 Mark word为了节省存储空间，会根据state的值重用之前的空间。
 

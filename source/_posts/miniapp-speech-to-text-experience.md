@@ -17,6 +17,8 @@ debug的时候发现，工具上录音的路径是`http://tmp/xxx.mp3`，客户�
 忽悠呢，不是格式不同，是映射路径不同。
 其实做个兼容也不难，每次提示一行文字，很丑。
 
+<!-- more -->
+
 # 采样率与编码码率限制
 
 每种采样率有对应的编码码率范围有效值，设置不合法的采样率或编码码率会导致录音失败。详细看这个
@@ -94,7 +96,7 @@ Thread.sleep(deltaSleep);
 - 用语音查询的，明明已经返回了结果，却解析不了！
 
 只能`console.log()`打印出来对比
-{% asset_img wx.uploadFile.png %}
+{% asset_img wx.uploadFile.png "wx.uploadFile" %}
 第一行是`wx.request()`发起文本查询。
 第二行是`wx.uploadFile()`上传语音文件后直接语音转文字，并且查询。
 

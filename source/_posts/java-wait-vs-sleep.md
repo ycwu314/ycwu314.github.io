@@ -84,7 +84,7 @@ public final void wait() throws InterruptedException {
 }     
 ```
 
-{% asset_img Multithread_TimedWaiting.png %}
+{% asset_img Multithread_TimedWaiting.png "Timed Waiting" %}
 
 ## 测试sleep
 
@@ -156,6 +156,6 @@ C:\Users\ycwu>jstack 13408
 
 wait能够被notify和notifyAll唤醒。但是sleep不能。
 
-{% asset_img slug [title] %}
+
 
 

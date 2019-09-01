@@ -24,7 +24,7 @@ stateless4j的demo参照往期文章：
     </dependency>
 ```
 结果idea报错方法找不到：`permitIf(T trigger, S destinationState, FuncBoolean guard, Action action)`
-
+<!-- more -->
 master代码
 ```java
     /**

@@ -11,10 +11,10 @@ description: select使用数组实现，最大长度受限于FD_SETSIZE。poll�
 - {% post_link io-model %}
 linux的select、poll、epoll函数是IO多路复用的基础。这次聊聊这几个函数。
 内容来自以前的有道笔记，当时没有记录参考文章。
-
+<!-- more -->
 # select
 
-{% asset_img linux_select.png %}
+{% asset_img linux_select.png "linux select" %}
 
 ```c
 typedef struct

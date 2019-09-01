@@ -11,6 +11,7 @@ description: stream是nginx的动态模块，要先加载，否则提示nginx un
 - {% post_link access-mysql-by-ssh-tunnel %}
 
 nginx也可以实现数据转发。常见的是http请求的转发（7层）。新版本的nginx加入了stream模块，可以做tcp转发（4层）。
+<!-- more -->
 
 # 检查nginx stream模块
 

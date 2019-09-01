@@ -18,7 +18,7 @@ description: 压测遇到频繁young gc 频繁问题。使用jstat -gcutil查看
 # 现状
 
 压测的时候，经常收到gc次数告警。jvm young gc频繁，一分钟大概20次。单次young gc耗时约40ms。Full gc很少发生。使用java8，使用CMS收集器。
-
+<!-- more -->
 # 分析
 
 登入容器，每1s打印应用的jvm使用情况（百分比），原来的截图没有保留，以下是示意图
@@ -36,8 +36,6 @@ description: 压测遇到频繁young gc 频繁问题。使用jstat -gcutil查看
 没有指定新生代（-Xmn或者-XX:NewRatio或者-XX:NewSize）。按照，那么默认的新生代大小大约是`4G*(1/(1+2))=1.37G`。Eden区的大小是`1.37G*0.8=1.096G`。 
 
 真的是这样吗？
-
-<!-- more -->
 
 ```
 # java -server -Xmx4096m -Xms4096m -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -version

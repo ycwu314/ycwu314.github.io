@@ -13,7 +13,7 @@ description: vi中文乱码、vscode中文乱码是编码设置问题。从ASCII
 
 ssh服务器，vi加上去就好了。
 但是，vi打开乱码了。。。不用想，肯定是编码问题。我的控制台是utf8编码，估计是文件用了gbk、gb2312之类的编码。
-
+<!-- more -->
 修改 `~/.vimrc` 文件
 ```bash
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
@@ -30,7 +30,7 @@ set termencoding=utf-8
 备案信息是加上去了，但是刷新页面看，基本看不清，得手动调下css。索性把文件拷贝到本地编辑好了。
 vscode打开又是乱码。。。尼玛，太矬了。。。
 于是settings查找encoding配置，发现`Auto Guess Encoding`竟然是默认关闭，太不友好了。
-{% asset_img vscode.png %}
+{% asset_img vscode.png "vscode 乱码" %}
 嗯，这下终于正常了。顺便看了下右下角的文件编码：gb2312。
 
 意外收获：安装xshell、xftp，打开xshell并且ssh登录后，`Ctrl`+`Alt`+`F`可以直接打开xftp，非常方便。

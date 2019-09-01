@@ -19,6 +19,8 @@ description:
 - 资源懒加载
 - 优化资源加载顺序
 
+<!-- more ->
+
 # 图片优化
 
 ## 文章图片
@@ -60,7 +62,7 @@ lazyload:
 # 内容压缩
 
 hexo默认生成的html，有很多空行和空格。
-{% asset_img 文章未压缩.png %}
+{% asset_img 文章未压缩.png html压缩 %}
 默认带的css、js也是存在压缩的空间。这里使用`hexo-neat`插件
 ```
 npm install hexo-neat --save
@@ -90,7 +92,7 @@ neat_js:
     - '**/index.js'
 ```
 注意要跳过一些已经压缩了的文件。另外，不要忽略`swig`、`md`文件。安装hexo-neat之后，`hexo g`会自动压缩文件，时间变长
-{% asset_img hexo-neat压缩.png %}
+{% asset_img hexo-neat压缩.png "html neat" %}
 
 **优化效果：文章大小减少1/3以上。**
 
@@ -101,7 +103,7 @@ next默认提供的有cloudfare、jsdelivr，感觉cloudfare要快些。
 
 从加载路径发现统计访问人数的不蒜子`https://busuanzi.ibruce.info/`的js文件没有做缓存。网上找到一个js的cdn路径`https://cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js`，修改文件在`\themes\next\layout\_third-party\analytics\busuanzi-counter.swig`。
 
-{% asset_img 缓存策略.png %}
+{% asset_img 缓存策略.png 缓存策略 %}
 另外发现github pages的静态资源缓存时间是10min。
 
 **优化效果：公共基础库从cdn下载，减少五六个http请求**
@@ -114,7 +116,7 @@ next默认提供的有cloudfare、jsdelivr，感觉cloudfare要快些。
 
 # 优化效果
 
-{% asset_img desktop.png %}
+{% asset_img desktop.png "page speed" %}
 速度明显比以前快了😄
 
 # 小结

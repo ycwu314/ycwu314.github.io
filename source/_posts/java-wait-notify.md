@@ -9,7 +9,7 @@ description: wait、notify、notifyAll在使用之前都要先进入synchronized
 
 wait、notify、notifyAll定义在Object类，是java提供的线程间通信机制。
 wait、notify、notifyAll使用了监视器锁实现同步，因此使用之前要先获取监视器锁（即synchronized），否则抛出IllegalMonitorStateException异常。
-
+<!-- more -->
 # 生产者消费者模式
 
 线程间通信典型的例子是生产者消费者模式。

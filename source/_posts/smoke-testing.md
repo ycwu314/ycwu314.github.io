@@ -9,7 +9,7 @@ description: 冒烟测试，又叫Build Verification Testing。由开发执行�
 
 事情的起因是，帮朋友面试一个技术主管候选人。其中问了团队输出质量管理怎么搞，问了“冒烟测试”，对方一脸懵逼，似乎没有听过，甚至还想用压力测试来糊弄过去（压力大了就会冒烟嘛🙃）……
 于是就就聊聊“冒烟测试”。
-
+<!-- more -->
 # 概念
 
 以下定义引用自[Smoke Testing](http://softwaretestingfundamentals.com/smoke-testing/)

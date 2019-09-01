@@ -66,7 +66,7 @@ waitStatus是节点的状态。
 对于普通同步节点，waitStatus初始化为0，如果是条件队列节点，则初始化为CONDITION。
 
 AQS是由CLH node构建的双向链表，head、tail分别指向链表的头部、尾部。
-{% asset_img clh-lock.png %}
+{% asset_img clh-lock.png "clh lock" %}
 ```java
 private transient volatile Node head;
 private transient volatile Node tail;

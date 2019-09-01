@@ -8,7 +8,7 @@ description: Striped64是Java8新增的、64bit高性能累加器。Striped64是
 ---
 
 Striped64是Java8新增的、64bit高性能累加器。Striped64是LongAdder、LongAccumulator等类的基类。ConcurrentHashMap的计数就使用了Striped64和LongAdder的设计。
-{% asset_img striped64.png %}
+{% asset_img striped64.png striped64 %}
 
 <!-- more -->
 

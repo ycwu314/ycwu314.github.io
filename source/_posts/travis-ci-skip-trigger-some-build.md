@@ -13,6 +13,7 @@ description: travis跳过构建，可以在脚本使用TRAVIS_COMMIT_MESSAGE变�
 - 因为要切换电脑使用，本地内容提交到github
 - 或者想`hexo new draft`，暂时保存为草稿，这也不需要触发travis ci构建
 - 只是改很小的地方，没必要触发构建，在以后一起部署就好，不浪费公共资源
+<!-- more -->
 
 # 解决
 

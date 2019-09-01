@@ -14,6 +14,8 @@ rel字段用于描述链接和当前URL的关系。
 
 {% asset_img insertlink.gif %}
 
+<!-- more -->
+
 # external
 
 告诉爬虫这是一个外部链接。标准的html doctype写法。效果等同于`target="_blank"`。

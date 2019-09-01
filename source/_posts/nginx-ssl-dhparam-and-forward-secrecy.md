@@ -12,7 +12,7 @@ description: DHE或者ECDHE算法能够包换premaster secret（前向保密）�
 >前向保密（英语：Forward Secrecy，FS），有时也被称为完全前向保密（英语：Perfect Forward Secrecy，PFS）。长期使用的主密钥泄漏不会导致过去的会话密钥泄漏。
 
 要理解Forward Secrecy，要先理解TLS连接的建立过程。
-
+<!-- more -->
 # 基于RSA的SSL握手
 
 ![](https://www.cloudflare.com/resources/images/slt3lc6tev37/HMtyedlloYodaGnzxFcON/176dea4dbf1c8b4f3d58e6afd43ee9ea/ssl-handshake-rsa.jpg)

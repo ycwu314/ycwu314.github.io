@@ -473,7 +473,7 @@ CounterCell的数据结构很简单，只有一个long类型的value保存计数
 }
 ```
 在ide中查找引用，发现只在fullAddCount方法修改counterCells
-{% asset_img fullAddCount.PNG %}
+{% asset_img fullAddCount.PNG fullAddCount %}
 fullAddCount又有温馨提示了，具体要看LongAdder的设计。
 ```java
 // See LongAdder version for explanation
