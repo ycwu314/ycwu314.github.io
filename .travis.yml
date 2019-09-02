@@ -19,7 +19,6 @@ before_install:
   - chmod 600 ~/.ssh/id_rsa
   - eval $(ssh-agent -s)
   - ssh-add
-  - chmod u+x UpdateFile.py
   - unzip -P ${FONT_SECRET} secret_map.zip
   - mv *.py ../
   - cd ..
