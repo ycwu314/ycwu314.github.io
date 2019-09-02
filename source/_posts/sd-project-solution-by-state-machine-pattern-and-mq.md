@@ -68,7 +68,7 @@ SD项目的一个核心功能是语音直播游戏房间。用户在游戏房间
 
 房间状态多，并且**状态的改变影响对象行为**，适合使用状态模式。
 
-{% asset_img v1_statemachine.gif "state machine" %}
+{% asset_img statemachine.gif "state machine" %}
 
 业务有限状态机FSM的抽象
 - 状态state
@@ -91,7 +91,7 @@ SD项目的一个核心功能是语音直播游戏房间。用户在游戏房间
 - {% post_link pitfall-on-stateless4j %}
 
 简化的房间状态机图：
-{% asset_img v1_SD简化的状态机图.jpg "语音游戏状态机图" %}
+{% asset_img SD简化的状态机图.jpg "语音游戏状态机图" %}
 
 ## 状态的持久化
 
@@ -147,7 +147,7 @@ RocketMQ延迟消息相关文章：
 1. 服务器端提供聚合接口，返回当前房间的若干信息，客户端根据返回可以进行本地状态切换
 2. 客户端本地注册超时事件，一旦正常时间内没有收到服务器端的信令，主动拉取聚合接口，并进行补偿操作
 
-{% asset_img v1_事件驱动.png "event driven" %}
+{% asset_img 事件驱动.png "event driven" %}
 
 # 高可用
 

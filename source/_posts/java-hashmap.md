@@ -11,7 +11,7 @@ HashMap是一个常用的key-value工具。这里以java8版本介绍。
 
 # Java8 HashMap 简介
 
-{% asset_img v1_hashmap.png hashmap %}
+{% asset_img hashmap.png hashmap %}
 Java8 HashMap采用数组（Java8是`Node<K,V>[] table`，Java8之前是`Entry[] table`）+链表+红黑树的方式实现。
 对于key做hash，得到所在的数组位置。
 hash可能发生冲突，即多个key都hash到同一个数组位置（桶，bucket）。HashMap采用拉链法处理冲突，也就是数组位置存放链表，所有冲突的key都在这个链表。通过遍历可以找到目标key和value。
@@ -42,7 +42,7 @@ static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
 }
 ```
 两者Node关系见下图
-{% asset_img v1_hashmap-entry.png "hashmap entry" %}
+{% asset_img hashmap-entry.png "hashmap entry" %}
 
 # HashMap loadfactor
 
@@ -285,10 +285,10 @@ n是table数组的长度。之前讲到，扩容的时候，table[]的大小是2
 >从2进制角度来看，X / 8相当于 X >> 3，即把X右移3位，此时得到了X / 8的商，而被移掉的部分(后三位)，则是X % 8，也就是余数。
 
 看一个例子就很直观
-{% asset_img v1_hash-mod.png "hash method" %}
+{% asset_img hash-mod.png "hash method" %}
 
 精心设计数组长度为2的整数幂，用位运算代替取模，解决了哈希计算的速度问题。哈希函数的另一个问题是冲突率。看下面的例子
-{% asset_img v1_hash-conflict.png "hash conflict" %}
+{% asset_img hash-conflict.png "hash conflict" %}
 对于取模运算，冲突常见的是高位不同、低位相同。
 解决冲突的思路是，进行扰动操作，把高位特征加入到hash当中。Java8的实现很简单，把h和h的高16位做异或（XOR）运算。
 ```java

@@ -43,7 +43,7 @@ application配置文件规划如下
 ```
 --spring.profiles.active=local
 ```
-{% asset_img v1_idea_springboot_profiles.png "springboot profiles" %}
+{% asset_img idea_springboot_profiles.png "springboot profiles" %}
 
 # 更新云效流水线部署脚本
 
@@ -52,13 +52,13 @@ application配置文件规划如下
 1. 登录云效，选择要修改的流水线环境，比如“日常环境”
 
 2. 进入修改页面，点击“日常”
-{% asset_img v1_编辑流水线.png 编辑流水线 %}
+{% asset_img 编辑流水线.png 编辑流水线 %}
 
 3. 查看部署配置
-{% asset_img v1_流水线查看部署配置.png 流水线查看部署配置 %}
+{% asset_img 流水线查看部署配置.png 流水线查看部署配置 %}
 
 4. 在部署配置页面更新脚本
-{% asset_img v1_云效流水线部署配置.png 云效流水线部署配置 %}
+{% asset_img 云效流水线部署配置.png 云效流水线部署配置 %}
 
 
 部署配置涉及打包文件存放路径，以及解压缩和执行应用。不同环境的打包文件存放在单独路径。这里提供一份参考

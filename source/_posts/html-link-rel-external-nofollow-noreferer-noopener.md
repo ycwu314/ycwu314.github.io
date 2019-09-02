@@ -12,7 +12,7 @@ description: target="_blank"在新窗口中打开链接。rel external表明这�
 rel字段用于描述链接和当前URL的关系。
 学习seo的时候，发现链接的rel字段有几个属性，记录下来。
 
-{% asset_img v1_insertlink.gif %}
+{% asset_img insertlink.gif %}
 
 <!-- more -->
 

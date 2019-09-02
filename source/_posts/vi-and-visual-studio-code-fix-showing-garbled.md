@@ -30,7 +30,7 @@ set termencoding=utf-8
 备案信息是加上去了，但是刷新页面看，基本看不清，得手动调下css。索性把文件拷贝到本地编辑好了。
 vscode打开又是乱码。。。尼玛，太矬了。。。
 于是settings查找encoding配置，发现`Auto Guess Encoding`竟然是默认关闭，太不友好了。
-{% asset_img v1_vscode.png "vscode 乱码" %}
+{% asset_img vscode.png "vscode 乱码" %}
 嗯，这下终于正常了。顺便看了下右下角的文件编码：gb2312。
 
 意外收获：安装xshell、xftp，打开xshell并且ssh登录后，`Ctrl`+`Alt`+`F`可以直接打开xftp，非常方便。
@@ -120,7 +120,7 @@ if (bomIn.hasBOM()) {
 ```
 具体可以参照[BOMInputStream API文档](http://commons.apache.org/proper/commons-io/apidocs/org/apache/commons/io/input/BOMInputStream.html)。
 
-{% asset_img v1_bom.png 不同编码的字节顺序标记的表示 %}
+{% asset_img bom.png 不同编码的字节顺序标记的表示 %}
 
 ## 兼容性
 

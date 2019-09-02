@@ -23,7 +23,9 @@ before_install:
   - unzip -P ${FONT_SECRET} secret_map.zip
   - mv secret_map.json ../
   - mv UpdateFile.py ../
+  - mv ImageRename.py ../
   - cd ..
+  - python3 ImageRename.py `pwd`/source/_posts
   - python3 UpdateFile.py source/_posts secret_map.json
   - sed -i "`grep -n neat_enable _config.yml | cut -d':' -f1`s/false/true/" _config.yml 
 

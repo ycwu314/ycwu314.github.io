@@ -72,10 +72,10 @@ ssl_protocols TLSv1.2  TLSv1.3;
 # 验证
 
 ssllabs.com
-{% asset_img v1_tls_v1_3.PNG "tls 1.3" %}
+{% asset_img tls_v1_3.PNG "tls 1.3" %}
 
 chrome75上要手动开启TLS1.3支持。地址栏输入`chrome://flag`，搜索`tls`
-{% asset_img v1_chrome_flag.PNG "chrome tls 1.3 配置" %}
+{% asset_img chrome_flag.PNG "chrome tls 1.3 配置" %}
 
 重启chrome后，打开我的项目站点
-{% asset_img v1_site_security.PNG "开启tls 1.3" %}
+{% asset_img site_security.PNG "开启tls 1.3" %}

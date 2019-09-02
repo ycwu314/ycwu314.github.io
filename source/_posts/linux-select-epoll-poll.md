@@ -14,7 +14,7 @@ linux的select、poll、epoll函数是IO多路复用的基础。这次聊聊这�
 <!-- more -->
 # select
 
-{% asset_img v1_linux_select.png "linux select" %}
+{% asset_img linux_select.png "linux select" %}
 
 ```c
 typedef struct

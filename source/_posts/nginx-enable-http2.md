@@ -38,10 +38,10 @@ http2支持加密（h2）和非加密（h2c，HTTP/2 cleartext）协议。但浏
 # 测试http2
 
 1. chrome浏览器，`F12`、`Network`、选择`Protocol`，显示为`h2`则开启成功
-{% asset_img v1_chrome_http2.png "chrome http2" %}
+{% asset_img chrome_http2.png "chrome http2" %}
 
 2. https://tools.keycdn.com/http2-test 提供了在线测试工具
-{% asset_img v1_keycdn_http2.png "test http2" %}
+{% asset_img keycdn_http2.png "test http2" %}
 
 # 兼容性
 

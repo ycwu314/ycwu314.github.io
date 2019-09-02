@@ -15,7 +15,7 @@ CyclicBrrier是一个有趣的工具，能够让一组线程阻塞等待彼此
 Cyclic的意思是“循环”，即CyclicBrrier可以使用多此。
 （ps. 之前提到CountDownLatch也可以使一组线程阻塞等待，但是CountDownLatch只能使用一次。）
 
-{% asset_img v1_cyclicbarrier.png cyclicbarrier %}
+{% asset_img cyclicbarrier.png cyclicbarrier %}
 (图片来源：`https://www.geeksforgeeks.org/java-util-concurrent-cyclicbarrier-java/`)
 
 <!-- more -->

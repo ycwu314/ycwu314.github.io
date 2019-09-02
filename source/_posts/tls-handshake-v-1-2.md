@@ -10,7 +10,7 @@ description: https tls握手，使用非对称加密进行session key生成，�
 # 前言
 
 http是明文传输，因此对于中间人攻击很脆弱。于是诞生了https加密传输。在tcp三次握手建立连接后，再进行ssl/tls握手，升级为https。
-{% asset_img v1_tls-ssl-handshake.webp "tls handshake" %}
+{% asset_img tls-ssl-handshake.webp "tls handshake" %}
 (图片来源：cloudflare.com)
 
 https使用的握手协议，发展了多个版本，从ssl到tls。目前广泛使用的是tls 1.2。tls 1.3也开始推广铺开。本文讨论tls 1.2握手过程。
@@ -83,7 +83,7 @@ Client                                               Server
              Figure 1.  Message flow for a full handshake
 ```
 
-{% asset_img v1_TLS-handshake-protocol.webp "TLS handshake protocol" %}
+{% asset_img TLS-handshake-protocol.webp "TLS handshake protocol" %}
 
 ## ClientHello
 
@@ -113,7 +113,7 @@ SNI是服务器名称指示（英语：Server Name Indication，缩写：SNI）�
 # tls握手模式和forward secrecy
 
 tls握手模式分为分为RSA模式和DH模式（ Diffie-Hellman）。
-{% asset_img v1_rsa-dh-handshake.png "rsa dh handshake" %}
+{% asset_img rsa-dh-handshake.png "rsa dh handshake" %}
 (图片来源：cloudflare.com)
 
 authentication是身份验证，是指证书校验。
@@ -123,7 +123,7 @@ key establishment是session key生成，具体是premaster secret部分。
 使用DSA制作的证书，DSA只能用于前面，premaster secret需要使用DH算法协商。
 
 对于RSA握手，身份验证使用RSA，premaster secret由客户端生成，并且使用证书的公钥进行premaster secret的加密，服务器端使用证书的私钥进行解密，得到premaster secret。
-{% asset_img v1_ssl_handshake_rsa.webp "ssl rsa handshake" %}
+{% asset_img ssl_handshake_rsa.webp "ssl rsa handshake" %}
 (图片来源：cloudflare.com)
 
 这就有个问题，RSA既用于身份验证，又用于session key生成。一旦私钥泄露，未来所有的tls都不安全，因为
@@ -133,7 +133,7 @@ session key = f(client random, server random, pre master secret)
 其中client random、server random是明文，pre master secret能够用泄露的私钥解密！这是`forward secrecy`问题。
 
 针对RSA握手的问题，诞生了DH握手模式。具体来说，premaster secret不再由client生成并且加密传输。而是使用DH算法，双方协商生成premaster secret。
-{% asset_img v1_ssl_handshake_diffie_hellman.webp "tls dh handshake" %}
+{% asset_img ssl_handshake_diffie_hellman.webp "tls dh handshake" %}
 (图片来源：cloudflare.com)
 
 - server hello阶段，额外发送server DH parameter，**并且使用privae key对client random，server random，DH参数加密**（密文）。

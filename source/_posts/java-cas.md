@@ -110,7 +110,7 @@ ABA问题发生过程
 3. T2 线程将共享的内存地址中的值由 A 修改成 B，然后又修改回 A；
 4. T1 线程继续执行，读取共享的内存地址中的值仍为 A，认为没有改变然后继续执行；
 
-{% asset_img v1_aba_example.png "cas aba" %}
+{% asset_img aba_example.png "cas aba" %}
 （图片来源：`https://lumian2015.github.io/lockFreeProgramming/aba-problem.html`）
 
 由于ABA问题带来的隐患，各种乐观锁的实现中通常都会用版本戳version来对记录或对象标记，避免并发操作带来的问题。

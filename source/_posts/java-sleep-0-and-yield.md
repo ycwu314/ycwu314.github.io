@@ -11,7 +11,7 @@ description: sleep(0)和yeild的行为，受具体的jvm版本和os影响。slee
 以下基于openjdk8的源码，hg id 87ee5ee27509。
 
 回顾线程状态状态机图：
-{% asset_img v1_Multithread_TimedWaiting.png "Timed Waiting" %}
+{% asset_img Multithread_TimedWaiting.png "Timed Waiting" %}
 
 # java sleep和yield的源码
 

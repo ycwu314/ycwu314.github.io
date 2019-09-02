@@ -14,7 +14,7 @@ hexo插入图片的语法
 {% asset_img slug [title] %}
 ```
 展现效果是title字段浮到图片上面，导致看不清楚。
-{% asset_img v1_hexo-image-position.webp hexo图片默认效果 %}
+{% asset_img hexo-image-position.webp hexo图片默认效果 %}
 <!-- more -->
 查看生成的代码
 ```html

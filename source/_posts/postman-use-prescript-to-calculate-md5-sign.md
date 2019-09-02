@@ -12,7 +12,7 @@ description: postman可以发送请求的时候自动计算md5加密验签。原
 # 创建环境变量
 
 接口使用了`tm`、`sign`字段，先创建环境变量
-{% asset_img v1_manage_env.png "postman environment" %}
+{% asset_img manage_env.png "postman environment" %}
 
 # pre-request script脚本
 
@@ -25,7 +25,7 @@ postman.setEnvironmentVariable('sign', sign);
 ```
 使用CryptoJS计算md5加密。然后把`tm`、`sign`设置为环境变量。注意url参数的写法，是用双花括号包住环境变量：`tm={{tm}}`
 
-{% asset_img v1_pre_request_script.png "postman pre request script" %}
+{% asset_img pre_request_script.png "postman pre request script" %}
 
 # 验证
 

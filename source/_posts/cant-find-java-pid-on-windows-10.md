@@ -47,13 +47,13 @@ C:\Users\ycwu\AppData\Local\Temp\
 账号是ycwu，对应的hsperfdata目录是hsperfdata_ycwu。打开目录发现有这个文件夹。
 
 右键查看属性
-{% asset_img v1_hsperfdata_ycwu属性.png hsperfdata目录 %}
+{% asset_img hsperfdata_ycwu属性.png hsperfdata目录 %}
 
 没有用户ycwu的访问权限。。。点击`编辑`->`添加...`，输入用户名，然后`检查名称`
-{% asset_img v1_添加用户.png %}
+{% asset_img 添加用户.png %}
 
 确定之后，选择`完全控制`
-{% asset_img v1_完全控制.png hsperfdata权限 %}
+{% asset_img 完全控制.png hsperfdata权限 %}
 
 保存后再次运行java应用，hsperfdata目录下面创建了pid文件。arthas也能找到java pid了。
 
