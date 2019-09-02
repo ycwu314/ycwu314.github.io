@@ -1,4 +1,5 @@
 {% extends '_layout.swig' %}
+{% set noindex = true %}
 {% import '_macro/post-collapse.swig' as post_template %}
 {% import '_macro/sidebar.swig' as sidebar_template %}
 

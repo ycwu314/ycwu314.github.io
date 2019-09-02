@@ -16,6 +16,10 @@
 
 <html class="{{ html_class | lower }}" lang="{{ config.language }}">
 <head>
+  {% if noindex %}
+    <meta name="robots" content="noindex">
+  {% endif %}
+
   {{ partial('_partials/head/head.swig', {}, {cache: theme.cache.enable}) }}
   {% include '_partials/head/head-unique.swig' %}
   <title>{% block title %}{% endblock %}</title>

@@ -3,7 +3,7 @@ title: 反爬虫系列之1：小站被爬
 date: 2019-08-31 13:00:38
 tags: [爬虫]
 categories: [爬虫]
-keywords: [寒蝉效应, hexo 反爬虫, 侵权删除]
+keywords: [寒蝉效应, hexo 反爬虫, 侵权删除, meta noindex]
 description: 小站被恶意爬取，开始反爬经历。
 ---
 
@@ -126,7 +126,15 @@ tuicool.com.		10	IN	A	**这里是ip地址**
 从经济的角度就直到，它们不会一直盯着各个站点，看有无更新，太消耗资源了。
 它们也不需要这样操作。因为有太多简单的方式可以获取。
 知名站点，例如cnblogs、csdn，就爬热门的、新发的、推荐的。
-普通静态站点，一般使用模板引擎构建。爬取sitemap、归档页面就可以获取获取全量的站点文章。不过我研究发现，有的爬虫站点是从某一个时间开始爬文章，并非全量文章都爬取。很有可能是使用rss feed订阅功能，直接关注链接获取增量更新。
+普通静态站点，一般使用模板引擎构建。爬取sitemap、归档页面就可以获取获取全量的站点文章，然后根据模板引擎的不同，获取内容数据。
+例如，hexo的生成的静态站点，默认会在meta标签增加一行
+```html
+<meta name="generator" content="Hexo 3.9.0">
+```
+就如nginx配置，通常会隐藏版本号提高安全性一样，这一行可以屏蔽掉。文件位置是themes\next\layout\_layout.swig 。
+模板引擎还有其他特征暴露身份，此处不展开了。
+
+不过我观察发现，有的爬虫站点是从某一个时间开始爬文章，并非全量文章都爬取。很有可能是使用rss feed订阅功能，直接关注链接获取增量更新。
 有了上面的分享，就简单了。
 
 ## 更改sitemap
@@ -141,6 +149,41 @@ sitemap是一个约定，默认地址是`/sitemap`或者`/sitemap.xml`
 
 遍历归档页面也可以简单获取所有内容。至少目前来看，归档页面对我作用不大，直接在hexo的项目_config.yml关闭入口。
 同时修改目录路径（也可以在部署脚本直接`rm -f`删除整个归档目录）。
+
+## 动态修改归档页面路径
+
+如果想保留归档页面，可以考虑每次部署的时候动态修改归档页面路径。这样旧的爬虫拿不到更新。
+修改next主题的_config.yml
+```yml
+menu:
+  home: / || home
+  about: /about/ || user
+  archives: 
+```
+结合travis ci，可以方便实现每次构建动态更新tags目录名字。
+
+不过产生另一个问题：搜索引擎会索引大量的无效链接。
+本身归档页面主要是给人看，而不是机器看的。页面上也只是其他文章的链接，因此不需要被索引。
+虽然是动态生成归档路径，但是如果是一个pattern命名，可以直接写到robots.txt告诉爬虫不要抓取。
+
+另一种方法是在归档页面使用noindex标记。原理参考[使用“noindex”阻止搜索引擎将您的网页编入索引](https://support.google.com/webmasters/answer/93710?hl=zh-Hans)。
+```html
+<meta name="robots" content="noindex">
+```
+
+1. 修改themes\next\layout\_layout.swig：
+```html
+<head>
+  {% if noindex %}
+    <meta name="robots" content="noindex">
+  {% endif %}
+```
+2. 修改themes\next\layout\archive.swig，在开头增加
+```
+{% set noindex = true %}
+```
+
+还可以应用到tags、categories。
 
 ## 关闭rss
 
