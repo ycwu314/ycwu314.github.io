@@ -31,7 +31,7 @@ keywords:
 - {% post_link java-cyclicbarrier %}
 - {% post_link java-concurrenthashmap %}
 - {% post_link java-hashmap %}
-- {% post_link exam-java-4-threads-write-abac-to-4-files %}
+- {% post_link exam-java-4-threads-write-abcd-to-4-files %}
 - {% post_link java-thread-join %}
 - {% post_link java-striped64 %}
 - {% post_link java-longadder %}
@@ -53,3 +53,7 @@ todo
 # 分布式
 
 - {% post_link base-theory %}
+
+
+# 缓存
+
