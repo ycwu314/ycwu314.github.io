@@ -2,7 +2,7 @@ import os
 import sys
 
 # ATTENTION:  change these before start the script
-OLD_VERSION_PREFIX = 'v1_'
+OLD_VERSION_PREFIX = ''
 NEW_VERSION_PREFIX = 'v1_'
 
 
@@ -52,9 +52,16 @@ def get_new_img(img: str):
     return new_img
 
 
+# img_rename(r'C:\workspace\ycwu314.github.io\source\_posts')
 if __name__ == '__main__':
     if OLD_VERSION_PREFIX == NEW_VERSION_PREFIX:
         print('error: old version must not be the same as new version')
         sys.exit(-1)
 
-    img_rename(r'C:\workspace\ycwu314.github.io\source\_posts')
+    if len(sys.argv) < 2:
+        print('usage: input _posts folder')
+        sys.exit(-1)
+
+    input_dir = sys.argv[1]
+    print('folder:', input_dir)
+    img_rename(input_dir)
