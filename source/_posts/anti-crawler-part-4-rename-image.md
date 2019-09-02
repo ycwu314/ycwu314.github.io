@@ -3,8 +3,8 @@ title: 反爬虫系列之4：重命名图片
 date: 2019-09-02 15:32:56
 tags: [爬虫, hexo]
 categories: [爬虫]
-keywords:
-description:
+keywords: [hexo 重命名图片]
+description: 之前静态博客已经被爬了文章的图片链接。全量重命名图片，断开新的访问。
 ---
 
 # 重命名图片
@@ -30,7 +30,7 @@ post_asset_folder: true
 {% asset_img img [title] %}
 ```
 
-重命名图片，工作有：
+全量重命名图片，工作有：
 - 设计新图片名字的命名规范
 - 遍历每个文章的资源文件夹，找到图片列表
 - 对于有图片的文章，找到对应的markdown文件，然后重命名引用图片
