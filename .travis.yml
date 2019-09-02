@@ -35,10 +35,10 @@ install:
   # - npm install hexo-autonofollow --save
 
 script:
-  - python3 ImageRename.py `pwd`/source/_posts
-  - python3 UpdateFile.py source/_posts secret_map.json
   - rm -f node_modules/hexo/lib/plugins/helper/open_graph.js 
   - cp .travis/open_graph.js node_modules/hexo/lib/plugins/helper/
+  - python3 ImageRename.py `pwd`/source/_posts
+  - python3 UpdateFile.py source/_posts secret_map.json
   - hexo clean
   - hexo g
   - rm -f public/baidusitemap.xml public/atom.xml

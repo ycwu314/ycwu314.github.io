@@ -1,7 +1,7 @@
 ---
 title: 反爬虫系列之3：图片保护
 date: 2019-09-01 10:42:12
-tags: [爬虫]
+tags: [爬虫, hexo]
 categories: [爬虫]
 keywords: [图片防爬, hexo-lazyload-image, hexo open graph]
 description: 保护图片的方式：1. 水印； 2. cdn referer防盗链； 3. hexo-lazyload-image懒加载图片插件

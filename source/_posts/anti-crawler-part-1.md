@@ -1,7 +1,7 @@
 ---
 title: 反爬虫系列之1：小站被爬
 date: 2019-08-31 13:00:38
-tags: [爬虫]
+tags: [爬虫, hexo]
 categories: [爬虫]
 keywords: [寒蝉效应, hexo 反爬虫, 侵权删除, meta noindex]
 description: 小站被恶意爬取，开始反爬经历。
