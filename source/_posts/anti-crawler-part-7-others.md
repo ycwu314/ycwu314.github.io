@@ -48,3 +48,8 @@ CSS的content属性用于在元素的`::before`和`::after`伪元素中插入内
 不适合我的静态站点。
 
 这里有一些例子，就不再重复实验：[反击爬虫，前端工程师的脑洞可以有多大？](https://imweb.io/topic/595b7161d6ca6b4f0ac71f05)。
+
+# 菲闭合的html标签
+
+非闭合的html标签，通常浏览器页面显示是正常的。但是python的lxml库处理起来有坑。
+不过用途不大，pthon的html5lib兼容性强很多。

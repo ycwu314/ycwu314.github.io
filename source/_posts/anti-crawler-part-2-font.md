@@ -156,3 +156,5 @@ public static void main(String[] args) {
 # 参考
 
 - [Recommendations for OpenType Fonts](https://docs.microsoft.com/en-us/typography/opentype/spec/recom)
+- [Python爬虫六：字体反爬处理（猫眼+汽车之家）-2018.10](https://blog.csdn.net/xing851483876/article/details/82928607)
+
