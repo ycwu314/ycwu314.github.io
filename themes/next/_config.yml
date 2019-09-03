@@ -160,6 +160,7 @@ menu:
   home: / || home
   about: /about/ || user
   tags: /t/ || t
+  '专题': /collection
   #categories: /categories/ || th
   #archives: /archives/ || archive
   #schedule: /schedule/ || calendar
