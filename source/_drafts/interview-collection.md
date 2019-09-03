@@ -35,6 +35,7 @@ keywords:
 - {% post_link java-thread-join %}
 - {% post_link java-striped64 %}
 - {% post_link java-longadder %}
+- {% post_link java-contended-avoid-false-sharing %}
 todo
 - {% post_link java-linkedhashmap %}
 - {% post_link java-aqs-review %}
@@ -45,7 +46,7 @@ todo
 - {% post_link java-synchronous-queue %}
 
 - {% post_link java-threadlocalrandom %}
-- {% post_link java-contended-avoid-false-sharing %}
+
 
 - {% post_link java-unsafe %}
 - {% post_link java-concurrenthashmap-resize %}
