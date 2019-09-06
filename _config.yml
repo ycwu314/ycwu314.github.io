@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://ycwu314.github.io
+url: https://ycwu314.top
 root: /
 #permalink: :year/:month/:day/:title/
 permalink: p/:title/
@@ -119,7 +119,7 @@ sitemap:
 lazyload:
   enable: true 
   onlypost: false
-  loadingImg: https://s2.ax1x.com/2019/09/01/npDr38.png
+  loadingImg: https://s2.ax1x.com/2019/09/06/nMx2i4.png
 
 
 # 文件压缩，设置一些需要跳过的文件 
