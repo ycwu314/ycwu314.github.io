@@ -119,4 +119,7 @@ travis ci官网fqdn选项：[deployment](https://docs.travis-ci.com/user/deploym
 deploy:
     - fqdn: Optional, sets a custom domain for your website, defaults to no custom domain support.
 ```
-
+然而也没有用。
+因为deploy是使用hexo d命令操作的。并非travis ci的deploy任务。
+后来想起来，我是在源码目录建立的CNAME文件，构建完之后当然没有拷贝到master分支的根目录。
+因为使用了next主题，直接把CNAME文件丢到`themes\next\source`。
