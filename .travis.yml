@@ -45,6 +45,9 @@ branches:
   only:
     - hexo  
 
+deploy:
+  - fqdn: ycwu314.top
+
 env:
  global:
 

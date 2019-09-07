@@ -109,4 +109,14 @@ logflare.app收集请求日志，并且和Google Data Studio集成。这就是�
 
 剩下的就是发几篇占位符文章，尝试捕捉推酷爬虫了。
 
+# github pages 自定义域名设置丢失
+
+使用travis ci构建后，发现GitHub pages设置的自定义域名没了。
+改为使用CNAME文件，还是没有生效。
+发现17年的时候就有人汇报了这个问题：[Pushing changes to GitHub Pages branch removes custom domain setting #7538](https://github.com/travis-ci/travis-ci/issues/7538)。
+travis ci官网fqdn选项：[deployment](https://docs.travis-ci.com/user/deployment/pages/)
+```
+deploy:
+    - fqdn: Optional, sets a custom domain for your website, defaults to no custom domain support.
+```
 
