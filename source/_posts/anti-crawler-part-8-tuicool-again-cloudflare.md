@@ -154,8 +154,12 @@ https://www.ipip.net/ip.html
 
 ## 爬虫新手
 
-不要以为这年头都会改个user-agent来做爬虫
+不要以为这年头做爬虫的都会改个user-agent
 {% asset_img go-http-client.png go-http-client %}
+{% asset_img empty-ua.png "empty user agent" %}
+{% asset_img GuzzleHttp.png GuzzleHttp %}
+话说这是很早之前暴露的图片地址，早就换链接了。肯定是爬了另一个网站，恰好又是爬了之前我的文章。
+顺带又屏蔽了一个idc。
 
 ## 遇到高级爬虫
 
