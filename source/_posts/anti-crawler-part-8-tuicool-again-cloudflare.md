@@ -43,6 +43,7 @@ description: 推酷爬虫还是继续非法爬取本站。cloudflare防火墙策
 如果有另外的方式能够实现waf，就可以防爬，不需要这么折腾。
 搜索资料，发现cloudflare提供了一些waf功能。
 于是新的方案出来：
+
 1. 登录阿里云域名控制台，新域名`ycwu314.top`域名解析从万网，改为cloudflare nameserver。
 ```
 ines.ns.cloudflare.com
@@ -64,6 +65,7 @@ Name Server: ivan.ns.cloudflare.com
 >185.199.109.153
 >185.199.110.153
 >185.199.111.153
+
 
 4. GitHub pages指向新的域名`ycwu314.top`。
 
@@ -159,6 +161,10 @@ ip.geoip.country in {"RU" "FR"}
 这种在一个云平台短时间更换ip（国内、日本等，观察ASN）反复查询/atom.xml、/的地址，基本是爬虫。
 另外，linux桌面端比例很少，user agent带有“Linux x86_x64”很有可能是爬虫。
 
+之前提到分类目录也可能泄露
+{% asset_img 初级爬虫-3.png "初级爬虫" %}
+url转码之后是“分布式”。
+
 ## 爬虫新手
 
 不要以为这年头做爬虫的都会改个user-agent
@@ -194,3 +200,22 @@ cloudflare支持图片保护（referer检查），具体功能叫“Hotlink Prot
 
 距离上次被爬取10天了
 {% asset_img anti-tuicool.png anti-tuicool %}
+
+
+# 加速cloudflare访问
+
+（updated at 2019.9.11） 
+cloudflare免费账号，只能使用NS方式接入，dns记录生效慢，而且不能指定cf节点；只有付费版才可以使用cname记录方式接入。
+cloudflare尽管有全球各地的cdn节点，但是因为众所周知的原因，国内访问访问cloudflare站点，默认访问美国西岸的节点。so，这个cdn加速还不如不加速。付费用户可以选择cloudflare域名节点。
+其实GitHub pages直连访问速度比cf美国西岸要快。
+
+网上查到其他人的解决方案：
+使用第三方的cloudflare管理后台服务。第三方服务应该是付费的cloudflare账号，再使用API更新cname记录。具体可以参照这个文章：[张戈博客使用CloudFlare CDN加速的经验技巧分享](https://zhang.ge/5149.html)。
+温馨提示：注册的时候，提供cf账号和密码。
+所以我没有使用。
+
+后来无意中看到这个文章：[基于 Hexo 的 GitHub Pages 配置 CloudFlare CDN](https://qhh.me/2018/11/04/%E5%9F%BA%E4%BA%8E-Hexo-%E7%9A%84-GitHub-Pages-%E9%85%8D%E7%BD%AE-CloudFlare-CDN/)。
+cf提供CNAME flatten技术，支持根域名直接cname到另一个域名，并且dns查询的时候，直接返回对应CNAME的A记录或者AAAA记录。
+[Understand and configure CNAME Flattening](https://support.cloudflare.com/hc/en-us/articles/200169056-CNAME-Flattening-RFC-compliant-support-for-CNAME-at-the-root)
+
+之前是在cf中配置域名直接走A记录从ycwu314.top到github.com的ip地址，访问很慢；现在改为cname方式从ycwu314.top到github pages的地址，结果速度和之前差不多，防火墙功能也正常。
