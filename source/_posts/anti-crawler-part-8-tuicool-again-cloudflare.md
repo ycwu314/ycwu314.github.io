@@ -144,10 +144,17 @@ https://www.ipip.net/ip.html
 
 比较难对付的是代理ip，只能见一个封一个。
 
+## 国外机房的爬虫
+
+除了国内几大云厂商外，爬虫站点还使用了国外，统计下来法国、俄罗斯的机房请求普遍可疑，直接增加一个规则，对国家级别拦截并且弹出验证码
+```
+ip.geoip.country in {"RU" "FR"}
+```
+
 ## atom.xml和站点根目录
 
 之前猜测，站点链接泄露，是首页、atom.xml、sitemap、归档页面。
-于是都加了规则观察这些地址。最后发现/atom.xml和站点根目录是重灾区：
+于是加了规则观察这些地址。最后发现/atom.xml和站点根目录是重灾区：
 {% asset_img 爬虫分析.png 爬虫分析 %}
 这种在一个云平台短时间更换ip（国内、日本等，观察ASN）反复查询/atom.xml、/的地址，基本是爬虫。
 另外，linux桌面端比例很少，user agent带有“Linux x86_x64”很有可能是爬虫。
@@ -160,6 +167,13 @@ https://www.ipip.net/ip.html
 {% asset_img GuzzleHttp.png GuzzleHttp %}
 话说这是很早之前暴露的图片地址，早就换链接了。肯定是爬了另一个网站，恰好又是爬了之前我的文章。
 顺带又屏蔽了一个idc。
+
+初级爬虫最大的危害是不限速。分分钟可以拖垮原站点
+{% asset_img 初级爬虫-1.png "初级爬虫最大的危害是不限速" %}
+这是是很久以前暴露出去的链接了。打开详情，原来是wordpress采集插件。
+{% asset_img 初级爬虫-2.png "初级爬虫" %}
+我的策略是block IP优先，并且包括几个常见云服务IDC的ASN，因此顶住了。
+顺便block UA策略也更新了。
 
 ## 遇到高级爬虫
 
@@ -174,9 +188,9 @@ cloudflare支持图片保护（referer检查），具体功能叫“Hotlink Prot
 >Protect your images from off-site linking.
 >Supported file extensions: gif, ico, jpg, jpeg, and png.
 
-注意暂时不支持webp，落后了。
+注意暂时不支持webp，落后了。以后图片优先使用png。
 
 ## 效果
 
-距离上次被爬取9天了
+距离上次被爬取10天了
 {% asset_img anti-tuicool.png anti-tuicool %}
