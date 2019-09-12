@@ -2,8 +2,8 @@ import os
 import sys
 
 # ATTENTION:  change these before start the script
-OLD_VERSION_PREFIX = ''
-NEW_VERSION_PREFIX = 'v1_'
+OLD_VERSION_PREFIX = 'v1_'
+NEW_VERSION_PREFIX = 'v2_'
 
 
 def img_rename(path):
