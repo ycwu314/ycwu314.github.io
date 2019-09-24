@@ -52,7 +52,7 @@ Heap
  Metaspace       used 2388K, capacity 4480K, committed 4480K, reserved 1056768K
   class space    used 261K, capacity 384K, committed 384K, reserved 1048576K
 ```
-![蘑菇头挠头](http://images.bqshuo.com/0cd32859f4ef4f2d834158729d2cbdb0.jpg)
+
 实际的eden只有545344K，跟原先估算的1.096G，相差将近1半！在这篇文章找到答案：[CMS GC 默认新生代是多大?](https://www.jianshu.com/p/832fc4d4cb53)。
 
 # 解决

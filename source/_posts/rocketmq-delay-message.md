@@ -15,7 +15,7 @@ description: RocketMQ延迟消息的源码分析。发送消息时设置delayTim
 ```java
     private String messageDelayLevel = "1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h";
 ```
-定义了18中延迟级别。消息延迟时间支持1秒、5秒直到2小时。也可以自定义，但是不太建议。**不支持任意精度的延迟**。
+定义了18种延迟级别。消息延迟时间支持1秒、5秒直到2小时。也可以自定义，但是不太建议。**不支持任意精度的延迟**。
 
 <!-- more -->
 
