@@ -24,12 +24,13 @@ kubectl delete pod <pod_name>
 NAME       READY   UP-TO-DATE   AVAILABLE   AGE
 mytomcat   1/1     1            1           36m
 
-# kubectl delete deployment mytomcat
+# kubectl delete -n default deployment mytomcat
 deployment.apps "mytomcat" deleted
 
 # kubectl get pod
 No resources found in default namespace
 ```
+`-n`: 指定namespace。不指定的话是default。
 
 # 原因
 
