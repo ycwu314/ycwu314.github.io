@@ -44,8 +44,7 @@ def do_replace(path, secret_map_file):
             continue
 
         if line.startswith(HEADER_INDICATOR) or line.find('post_link') > 0 \
-                or line.find('asset_img') > 0 or line.startswith('>') > 0 \ 
-                or line.startswith(LIST_INDICATOR) :
+                or line.find('asset_img') > 0 or line.startswith('>') > 0 or line.startswith(LIST_INDICATOR) :
             output_lines.append(line)
             continue
 
