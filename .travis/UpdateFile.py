@@ -7,6 +7,7 @@ import os
 META_INDICATOR = '---'
 CODE_INDICATOR = '```'
 HEADER_INDICATOR = '#'
+LIST_INDICATOR = '-'
 
 RE_CODE_IN_LINE = '`.*`'
 RE_LINK_IN_LINE = '\[.*\]\(.+\)'
@@ -43,7 +44,8 @@ def do_replace(path, secret_map_file):
             continue
 
         if line.startswith(HEADER_INDICATOR) or line.find('post_link') > 0 \
-                or line.find('asset_img') > 0 or line.startswith('>') > 0:
+                or line.find('asset_img') > 0 or line.startswith('>') > 0 \ 
+                or line.startswith(LIST_INDICATOR) :
             output_lines.append(line)
             continue
 
