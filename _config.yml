@@ -39,6 +39,7 @@ render_drafts: false
 post_asset_folder: true
 relative_link: false
 future: true
+auto_spacing: true
 highlight:
   enable: true
   line_number: true

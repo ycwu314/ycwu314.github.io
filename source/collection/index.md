@@ -24,3 +24,8 @@ Java多线程系列源码分析。
 
 https相关原理，并且结合抓包、nginx配置实践。
 - {% post_link https-collection %}
+
+# kubernates
+
+kubernates 学习札记。
+- {% post_link kubernates-collection %}
