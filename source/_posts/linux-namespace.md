@@ -51,7 +51,7 @@ PID namespaces用来隔离进程的ID空间，使得不同pid namespace里的进
 PID namespace可以嵌套，也就是说有父子关系，在当前namespace里面创建的所有新的namespace都是当前namespace的子namespace。
 每个PID namespace的第一个进程的ID都是1。
 
-在linux系统种，PID为1的进程是init。当系统中一个进程的父进程退出时，内核会指定init进程成为这个进程的新父进程，而当init进程退出时，系统也将退出。因此内核会帮init进程屏蔽掉其他任何信号，这样可以防止其他进程不小心kill掉init进程导致系统挂掉。
+在linux系统种，PID为1的进程是init。init进程，它是一个由内核启动的用户级进程。当系统中一个进程的父进程退出时，内核会指定init进程成为这个进程的新父进程，而当init进程退出时，系统也将退出。因此内核会帮init进程屏蔽掉其他任何信号，这样可以防止其他进程不小心kill掉init进程导致系统挂掉。
 
 PID namesapce 对容器类应用特别重要， 可以实现容器内进程的暂停/恢复等功能，还可以支持容器在跨主机的迁移前后保持内部进程的 PID 不发生变化。
 

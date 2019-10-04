@@ -15,3 +15,4 @@ kubernates学习札记，持续更新中。
 - {% post_link kubernates-delete-pod %}
 - {% post_link kubernates-pod-deployment-service-intro %}
 - {% post_link kubernates-yaml-export %}
+- {% post_link kubernates-pause-container %}

@@ -41,7 +41,7 @@ spec:
 
 # Pod
 
-Pod是kubernates是最基本的k8s应用执行单元。代表一个在k8s集群运行的进程。
+Pod是kubernates中最基本的应用执行单元。代表一个在k8s集群运行的进程。
 当Pod被创建后，都会被Kubernetes调度到集群的Node上。
 通常不会直接使用Pod，而是通过controller操作。
 ```
