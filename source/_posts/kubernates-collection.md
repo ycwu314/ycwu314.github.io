@@ -9,7 +9,10 @@ hide_index: true
 ---
 
 kubernates学习札记，持续更新中。
+
 - {% post_link linux-namespace %}
+- {% post_link linux-cgroup %}
+
 - {% post_link microk8s-gcr-image %}
 - {% post_link kubernates-access-pod %}
 - {% post_link kubernates-delete-pod %}
