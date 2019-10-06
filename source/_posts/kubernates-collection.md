@@ -10,12 +10,15 @@ hide_index: true
 
 kubernates学习札记，持续更新中。
 
+前置linux知识：
 - {% post_link linux-namespace %}
 - {% post_link linux-cgroup %}
 
+kubernates：
 - {% post_link microk8s-gcr-image %}
 - {% post_link kubernates-access-pod %}
 - {% post_link kubernates-delete-pod %}
 - {% post_link kubernates-pod-deployment-service-intro %}
-- {% post_link kubernates-yaml-export %}
 - {% post_link kubernates-pause-container %}
+- {% post_link kubernates-pod-lifecycle %}
+- {% post_link kubernates-yaml-export %}
