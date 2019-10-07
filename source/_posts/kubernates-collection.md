@@ -25,5 +25,6 @@ kubernates：
 - {% post_link kubernates-pod-hook %}
 - {% post_link kubernates-volume-intro %}
 
-工具：
+杂项：
 - {% post_link kubernates-yaml-export %}
+- {% post_link kubernates-yaml-command-args-redirect %}
