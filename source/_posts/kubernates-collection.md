@@ -22,4 +22,8 @@ kubernates：
 - {% post_link kubernates-pod-pause-container %}
 - {% post_link kubernates-pod-lifecycle %}
 - {% post_link kubernates-pod-init-container %}
+- {% post_link kubernates-pod-hook %}
+- {% post_link kubernates-volume-intro %}
+
+工具：
 - {% post_link kubernates-yaml-export %}
