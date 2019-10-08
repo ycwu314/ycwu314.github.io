@@ -40,3 +40,8 @@ status描述了对象的 实际状态（Actual State） ，它是由 Kubernetes 
 一旦创建对象，Kubernetes 系统将持续工作以确保对象存在。
 
 后来发现更好的方式是使用更新spec，让k8s自动更新pod。
+```
+kubectl edit -f xxx.yml
+
+kubectl apply -f xxx.yml
+```
