@@ -23,6 +23,7 @@ kubernates：
 - {% post_link kubernates-pod-lifecycle %}
 - {% post_link kubernates-pod-init-container %}
 - {% post_link kubernates-pod-hook %}
+- {% post_link kubernates-pod-preset %}
 - {% post_link kubernates-volume-intro %}
 
 杂项：
