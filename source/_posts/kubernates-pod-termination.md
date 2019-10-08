@@ -35,6 +35,7 @@ description: kubernates pod 接受关闭命令后，进入优雅关闭阶段，�
 - {% post_link kubernates-pod-lifecycle %}
 
 关于sigterm、sigkill的区别，可以看这篇文章：
+- {% post_link linux-signal %}
 
 # 修改优雅关闭时间
 
