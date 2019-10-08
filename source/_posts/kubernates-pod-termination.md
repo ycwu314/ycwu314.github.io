@@ -34,6 +34,8 @@ description: kubernates pod 接受关闭命令后，进入优雅关闭阶段，�
 关于pod lifecycle hook，在这篇文章有介绍：
 - {% post_link kubernates-pod-lifecycle %}
 
+关于sigterm、sigkill的区别，可以看这篇文章：
+
 # 修改优雅关闭时间
 
 默认的优雅关闭时间是30s。
