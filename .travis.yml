@@ -26,6 +26,7 @@ before_install:
 
 install:
   - npm install
+  - npm install hexo-filter-auto-spacing --save
   # - npm install -g hexo --save
   # - npm install hexo-lazyload-image --save
   # - npm install hexo-neat --save
