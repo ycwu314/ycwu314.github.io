@@ -156,11 +156,14 @@ baidu_push: false
 # Value before `||` delimeter is the target link.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, question icon will be loaded.
 # External url should start with http:// or https://
+#
+# font awesome icon mapping:
+# http://www.fontawesome.com.cn/faicons/
 menu:
   home: / || home
   about: /about/ || user
-  tags: /t/ || t
-  '专题': /collection
+  collection: /collection || file-code-o
+  tags: /t/ || tags
   #categories: /categories/ || th
   #archives: /archives/ || archive
   #schedule: /schedule/ || calendar
