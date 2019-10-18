@@ -99,7 +99,7 @@ if(!Modernizr["hairline"]) {
 ```js
 var body = document.getElementsByTagName("body")[0];
 var image = document.createElement("img");
-image.src = "http://iloveponeydotcom32188.jg";
+image.src = "http://ycwu314dottop.jg";
 image.setAttribute("id", "fakeimage");
 body.appendChild(image);
 image.onerror = function(){
