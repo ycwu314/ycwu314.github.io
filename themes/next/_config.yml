@@ -768,9 +768,8 @@ needmoreshare2:
 
 # Google Analytics
 google_analytics:
-  enable: true
-  github_tracking_id: UA-145232273-1
-  gitee_tracking_id: UA-145232273-2
+  enable: false
+  tracking_id: 
   localhost_ignored: true
 
 # CNZZ count
