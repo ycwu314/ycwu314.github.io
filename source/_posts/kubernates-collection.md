@@ -29,3 +29,4 @@ kubernates：
 杂项：
 - {% post_link kubernates-yaml-export %}
 - {% post_link kubernates-yaml-command-args-redirect %}
+- {% post_link kubernates-swap-memory-and-systemoom %}
