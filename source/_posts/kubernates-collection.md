@@ -30,3 +30,4 @@ kubernates：
 - {% post_link kubernates-yaml-export %}
 - {% post_link kubernates-yaml-command-args-redirect %}
 - {% post_link kubernates-swap-memory-and-systemoom %}
+- {% post_link kubernates-label-and-annotation %}
