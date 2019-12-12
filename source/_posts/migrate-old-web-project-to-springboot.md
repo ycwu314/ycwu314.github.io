@@ -4,7 +4,7 @@ date: 2019-12-11 18:23:54
 tags: [springboot, java]
 categories: [springboot]
 keywords: [spring-boot-legacy, swagger2]
-description:
+description: 使用spring-boot-legacy插件，为老的web项目开启springboot支持。
 ---
 
 # 背景
