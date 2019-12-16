@@ -89,6 +89,16 @@ this.setData({
 })
 ```
 
+ps: 后来才知道`setData`会触发页面刷新。progressCnt的更新不涉及页面刷新，可以放在另一个变量存储：
+```js
+    if (this.counter.progressCnt++ > PROGRESS_BAR_REFERSH_CNT) {
+      this.counter.progressCnt = 0
+      ctx.draw(false)
+    } else {
+      ctx.draw(true)
+    }
+```
+
 # 获取播放时间
 
 `backgroundAudioManager.duration`是只读属性，表示音乐文件的长度，单位是秒。
