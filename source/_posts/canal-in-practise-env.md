@@ -91,6 +91,73 @@ total 84
 
 重启canal，这下正常了。
 
+# mysql reset master 导致同步异常
+
+在写binlog相关操作文档，执行`reset master;`以后，binlog序号复位，从0开始。
+```
+mysql> reset master;
+Query OK, 0 rows affected
+
+mysql> show master status;
++------------------+----------+--------------+------------------+-------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |
++------------------+----------+--------------+------------------+-------------------+
+| mysql-bin.000001 |     1074 |              |                  |                   |
++------------------+----------+--------------+------------------+-------------------+
+1 row in set
+```
+
+后来发现canal报错了，example.log如下：
+```
+2019-12-17 15:01:42.374 [destination = example , address = /127.0.0.1:31503 , EventParser] ERROR com.alibaba.otter.canal.common.alarm.LogAlarmHandler - destination:example[java.io.IOException: Received error packet: errno = 1236, sqlstate = HY000 errmsg = Could not find first log file name in binary log index file
+	at com.alibaba.otter.canal.parse.inbound.mysql.dbsync.DirectLogFetcher.fetch(DirectLogFetcher.java:102)
+	at com.alibaba.otter.canal.parse.inbound.mysql.MysqlConnection.dump(MysqlConnection.java:235)
+	at com.alibaba.otter.canal.parse.inbound.AbstractEventParser$3.run(AbstractEventParser.java:265)
+	at java.lang.Thread.run(Thread.java:745)
+```
+
+> Could not find first log file name in binary log index file
+
+很可能是同步水位问题。检查`conf/example/meta.dat`如下
+```json
+{
+  "clientDatas": [
+    {
+      "clientIdentity": {
+        "clientId": 1001,
+        "destination": "example",
+        "filter": ""
+      },
+      "cursor": {
+        "identity": {
+          "slaveId": -1,
+          "sourceAddress": {
+            "address": "localhost",
+            "port": 31503
+          }
+        },
+        "postion": {
+          "gtid": "",
+          "included": false,
+          "journalName": "mysql-bin.000004",
+          "position": 15570,
+          "serverId": 1,
+          "timestamp": 1576565961000
+        }
+      }
+    }
+  ],
+  "destination": "example"
+}
+```
+
+mysql已经重置了binlog，序号复位从0开始，删除了其他的binlog文件。但是canal没有同步更新，本地还是等待消费mysql-bin.000004，因此报错。
+解决：
+- 删除meta.dat
+
+思考：
+- 不要删除正在复制的binlog文件。
+
 # 参考资料
 
 - [Kafka协议兼容性改进](https://www.cnblogs.com/huxi2b/p/6784795.html)

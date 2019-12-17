@@ -36,6 +36,12 @@ sudo systemctl start mysql.service
 嗯，这里我挖了坑。
 create user之后grant all privilege，导致报错，详见后面的解析。
 
+(这才是正确的)
+```sql
+CREATE USER 'canal'@'%' IDENTIFIED BY 'canal';
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%' IDENTIFIED BY 'canal';
+```
+
 # 配置canal
 
 `conf/canal.properties`是canal server的配置文件。
