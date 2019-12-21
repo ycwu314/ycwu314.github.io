@@ -15,6 +15,8 @@ description: 小程序canvas层级比原生组件还高，只能用cover-view等
 打开真机调试器，使用“节点审查”，发现progress组件被canvas遮盖了。
 <!-- more -->
 
+{% asset_img progress-bar-hidden.png progress-bar-hidden %}
+
 # canvas
 
 canvas层级比小程序原生组件更高，因此覆盖在progress之上。
