@@ -131,8 +131,20 @@ BackgroundAudioManager.onTimeUpdate(function callback)
 偶尔发生闪屏，但是没有复现，有点麻烦。估计是canvas的问题，待跟踪
 
 
+# 单曲循环问题
+
+这个跟canvas无关，但是值得记下。
+在`BackgroundAudioManager.onEnded`事件中增加重放，直接从0开始播放
+```js
+backgroundAudioManager.startTime = 0;
+backgroundAudioManager.play();
+```
+结果时不时不能正常播放。
+加上console打印，发现`backgroundAudioManager.src`为空，查资料发现，BAM播放结束后src会被置空。
+解决方式很简单，增加一个变量保存当前src，单曲循环模式下触发`onEnded`事件后把这个src填到BAM即可。
+
 # 参考资料
 
 - [小程序坑-canvas](https://segmentfault.com/a/1190000011805262)
 - [微信小程序 BackgroundAudioManager currentTime、duration 的问题以及如何规避](https://www.onlyling.com/archives/390)
-
+- [小程序 BackgroundAudioManager 踩坑之旅](https://juejin.im/post/5d2c2122f265da1b9613355c)
