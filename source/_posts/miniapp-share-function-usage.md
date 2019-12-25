@@ -27,6 +27,8 @@ onShareAppMessage: function () {
 }
 ```
 
+注意：imageUrl尺寸长宽比例是`5:4`。
+
 `path`是要分享的页面，必须是全路径。
 url后面可以增加自定义参数。
 
