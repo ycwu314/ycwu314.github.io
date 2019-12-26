@@ -173,4 +173,14 @@ mysql json type 不支持全文索引。
 select * from t_person where extra like '%aaa%'
 ```
 
+# 实践tips
 
+虽然json内部可以存储不同类型，但是为了序列化和反序列化方便，我在应用层进行了使用约束：
+- 整数
+- 浮点
+- 字符串
+- 布尔
+
+日期类型转换为unix时间戳。
+
+业务上使用额外的表，存储json内部字段的期望类型，在dto层进行转换。
