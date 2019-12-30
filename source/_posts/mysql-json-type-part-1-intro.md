@@ -9,9 +9,16 @@ description: mysql 5.7.8 新增json类型。
 
 # 简介
 
+在没有myql json类型之前，我们在应用层也可以存储json内容，手动序列化为json字符串，再写入varchar/clob或者blob类型，读取的时候再手动反序列化。
+这样缺点明显：
+- 需要用户保证 JSON 的正确性，如果用户插入的数据并不是一个有效的 JSON 字符串，MySQL 并不会报错；
+- 所有对 JSON 的操作，都需要在用户的代码里进行处理，不够友好；
+- 即使只是提取 JSON 中某一个字段，也需要读出整个 BLOB，效率不高；
+- 无法在 JSON 字段上建索引。
+<!-- more -->
+
 Mysql 5.7.8 以后版本增加了json类型，支持json object和json array。
 由于是原生支持，提供了json语法检查、特殊dml函数、也支持字段索引。
-<!-- more -->
 
 # 基本操作
 
