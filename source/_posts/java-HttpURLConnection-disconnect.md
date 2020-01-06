@@ -122,7 +122,22 @@ HttpURLConnection的javadoc
 - `HttpURLConnection.disconnect()`会关闭底层socket。
 - `HttpURLConnection.getInputSteam().close()`只关闭输入流，可以重用底层socket。
 
-nacos client定时向nacos server轮询配置更新，查询结束主动关闭连接， 不复用底层socket，问题也不大。
+回到nacos client，定时向nacos server轮询配置更新，查询结束主动关闭连接， 不复用底层socket，见ClientWorker的构造函数
+```java
+executor.scheduleWithFixedDelay(new Runnable() {
+    @Override
+    public void run() {
+        try {
+            checkConfigInfo();
+        } catch (Throwable e) {
+            LOGGER.error("[" + agent.getName() + "] [sub-check] rotate check error", e);
+        }
+    }
+}, 1L, 10L, TimeUnit.MILLISECONDS);
+```
+
+`checkConfigInfo()`最终会访问nacos server。如果任务正常结束，那么10ms之后又会发起网络请求。
+
 
 # 资料
 
