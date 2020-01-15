@@ -156,16 +156,23 @@ Service定义了这样一种抽象：逻辑上的一组Pod，一种可以访问�
 service涉及port、nodePort、targetPort概念，容易混淆。
 
 ## port
+
 >Expose the service on the specified port internally within the cluster.
 
 `<cluster ip>:port`是集群**内部**客户访问service的入口。
 
+service中对应`spec.type`为`ClusterIP`。
+
 ## nodePort
+
 >This setting makes the service visible outside the Kubernetes cluster by the node’s IP address and the port number declared in this property.
 
 `<nodeIP>:nodePort`是集群**外部**客户访问service的一种入口（另一个种是loadbalance）。
 
+service中对应`spec.type`为`NodePort`。
+
 ## targetPort
+
 >This is the port on the pod that the request gets sent to. Your application needs to be listening for network requests on this port for the service to work.
 
 容器的端口。外部流量经过port、nodePort最终流向targetPort。
@@ -209,6 +216,13 @@ Endpoints:                10.1.1.12:8080,10.1.1.13:8080
 Session Affinity:         None
 External Traffic Policy:  Cluster
 Events:                   <none>
+```
+
+# servcie和端口的常见问题
+
+为了能够在kubernates外面访问到service，会暴露nodePort。一个常见的问题是，只在service的yaml文件设置了`spec.ports.nodePort`，没有更新`spec.type`为`NodePort`（默认为`ClusterIP`），导致出现下面报错：
+```
+The Service “nacos-headless” is invalid: spec.ports[0].nodePort: Forbidden: may not be used when type is 'ClusterIP'
 ```
 
 # 小结
