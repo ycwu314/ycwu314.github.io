@@ -50,5 +50,12 @@ Kompose是Kubernetes社区开发的一个转换工具，可以方便地将简单
 
 由于已经跳过docker compose阶段，以后有需要再尝试这个工具。
 
+# yaml文件常见错误
 
+>error: yaml: line 2: mapping values are not allowed in this context
 
+`key: value`，注意在value和“:"之间要有一个空格；。
+
+>error: yaml: line 3: found character that cannot start any token
+
+YAML文件里面不能出现tab键。

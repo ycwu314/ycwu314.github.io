@@ -170,6 +170,7 @@ service中对应`spec.type`为`ClusterIP`。
 `<nodeIP>:nodePort`是集群**外部**客户访问service的一种入口（另一个种是loadbalance）。
 
 service中对应`spec.type`为`NodePort`。
+端口范围只能是 `30000-32767`。
 
 ## targetPort
 
