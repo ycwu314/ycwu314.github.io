@@ -43,7 +43,7 @@ podAntiAffinity使用场景：
 
 # 参考
 
-[从service的externalTrafficPolicy到podAntiAffinity](https://segmentfault.com/a/1190000016033076)
-[创建一个外部负载均衡器](https://kubernetes.io/zh/docs/tasks/access-application-cluster/create-external-load-balancer/)
+- [从service的externalTrafficPolicy到podAntiAffinity](https://segmentfault.com/a/1190000016033076)
+- [创建一个外部负载均衡器](https://kubernetes.io/zh/docs/tasks/access-application-cluster/create-external-load-balancer/)
 
 
