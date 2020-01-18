@@ -1,7 +1,7 @@
 ---
 title: kafka-consumer-groups.sh 排查问题
 date: 2020-01-18 15:39:15
-tags: [kafka]
+tags: [kafka, 故障案例]
 categories: [kafka]
 keywords: [kafka consumer groups]
 description: kafka-consumer-groups.sh 是个好用的工具。
