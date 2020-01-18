@@ -3,7 +3,7 @@ title: activiti提示缺少bpmn di信息
 date: 2020-01-18 14:02:47
 tags: [activiti]
 categories: [activiti]
-keywords:  [activiti bpmn di]
+keywords:  [activiti bpmn di, BpmnAutoLayout]
 description: bpmndi是bpmn图形信息。activiti 5如果没有bpmndi信息，不能正常在ui上显示。activiti-bpmn-layout模块可以补全bpmndi信息。
 ---
 
