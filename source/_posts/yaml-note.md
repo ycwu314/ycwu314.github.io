@@ -21,8 +21,9 @@ kubernates yaml 文件报错：
 # 编码
 
 springboot yaml 文件报错：
-> Caused by: org.yaml.snakeyaml.error.YAMLException: java.nio.charset.MalformedInputException: Input length = 1
-
+```
+Caused by: org.yaml.snakeyaml.error.YAMLException: java.nio.charset.MalformedInputException: Input length = 1
+```
 指定配置文件编码不是UTF-8的，转换成UTF-8就行了。
 
 
