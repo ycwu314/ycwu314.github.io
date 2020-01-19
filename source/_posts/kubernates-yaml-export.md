@@ -54,7 +54,7 @@ Kompose是Kubernetes社区开发的一个转换工具，可以方便地将简单
 
 >error: yaml: line 2: mapping values are not allowed in this context
 
-`key: value`，注意在value和“:"之间要有一个空格；。
+`key: value`，注意在value和“:"之间要有一个空格。
 
 >error: yaml: line 3: found character that cannot start any token
 
