@@ -14,6 +14,9 @@ redis 单线程模型设计简单、高效。但是一个长耗时操作就会�
 
 为了优化redis删除大key性能，redis 4.0提供了unlink命令。
 <!-- more -->
+
+以下代码基于redis 5.0。
+
 # delete
 
 ## 源码分析
