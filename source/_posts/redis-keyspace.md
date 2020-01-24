@@ -4,7 +4,7 @@ date: 2020-01-24 13:35:29
 tags: [redis]
 categories: [redis]
 keywords: [redis keyspace]
-description: redis keyspace / keyevent 提供
+description: redis keyspace / keyevent 提供了key变更通知能力。
 ---
 
 # 前言
