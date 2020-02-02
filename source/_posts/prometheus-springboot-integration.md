@@ -1,7 +1,7 @@
 ---
 title: springboot集成prometheus监控
 date: 2020-01-25 09:59:15
-tags: [springboot, prometheus]
+tags: [springboot, prometheus, 监控]
 categories: [prometheus]
 keywords: [springboot prometheus 集成]
 description: springboot集成prometheus监控。

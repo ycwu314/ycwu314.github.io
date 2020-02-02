@@ -1,7 +1,7 @@
 ---
 title: prometheus 基本概念
 date: 2020-01-25 12:44:31
-tags: [prometheus]
+tags: [prometheus, 监控]
 categories: [prometheus]
 keywords: [prometheus 基本概念]
 description: 了解prometheus的数据模型。

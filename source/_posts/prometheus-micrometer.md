@@ -1,7 +1,7 @@
 ---
 title: micrometer 源码简析，part 1
 date: 2020-01-27 17:17:09
-tags: [prometheus, micrometer]
+tags: [prometheus, micrometer, 监控]
 categories: [micrometer]
 keywords: [prometheus micrometer]
 description: 从集成 Prometheus 来入手分析 micrometer 框架。
