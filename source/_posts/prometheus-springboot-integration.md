@@ -7,10 +7,11 @@ keywords: [springboot prometheus 集成]
 description: springboot集成prometheus监控。
 ---
 
-springboot集成prometheus监控。
-<!-- more -->
+# springboot集成prometheus监控
 
 `pom.xml`引入acturator和prometheus。这里使用springboot 2.2.4。
+<!-- more -->
+
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -23,6 +24,26 @@ springboot集成prometheus监控。
     <version>1.3.3</version>
 </dependency>
 ```
+
+
+隐式导入
+```xml
+  <dependencies>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-core</artifactId>
+      <version>1.3.3</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.prometheus</groupId>
+      <artifactId>simpleclient_common</artifactId>
+      <version>0.7.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+```
+
 
 `application.yml`打开endpoints和metrics：
 ```yaml
@@ -223,3 +244,73 @@ scrape_configs:
 
 打开`localhost:9090`，`status`=》`target`
 {% asset_img prometheus-springboot.png prometheus-springboot %}
+
+# Prometheus metrics 自动配置
+
+`PrometheusMetricsExportAutoConfiguration`自动配置prometheus metrics。
+```java
+package org.springframework.boot.actuate.autoconfigure.metrics.export.prometheus;
+
+@Configuration(proxyBeanMethods = false)
+@AutoConfigureBefore({ CompositeMeterRegistryAutoConfiguration.class, SimpleMetricsExportAutoConfiguration.class })
+@AutoConfigureAfter(MetricsAutoConfiguration.class)
+@ConditionalOnBean(Clock.class)
+@ConditionalOnClass(PrometheusMeterRegistry.class)
+@ConditionalOnProperty(prefix = "management.metrics.export.prometheus", name = "enabled", havingValue = "true",
+		matchIfMissing = true)
+@EnableConfigurationProperties(PrometheusProperties.class)
+public class PrometheusMetricsExportAutoConfiguration {
+}
+```
+很简单，不展开了。
+
+# micrometer metric types
+
+micrometer 定义的metric类型在`io.micrometer.core.instrument.Meter`
+```java
+enum Type {
+    COUNTER,
+    GAUGE,
+    LONG_TASK_TIMER,
+    TIMER,
+    DISTRIBUTION_SUMMARY,
+    OTHER;
+}
+```
+
+原生Prometheus client定义metric类型在`io.prometheus.client.Collector`
+```java
+public enum Type {
+  COUNTER,
+  GAUGE,
+  SUMMARY,
+  HISTOGRAM,
+  UNTYPED,
+}
+```
+
+二者的类型不是一一对应。micrometer的metric类型和Prometheus在`PrometheusMeterRegistry`中进行映射：
+```java
+    protected Meter newMeter(Meter.Id id, Meter.Type type, Iterable<Measurement> measurements) {
+        Collector.Type promType = Collector.Type.UNTYPED;
+        switch (type) {
+            case COUNTER:
+                promType = Collector.Type.COUNTER;
+                break;
+            case GAUGE:
+                promType = Collector.Type.GAUGE;
+                break;
+            case DISTRIBUTION_SUMMARY:
+            case TIMER:
+                promType = Collector.Type.SUMMARY;
+                break;
+        }
+
+        MicrometerCollector collector = collectorByName(id);
+        List<String> tagValues = tagValues(id);
+
+        // more codes
+    }
+```
+注意，micrometer的timer对应Prometheus的histogram，但是映射为Prometheus的summary类型。
+
