@@ -304,3 +304,16 @@ go_gc_duration_seconds{quantile="1"} 0.001996
 go_gc_duration_seconds_sum 0.0039907
 go_gc_duration_seconds_count 48
 ```
+
+# Metrics
+
+Metrics是一个工具类，提供了全局静态meter注册器（是一个CompositeMeterRegistry）。
+另外包含一个内部类More，提供不常用的meter类型，例如LongTaskTimer、FunctionCounter等。
+
+```java
+public class Metrics {
+    public static final CompositeMeterRegistry globalRegistry = new CompositeMeterRegistry();
+    private static final More more = new More();
+    // more
+}
+```
