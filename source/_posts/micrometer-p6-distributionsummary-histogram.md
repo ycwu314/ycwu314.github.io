@@ -4,7 +4,7 @@ date: 2020-02-24 20:08:37
 tags: [micrometer, 监控]
 categories:  [监控]
 keywords: [micrometer gauge]
-description: 
+description: DistributionSummary基础。
 ---
 
 # 背景
