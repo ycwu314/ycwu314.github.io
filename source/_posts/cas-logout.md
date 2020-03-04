@@ -88,6 +88,9 @@ back channel模式，由cas server承载通信压力，通知各个service logou
 # CAS logout 流程分析
 
 cas 4.x使用spring webflow配置流程。对应logout流程配置在`logout-webflow.xml`。
+
+{% asset_img logout-webflow.png logout-webflow %}
+
 入口是`terminateSession`。
 ```xml
   <action-state id="terminateSession">
