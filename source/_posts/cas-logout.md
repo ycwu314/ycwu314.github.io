@@ -136,111 +136,97 @@ public class TerminateSessionAction {
 CentralAuthenticationService负责清理TGT。默认实现是`CentralAuthenticationServiceImpl`:
 ```java
 // 处理slo back channel
-    @Audit(
-            action="TICKET_GRANTING_TICKET_DESTROYED",
-            actionResolverName="DESTROY_TICKET_GRANTING_TICKET_RESOLVER",
-            resourceResolverName="DESTROY_TICKET_GRANTING_TICKET_RESOURCE_RESOLVER")
-    @Timed(name = "DESTROY_TICKET_GRANTING_TICKET_TIMER")
-    @Metered(name="DESTROY_TICKET_GRANTING_TICKET_METER")
-    @Counted(name="DESTROY_TICKET_GRANTING_TICKET_COUNTER", monotonic=true)
-    @Override
-    public List<LogoutRequest> destroyTicketGrantingTicket(@NotNull final String ticketGrantingTicketId) {
-        try {
-            logger.debug("Removing ticket [{}] from registry...", ticketGrantingTicketId);
-            final TicketGrantingTicket ticket = getTicket(ticketGrantingTicketId, TicketGrantingTicket.class);
-            logger.debug("Ticket found. Processing logout requests and then deleting the ticket...");
-            // 由 LogoutManager 处理 SLO
-            final List<LogoutRequest> logoutRequests = logoutManager.performLogout(ticket);
-            // 清理TGT
-            this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
-
-            return logoutRequests;
-        } catch (final InvalidTicketException e) {
-            logger.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.", ticketGrantingTicketId);
-        }
-        return Collections.emptyList();
+public List<LogoutRequest> destroyTicketGrantingTicket(@NotNull final String ticketGrantingTicketId) {
+    try {
+        logger.debug("Removing ticket [{}] from registry...", ticketGrantingTicketId);
+        final TicketGrantingTicket ticket = getTicket(ticketGrantingTicketId, TicketGrantingTicket.class);
+        logger.debug("Ticket found. Processing logout requests and then deleting the ticket...");
+        // 由 LogoutManager 处理 SLO
+        final List<LogoutRequest> logoutRequests = logoutManager.performLogout(ticket);
+        // 清理TGT
+        this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
+        return logoutRequests;
+    } catch (final InvalidTicketException e) {
+        logger.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.", ticketGrantingTicketId);
     }
+    return Collections.emptyList();
+}
 ```
 
 LogoutManager根据service配置，处理back channel logout：
 ```java
-    /**
-     * Perform a back channel logout for a given ticket granting ticket and returns all the logout requests.
-     *
-     * @param ticket a given ticket granting ticket.
-     * @return all logout requests.
-     */
-    @Override
-    public List<LogoutRequest> performLogout(final TicketGrantingTicket ticket) {
-        final Map<String, Service> services = ticket.getServices();
-        final List<LogoutRequest> logoutRequests = new ArrayList<>();
-        // if SLO is not disabled
-        if (!this.singleLogoutCallbacksDisabled) {
-            // through all services
-            for (final Map.Entry<String, Service> entry : services.entrySet()) {
-                // it's a SingleLogoutService, else ignore
-                final Service service = entry.getValue();
-                if (service instanceof SingleLogoutService) {
-                    final LogoutRequest logoutRequest = handleLogoutForSloService((SingleLogoutService) service, entry.getKey());
-                    if (logoutRequest != null) {
-                        LOGGER.debug("Captured logout request [{}]", logoutRequest);
-                        logoutRequests.add(logoutRequest);
+/**
+ * Perform a back channel logout for a given ticket granting ticket and returns all the logout requests.
+ *
+ * @param ticket a given ticket granting ticket.
+ * @return all logout requests.
+ */
+@Override
+public List<LogoutRequest> performLogout(final TicketGrantingTicket ticket) {
+    final Map<String, Service> services = ticket.getServices();
+    final List<LogoutRequest> logoutRequests = new ArrayList<>();
+    // if SLO is not disabled
+    if (!this.singleLogoutCallbacksDisabled) {
+        // through all services
+        for (final Map.Entry<String, Service> entry : services.entrySet()) {
+            // it's a SingleLogoutService, else ignore
+            final Service service = entry.getValue();
+            if (service instanceof SingleLogoutService) {
+                final LogoutRequest logoutRequest = handleLogoutForSloService((SingleLogoutService) service, entry.getKey());
+                if (logoutRequest != null) {
+                    LOGGER.debug("Captured logout request [{}]", logoutRequest);
+                    logoutRequests.add(logoutRequest);
+                }
+            }
+        }
+    }
+    return logoutRequests;
+}
+
+// 获取service配置，构建DefaultLogoutRequest
+private LogoutRequest handleLogoutForSloService(final SingleLogoutService singleLogoutService, final String ticketId) {
+    if (!singleLogoutService.isLoggedOutAlready()) {
+        final RegisteredService registeredService = servicesManager.findServiceBy(singleLogoutService);
+        if (serviceSupportsSingleLogout(registeredService)) {
+            final URL logoutUrl = determineLogoutUrl(registeredService, singleLogoutService);
+            final DefaultLogoutRequest logoutRequest = new DefaultLogoutRequest(ticketId, singleLogoutService, logoutUrl);
+            final LogoutType type = registeredService.getLogoutType() == null
+                    ? LogoutType.BACK_CHANNEL : registeredService.getLogoutType();
+            switch (type) {
+                case BACK_CHANNEL:
+                    if (performBackChannelLogout(logoutRequest)) {
+                        logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
+                    } else {
+                        logoutRequest.setStatus(LogoutRequestStatus.FAILURE);
+                        LOGGER.warn("Logout message not sent to [{}]; Continuing processing...", singleLogoutService.getId());
                     }
-                }
+                    break;
+                default:
+                    logoutRequest.setStatus(LogoutRequestStatus.NOT_ATTEMPTED);
+                    break;
             }
+            return logoutRequest;
         }
-
-        return logoutRequests;
     }
+    return null;
+}    
 
-    // 获取service配置，构建DefaultLogoutRequest
-    private LogoutRequest handleLogoutForSloService(final SingleLogoutService singleLogoutService, final String ticketId) {
-        if (!singleLogoutService.isLoggedOutAlready()) {
+// 向service发送logout通知
+private boolean performBackChannelLogout(final LogoutRequest request) {
+    try {
+        final String logoutRequest = this.logoutMessageBuilder.create(request);
+        final SingleLogoutService logoutService = request.getService();
+        logoutService.setLoggedOutAlready(true);
 
-            final RegisteredService registeredService = servicesManager.findServiceBy(singleLogoutService);
-            if (serviceSupportsSingleLogout(registeredService)) {
-
-                final URL logoutUrl = determineLogoutUrl(registeredService, singleLogoutService);
-                final DefaultLogoutRequest logoutRequest = new DefaultLogoutRequest(ticketId, singleLogoutService, logoutUrl);
-                final LogoutType type = registeredService.getLogoutType() == null
-                        ? LogoutType.BACK_CHANNEL : registeredService.getLogoutType();
-
-                switch (type) {
-                    case BACK_CHANNEL:
-                        if (performBackChannelLogout(logoutRequest)) {
-                            logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
-                        } else {
-                            logoutRequest.setStatus(LogoutRequestStatus.FAILURE);
-                            LOGGER.warn("Logout message not sent to [{}]; Continuing processing...", singleLogoutService.getId());
-                        }
-                        break;
-                    default:
-                        logoutRequest.setStatus(LogoutRequestStatus.NOT_ATTEMPTED);
-                        break;
-                }
-                return logoutRequest;
-            }
-
-        }
-        return null;
-    }    
-
-    // 向service发送logout通知
-    private boolean performBackChannelLogout(final LogoutRequest request) {
-        try {
-            final String logoutRequest = this.logoutMessageBuilder.create(request);
-            final SingleLogoutService logoutService = request.getService();
-            logoutService.setLoggedOutAlready(true);
-    
-            LOGGER.debug("Sending logout request for: [{}]", logoutService.getId());
-            final LogoutHttpMessage msg = new LogoutHttpMessage(request.getLogoutUrl(), logoutRequest);
-            LOGGER.debug("Prepared logout message to send is [{}]", msg);
-            return this.httpClient.sendMessageToEndPoint(msg);
-        } catch (final Exception e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-        return false;
+        LOGGER.debug("Sending logout request for: [{}]", logoutService.getId());
+        final LogoutHttpMessage msg = new LogoutHttpMessage(request.getLogoutUrl(), logoutRequest);
+        LOGGER.debug("Prepared logout message to send is [{}]", msg);
+        return this.httpClient.sendMessageToEndPoint(msg);
+    } catch (final Exception e) {
+        LOGGER.error(e.getMessage(), e);
     }
+    return false;
+}
 ```
 
 
@@ -248,11 +234,11 @@ LogoutManager根据service配置，处理back channel logout：
 
 还是`logout-webflow.xml`
 ```xml
-  <action-state id="frontLogout">
-    <evaluate expression="frontChannelLogoutAction" />
-    <transition on="finish" to="finishLogout" />
-    <transition on="redirectApp" to="redirectToFrontApp" />
-  </action-state>
+<action-state id="frontLogout">
+  <evaluate expression="frontChannelLogoutAction" />
+  <transition on="finish" to="finishLogout" />
+  <transition on="redirectApp" to="redirectToFrontApp" />
+</action-state>
 ```
 
 FrontChannelLogoutAction是入口：
