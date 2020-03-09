@@ -3,7 +3,7 @@ title: cas logout 分析
 date: 2020-03-03 17:54:58
 tags: [cas, sso]
 categories: [cas]
-keywords: [cas logout]
+keywords: [cas logout, cas 登出]
 description: cas logout分为单个应用登出和sso登出。sso登出的实现又分为back channel和front channel两种。
 ---
 
