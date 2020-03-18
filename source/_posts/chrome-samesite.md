@@ -70,3 +70,4 @@ chrome://flags/#same-site-by-default-cookies
 # 参考
 
 - [draft-ietf-httpbis-cookie-same-site-00](https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00#section-4.1.1)
+- [SameSite Cookie 变更：您需要了解的都在这里](https://blog.csdn.net/jilrvrtrc/article/details/104404380)
