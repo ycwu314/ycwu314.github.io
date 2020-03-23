@@ -44,7 +44,26 @@ description: 监控系统的logging、metrics、tracing对比。
 ps.
 adrian cole的ppt说metrics还可以通过read-your-writes来减少记录资源消耗，不是很理解。
 
-## 小结
+# 关于logging
+
+日志可以细分为多种类型：
+## Transaction logs
+
+关键事务日志，比如跟钱相关的。
+
+## Request logs
+
+http请求、数据库请求等。通常尽可能要记录，但丢失一小部分也不是大不了的事情。
+
+## Application logs
+
+应用进程本身的日志，比如启动信息、后台任务等。
+
+## Debug logs
+
+针对某些场景非常详细的debug日志。
+
+# 小结
 
 - logging: 记录详细的事件，例如异常信息
 - metrics: 发现趋势，发送告警
