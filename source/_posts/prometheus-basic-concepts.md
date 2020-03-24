@@ -168,6 +168,9 @@ go_gc_duration_seconds_sum 0.0039907
 go_gc_duration_seconds_count 48
 ```
 
+设置quantile={0.5: 0.05, 0.9: 0.01, 0.99: 0.001}。每个quantile后面还有一个数，0.5-quantile后面是0.05，0.9-quantile后面是0.01，而0.99后面是0.001。这些是我们设置的能容忍的误差。
+
+
 # instance 和 job
 
 - instance: 一个单独 scrape 的目标， 一般对应于一个进程。

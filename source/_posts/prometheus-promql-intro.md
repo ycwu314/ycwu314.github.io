@@ -230,7 +230,61 @@ func instantValue(vals []parser.Value, out Vector, isRate bool) Vector {
 }
 ```
 
+## histogram
+
+过去5分钟的平均响应时间
+```
+  rate(http_request_duration_seconds_sum[5m])
+/
+  rate(http_request_duration_seconds_count[5m])
+```
+
+apdex分数，假设T=300ms
+```
+(
+  sum(rate(http_request_duration_seconds_bucket{le="0.3"}[5m])) by (job)
++
+  sum(rate(http_request_duration_seconds_bucket{le="1.2"}[5m])) by (job)
+) / 2 / sum(rate(http_request_duration_seconds_count[5m])) by (job)
+```
+
+histogram可以聚合计算。
+```
+histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))
+```
+
+
+## summary
+
+
+## histogram vs summary
+
+从官网复制（https://prometheus.io/docs/practices/histograms/）
+
+|                                                                   | Histogram                                                                                                                                   | Summary                                                                                                        |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Required configuration                                            | Pick buckets suitable for the expected range of observed values.                                                                            | Pick desired φ-quantiles and sliding window. Other φ-quantiles and sliding windows cannot be calculated later. |
+| Client performance                                                | Observations are very cheap as they only need to increment counters.                                                                        | Observations are expensive due to the streaming quantile calculation.                                          |
+| Server performance                                                | The server has to calculate quantiles. You can use recording rules should the ad-hoc calculation take too long (e.g. in a large dashboard). | Low server-side cost.                                                                                          |
+| Number of time series (in addition to the _sum and _count series) | One time series per configured bucket.                                                                                                      | One time series per configured quantile.                                                                       |
+| Quantile error (see below for details)                            | Error is limited in the dimension of observed values by the width of the relevant bucket.                                                   | Error is limited in the dimension of φ by a configurable value.                                               |
+| Specification of φ-quantile and sliding time-window              | Ad-hoc with Prometheus expressions.                                                                                                         | Preconfigured by the client.                                                                                   |
+| Aggregation                                                       | Ad-hoc with Prometheus expressions.                                                                                                         | In general not aggregatable.                                                                                   |
+
+划重点：
+- histogram是server端计算。summary是client端计算。
+- histogram可以灵活设置φ （因为是动态计算丫）。summary一旦设置不可以修改。
+- histogram可以聚合(histogram_quantile)。summary不可以聚合（聚合不同客户端上报的百分数没有意义）
+- histogram的精度受限于bucket数量。bucket越多，消耗越大存储空间。
+
+
+如何选择：
+- If you need to aggregate, choose histograms.
+- Otherwise, choose a histogram if you have an idea of the range and distribution of values that will be observed. Choose a summary if you need an accurate quantile, no matter what the range and distribution of the values is.
+
+
 # 参考
 
 - [QUERYING PROMETHEUS](https://prometheus.io/docs/prometheus/latest/querying/basics/)
 - [PromQL内置函数](https://yunlzheng.gitbook.io/prometheus-book/parti-prometheus-ji-chu/promql/prometheus-promql-functions)
+- [prometheus的summary和histogram指标的简单理解](https://blog.csdn.net/wtan825/article/details/94616813)
