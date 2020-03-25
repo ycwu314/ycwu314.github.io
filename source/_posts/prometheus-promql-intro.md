@@ -3,7 +3,7 @@ title: Prometheus PromQL 入门
 date: 2020-03-19 19:53:21
 tags: [prometheus]
 categories: [prometheus]
-keywords: [promql, rate vs irate]
+keywords: [promql, rate vs irate, histogram vs summary]
 description: PromQL学习笔记。rate/irate函数。
 ---
 
@@ -48,7 +48,7 @@ jvm_memory_used_bytes{id=~"PS.*"} offset 10m
 
 # 函数和例子
 
-为了得到一堆计数器，在Windows系统本地安装了wmi_exporter插件，指标通过`http://localhost:9182/metrics`暴露。
+为了得到一堆采样数据，在Windows系统本地安装了wmi_exporter插件，指标通过`http://localhost:9182/metrics`暴露。
 `prometheus.yml`增加配置:
 ```yml
 scrape_configs:
@@ -131,7 +131,7 @@ func extrapolatedRate(vals []parser.Value, args parser.Expressions, enh *EvalNod
 	durationToStart := float64(samples.Points[0].T-rangeStart) / 1000
 	durationToEnd := float64(rangeEnd-samples.Points[len(samples.Points)-1].T) / 1000
 
-  // 区间长度
+    // 区间长度
 	sampledInterval := float64(samples.Points[len(samples.Points)-1].T-samples.Points[0].T) / 1000
 	averageDurationBetweenSamples := sampledInterval / float64(len(samples.Points)-1)
 
@@ -252,10 +252,6 @@ histogram可以聚合计算。
 ```
 histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))
 ```
-
-
-## summary
-
 
 ## histogram vs summary
 

@@ -62,7 +62,7 @@ http_server_requests_seconds_sum{application="springboot_prometheus",exception="
 
 ## counter
 
-一种累加的 metric，典型的应用如：请求的个数，结束的任务数， 出现的错误数等等。
+一种累加的 metric，典型的应用如：请求的个数，结束的任务数，出现的错误数等等。
 只能累加，不能减少。可以在重启后reset。
 ```ini
 # HELP jvm_classes_unloaded_classes_total The total number of classes unloaded since the Java virtual machine has started execution
@@ -72,7 +72,7 @@ jvm_classes_unloaded_classes_total{application="springboot_prometheus",} 1.0
 
 ## gauge
 
-一种常规的 metric，典型的应用如：温度，运行的 jvm线程 的个数。可以任意加减。
+一种常规的 metric，典型的应用如：温度，运行的jvm线程的个数。可以任意加减。
 
 ```ini
 # HELP jvm_threads_states_threads The current number of threads having NEW state
@@ -128,7 +128,7 @@ prometheus_http_response_size_bytes_count{handler="/api/v1/query"} 2
 
 ## summary
 
-Summary 是采样点分位图统计，用于得到数据的分布情况。
+Summary 是采样点分位图统计，用于得到**数据的分布情况**。
 
 首先要了解几个统计学的概念。
 
