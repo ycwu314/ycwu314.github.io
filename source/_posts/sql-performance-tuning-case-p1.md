@@ -58,10 +58,10 @@ ORDER BY
 |  1 | PRIMARY     | RM_VIDEODEV_INFO | NULL       | ALL   | PRIMARY,idx_RM_VIDEODEV_INFO_ver,index_ADMINAREA_GB_CODE                                    | NULL    | NULL    | NULL | 29096 |   100.00 | Range checked for each record (index map: 0x13) |
 |  2 | DERIVED     | RM_VIDEODEV_INFO | NULL       | index | PRIMARY,idx_RM_VIDEODEV_INFO_ver,index_VIDEODEV_GB_ID,idx_bitmap_id,index_ADMINAREA_GB_CODE | PRIMARY | 4       | NULL | 29096 |   100.00 | NULL                                            |
 ```
-29000的数据量，但是filesort、temp table。
+29000条数据，但是filesort、temp table。
 
-一开始没认真对待，看到IN后面一堆id，怀疑是随机读太多，IO吃不消。
-于是先把IN改成一个id，还是慢成狗。
+看到IN后面一堆id（四五千个），怀疑是随机读太多，IO吃不消。但是40s也不返回，说不过去。
+于是先把IN改成一个id试试看，还是慢成狗。
 
 ## step 2
 
@@ -97,7 +97,7 @@ SELECT VIDEODEV_GB_ID, Max( VERSION ) AS VERSION FROM VIDEODEV_INFO_VIEW GROUP B
 ## step 3
 
 显然瓶颈在于关联，找到最大版本的记录。
-那么为什么要搞多个version呢？问到原来的架构设计，说是避免并发插入的时候同时发生关联查询、导致锁表；因此引入version，实现乐观锁机制。
+那么为什么要搞多个version呢？问到原来的架构设计，说是**避免并发插入的时候同时发生关联查询、导致锁表；因此引入version，，把update改写为insert**。
 
 于是问了了解现场情况的同事，真实使用情况是，基本就是一个人操作，一次导入几千条数据。
 以mysql的性能，单机1W左右的insert tps还是可以的。
@@ -112,7 +112,7 @@ version机制产生多条记录，可以通过定时器清除，减少数据量�
 
 ## 方案1
 
-方案1的好处是一步到位，拨乱反正，把过度设计扭回来。
+方案1的好处是一步到位，把过度设计扭回来。
 方案1的困难点在于牵扯了五六个模块，且开放了视图给外部系统使用。
 
 方案1的改动：
@@ -167,7 +167,7 @@ FROM
 		WHERE D.ID = A.ID
 ```
 
-针对29000的数据量，分页通常0.1s - 0.2s就能返回。
+针对29000条数据，分页通常0.1s - 0.2s就能返回。
 不分页查询，要5s才能返回。
 
 
