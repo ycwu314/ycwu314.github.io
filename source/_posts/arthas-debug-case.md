@@ -1,7 +1,7 @@
 ---
 title: SD项目：使用arthas排查问题的经历
 date: 2019-06-04 12:08:22
-tags: [arthas, java, 故障案例, SD项目]
+tags: [arthas, java, 故障案例, SD项目, 性能调优]
 categories: SD项目
 keywords: [arthas debug]
 description: arthas可以直接线上debug问题。arthas thread <pid>查看线程stack。HttpClient要设置socketTimeout。
