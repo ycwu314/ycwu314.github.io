@@ -1,5 +1,5 @@
 ---
-title: kubernates-java-pod-memory-case
+title: 低版本jdk不能正常识别pod内存限制的case
 date: 2020-04-13 17:48:22
 tags: [kubernates, java]
 categories:  [kubernates]
