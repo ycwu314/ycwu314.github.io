@@ -4,9 +4,8 @@ date: 2020-04-14 17:42:16
 tags: [kafka]
 categories: [kafka]
 keywords: [kafka 消费者重复消费, offsets.retention.minutes]
-description:
+description: offsets.retention.minutes 时间过短，可能导致消费者重复消费。
 ---
-{% asset_img slug [title] %}
 
 
 # 背景
