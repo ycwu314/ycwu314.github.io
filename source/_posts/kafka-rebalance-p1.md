@@ -95,8 +95,14 @@ KIP-62进行了优化，把这些timeout解耦：
 
 KIP-62优化（0.10.0）：
 - 单独的后台线程发送心跳
-- `max.poll.interval.ms`表示单个处理线程的最大超时。它是client两次主动发起`poll()`的最大间隔。如果超出这个时间，client会发送`LeaveGroup`命令。
+- `max.poll.interval.ms`表示单个处理线程的最大超时。它是client两次主动发起`poll()`的最大间隔。如果超出这个时间，client会发送`LeaveGroup`命令。同时用于rebalance timeout。
 - `session.timeout.ms`表示进程级别的超时
+
+```
+参数名                --> MemberMetadata 字段
+session.timeout.ms   --> MemberMetadata.sessionTimeoutMs
+max.poll.interval.ms --> MemberMetadata.rebalanceTimeoutMs  默认5min
+```
 
 非常值得阅读KIP-62原文。
 
