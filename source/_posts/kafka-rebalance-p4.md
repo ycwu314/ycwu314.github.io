@@ -81,6 +81,15 @@ kafka 0.11增加了配置：`group.initial.rebalance.delay.ms`，作用是类似
 
 在Design 2的基础上，允许leader以多次迭代、每次只重新分配部分分区的方式、实现rebalance。
 
+# 协议配置选项
+
+增加`connect.protocol`选项：
+>Values: eager, compatible
+>Default: compatible
+>This property defines which Connect protocol is enabled.
+>- eager corresponds to the initial non-cooperative protocol that resolves imbalance with an immediate redistribution of connectors and tasks (version 0).
+>- compatible corresponds to both eager (protocol version 0) and incremental cooperative (protocol version 1 or higher) protocols being enabled with the incremental cooperative protocol being preferred if both are supported (version 1 or version 0).
+
 # 小结
 
 kafka 2.3的增量协同平衡优化：
