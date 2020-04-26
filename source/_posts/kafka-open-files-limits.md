@@ -20,6 +20,11 @@ java.io.IOException: 打开的文件过多
 	at java.lang.Thread.run(Thread.java:745)
 ```
 
+ps. 关联的WARN日志： 
+```
+Attempting to send response via channel for which there is no open connection, connection id
+```
+
 `ulimit -n`发现openfiles是1024，实在太小了。
 
 解决：
