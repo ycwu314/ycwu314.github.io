@@ -37,7 +37,7 @@ Set-Cookie: is_login=1; SameSite=None; Secure
 - 链接
 - 预加载，`<link rel="prerender" href="..."/>`
 
-如果向其他站点发送ajax请求、pos请求，则不会附加cookies。
+如果向其他站点发送ajax请求、post请求，则不会附加cookies。
 ```
 Set-Cookie: is_login=1; SameSite=Lax;
 ```
