@@ -71,3 +71,4 @@ chrome://flags/#same-site-by-default-cookies
 
 - [draft-ietf-httpbis-cookie-same-site-00](https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00#section-4.1.1)
 - [SameSite Cookie 变更：您需要了解的都在这里](https://blog.csdn.net/jilrvrtrc/article/details/104404380)
+- [当浏览器全面禁用三方 Cookie](https://juejin.im/post/5e97124df265da47b27d97ff)
