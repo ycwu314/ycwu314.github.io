@@ -70,6 +70,9 @@ apk支持安装openjdk、openjre。
 FROM amd64/alpine:3.11.6 
 MAINTAINER ycwu
 
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
 ENV TZ=Asia/Shanghai
 ENV JAVA_HOME=/usr/lib/jvm/default-jvm
 ENV PATH=${PATH}:${JAVA_HOME}/bin:/usr/glibc-compat/bin
