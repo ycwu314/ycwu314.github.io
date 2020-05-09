@@ -128,7 +128,7 @@ for x in batch_data:
 ```
 
 但确认是真正的batch insert：
-```
+```sql
 insert into table_name (c1, c2, .., cn) values
 (x1), (x2), .., (xn);
 ```
@@ -154,3 +154,78 @@ insert into table_name (c1, c2, .., cn) values
 优化结果：
 - 一个角色第一次大量关联设备权限还是会很慢。（通过告诉交付人员分批操作解决）
 - 后续关联操作就很快。
+
+# 递归改非递归
+
+背景：
+- 目录树返回，需要70+s。
+- 目录项有7w多。
+- 采用递归方式构建目录树。
+
+{% asset_img build-tree-recursion.png build-tree-recursion %}
+{% asset_img build-tree-recursion-2.png build-tree-recursion-2 %}
+{% asset_img build-tree-recursion-3.png build-tree-recursion-3 %}
+
+这个功能原本设计是给几百、最多几千个目录项使用，最初使用递归方式构建树。但是实际上现场已经有几万数据。从trace图可以看到，递归调用了140+W次，非常缓慢。
+
+解决方法是，采用非递归方式构建，思路是先构建顶层树，然后为每个节点增加id索引、并且添加到map，通过map查找对应节点，避免递归查找。
+
+```java
+    public List<SceneNode> createTree(List<Scene> list) {
+        List<SceneNode> sceneNodeList = new ArrayList<>();
+
+        // 根据 parent scene id 分组
+        // key: parent scene id
+        // value: scene
+        // 注意：groupingBy方法不支持null key
+        Map<String, List<Scene>>  sceneGroupByMap= list.stream().collect(Collectors.groupingBy(Scene::getParentSceneId));
+        if(sceneGroupByMap==null || sceneGroupByMap.isEmpty()){
+            return sceneNodeList;
+        }
+
+        // 辅助索引，快速找到
+        // key: scene id
+        // val: scene node
+        Map<String, SceneNode> indexMap=new HashMap<>(1024);
+
+        // 顶级节点
+        if(sceneGroupByMap.get("")!=null){
+            sceneGroupByMap.get("").forEach(scene->{
+                SceneNode t=new SceneNode(scene, 0);
+                sceneNodeList.add(t);
+                indexMap.put(scene.getSceneId(), t);
+            });
+            sceneGroupByMap.remove("");
+        }
+
+        // 各级节点
+        List<String> cleanList=new ArrayList<>();
+
+        while(!sceneGroupByMap.isEmpty()){
+            sceneGroupByMap.entrySet().stream().forEach(item->{
+                if(indexMap.containsKey(item.getKey())){
+                    SceneNode parentNode= indexMap.get(item.getKey());
+                    for(Scene childScene: item.getValue()){
+                        SceneNode child= parentNode.setChild(childScene);
+                        indexMap.put(child.getId()+"", child);
+                    }
+
+                    cleanList.add(item.getKey());
+                }
+            });
+            cleanList.forEach(i-> sceneGroupByMap.remove(i));
+            cleanList.clear();
+        }
+
+
+        return sceneNodeList;
+    }
+```
+
+效果：
+- 7w数据，后端优化后耗时2s。勉强能接受。
+- 但是前端dom解析撑不住了。
+
+后续：
+根据现场反馈，是数据会增长到百万级别😥。
+只能重新设计：根据父节点，返回直接子节点，分层展示。

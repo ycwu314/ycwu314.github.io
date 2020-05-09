@@ -108,6 +108,9 @@ RUN apk add tcpdump
 ENTRYPOINT ["sh"]
 ```
 
+```
+docker build -t ycwu/ycwu-alpine:v1 .
+```
 镜像大小165MB。
 
 注意：
