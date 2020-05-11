@@ -4,14 +4,13 @@ date: 2020-05-09 10:31:00
 tags: [docker]
 categories: [docker]
 keywords: [docker env]
-description:
+description: 整理dockerfile编写经验
 ---
-{% asset_img slug [title] %}
-<!-- more -->
 
 # docker build 命令
 
 在Dockerfile所在目录
+<!-- more -->
 ```bash
 # -t            Name and optionally a tag in the 'name:tag' format
 # -f            Name of the Dockerfile (Default is 'PATH/Dockerfile')
@@ -149,6 +148,13 @@ ADD a.txt .
 ADD b.txt c.txt .
 ```
 
+
+```Dockerfile
+# change apk source mirrors
+RUN echo http://mirrors.ustc.edu.cn/alpine/v3.11/main > /etc/apk/repositories && \
+    echo http://mirrors.ustc.edu.cn/alpine/v3.11/community >> /etc/apk/repositories
+RUN apk update && apk upgrade
+```
 
 # ENTRYPOINT
 

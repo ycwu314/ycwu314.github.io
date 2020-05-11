@@ -7,10 +7,11 @@ keywords: [/etc/localtime, /etc/timezone]
 description: /etc/localtime是用来描述本机时间，而 /etc/timezone是用来描述本机所属的时区。
 ---
 
-折腾alpine，遇到时区问题，于是了解linux的localtime和timezone。
+折腾alpine，遇到时区问题，于是整理linux的localtime和timezone。
 <!-- more -->
 
 # localtime vs timezone
+
 /etc/localtime是用来描述本机时间，而/etc/timezone是用来描述本机所属的时区。
 修改时区
 ```
