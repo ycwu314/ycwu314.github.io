@@ -156,11 +156,53 @@ RUN echo http://mirrors.ustc.edu.cn/alpine/v3.11/main > /etc/apk/repositories &&
 RUN apk update && apk upgrade
 ```
 
-# ENTRYPOINT
+# shell模式和exec模式
+
+- Shell格式：`<instruction> <command>`。
+- Exec格式：`<instruction> ["executable", "param1", "param2", ...]`。
+
+exec模式的参数要使用双括号：
+>The exec form is parsed as a JSON array, which means that you must use double-quotes (“) around words not single-quotes (‘).
+
+## shell模式
+
+使用 shell 模式时，docker 会以 `/bin/sh -c "task command"` 的方式执行任务命令。也就是说容器中的 1 号进程不是任务进程而是 bash 进程。
+shell 模式可以解析变量。
+
+## exec模式
+
+使用 exec 模式时，容器中的任务进程就是容器内的 1 号进程。
+（如果执行shell脚本，则依然是sh）
+
+因为exec模式不启动shell，因此默认情况下缺少环境变量解析的能力。如果要解析环境变量，可以：
+```Dockerfile
+ENTRYPOINT ["/bin/bash", "-c", "echo", "$HOME"]
+```
+
+
+
+# ETNTRYPOINT & CMD
+
+
+## ENTRYPOINT
 
 指定镜像的执行程序，只有最后一条ENTRYPOINT指令有效。
 
-# CMD
+如果想要覆盖ENTRYPOINT命令，需要在docker run -it [image]后面添加--entrypoint string参数
+
+每个Dockerfile只能有一个ENTRYPOINT命令，如果存在多个ENTRYPOINT命令，则执行最后一个ENTRYPOINT。
+
+## CMD
+
+**CMD 指令允许用户指定容器的默认执行的命令。此命令会在容器启动且 docker run 没有指定其他命令时运行。**
+
+每个Dockerfile只能有一个CMD命令，如果存在多个CMD命令，则执行最后一个CMD。
+
+
+## 区别
+
+ENTRYPOINT 中的参数始终会被使用。
+CMD设置的命令能够被docker run命令后面的命令行参数替换。
 
 # 参考
 
