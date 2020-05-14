@@ -204,9 +204,105 @@ ENTRYPOINT ["/bin/bash", "-c", "echo", "$HOME"]
 ENTRYPOINT 中的参数始终会被使用。
 CMD设置的命令能够被docker run命令后面的命令行参数替换。
 
+# docker entryfile sh
+
+一些软件提供提供的dockerfile，入口的`docker-entrypoint.sh`脚本值得看看。
+以[mysql 5.7 docker-entrypoint.sh](https://raw.githubusercontent.com/docker-library/mysql/607b2a65aa76adf495730b9f7e6f28f146a9f95f/5.7/docker-entrypoint.sh)为例子。
+
+```sh
+set -eo pipefail
+shopt -s nullglob
+
+# if command starts with an option, prepend mysqld
+if [ "${1:0:1}" = '-' ]; then
+	set -- mysqld "$@"
+fi
+```
+
+## set
+
+- `set -e`: 后续脚本执行遇到非0返回值就退出。好处遇到执行错误就退出，避免往后产生更多错误。
+```
+Exit immediately if a pipeline (which may consist of a single simple command), a subshell 
+command enclosed in parentheses, or one of the commands executed as part of a command list
+enclosed by braces (see SHELL GRAMMAR above) exits with a non-zero status.
+```
+
+- `set -o pipefail`：管道模式的命令，遇到错误就退出执行。
+```
+If set, the return value of a pipeline is the value of the last (rightmost) command to exit with a non-zero status,or zero if all commands in the pipeline exit successfully. This option is disabled by default.
+```
+
+## shopt
+
+shopt命令用于显示和设置shell中的行为选项。
+`shopt -s nullglob`：如果 nullglob 选项被设置，并且没有找到任何匹配，这个单词被删除。
+
+## `if [ "${1:0:1}" = '-' ];`
+
+`${1:0:1}`是bash的语法。从第N个参数截取字符串。
+第一个参数：命令行传入的第N个参数。
+第二个参数：截取的开始索引。
+第三个参数：截取的结束索引。
+
+`${1:0:1}`是指从`$1`截取`0-1`的字符串。
+整个if判断看是不是`-`开头的选项。
+
+## `set -- mysqld "$@"`
+
+`set --`会将他后面所有以空格区分的字符串, 按顺序分别存储`$1`，`$2`，... ，`$@`。
+```
+If no arguments follow this option, then the positional parameters are unset. Otherwise, the
+positional parameters are set to the args, even if some of them begin with a -.
+```
+
+当 `$*` 和 `$@` 不被双引号`" "`包围时，它们之间没有任何区别，都是将接收到的每个参数看做一份数据，彼此之间以空格来分隔。
+但是当它们被双引号`" "`包含时，就会有区别了：
+- `"$*"`会将所有的参数从整体上看做一份数据，而不是把每个参数都看做一份数据。
+- `$@"`仍然将每个参数都看作一份数据，彼此之间是独立的。
+
+```bash
+#! /bin/bash
+
+echo "param: " $*
+
+echo 'loop "$@"'
+for x in "$@"
+do
+    echo $x
+done
+
+echo
+
+echo 'loop "$*"'
+for x in "$*"
+do
+    echo $x
+done
+```
+
+```bash
+[root@host143 ycwu]# ./t2.sh 123 456
+param:  123 456
+loop "$@"
+123
+456
+
+loop "$*"
+123 456
+```
+
+## exec
+
+使用exec command方式，会用command进程替换当前shell进程，并且保持PID不变。执行完毕，直接退出，不回到之前的shell环境。
+
+`exec "$@"`: 作为entrypoint的兜底，执行用户传入的命令。
+
 # 参考
 
 - [深入Dockerfile（一）: 语法指南](https://github.com/qianlei90/Blog/issues/35)
 - [Dockerfile 中的 COPY 与 ADD 命令](https://www.cnblogs.com/sparkdev/p/9573248.html)
 - [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices)
-
+- [docker entrypoint入口文件详解](https://www.cnblogs.com/breezey/p/8812197.html)
+- [分析Mysql 5.6的Dockerfile](https://www.cnblogs.com/ivictor/p/4832832.html)
+- [【exec】shell脚本中的 exec 命令](https://www.jianshu.com/p/ca012415cd5f)
