@@ -7,7 +7,7 @@ keywords: [sigkill sigterm]
 description: sigterm可以捕捉、可以忽略，通常作为优雅关闭的方式。sigkill不可以捕捉、不可以忽略，是杀死进程的最后方式。
 ---
 
-几个容易混淆的信号。
+几个容易混淆的信号，以及trap命令
 <!-- more -->
 
 # sigkill
@@ -45,6 +45,33 @@ sigterm可以实现进程的优雅关闭。（`kill -15`）
 通常是在终端的控制进程结束时, 通知同一session内的各个作业, 这时它们与控制终端不再关联。
 nohup命令可以让进程忽略sighup信号。
 
+
+# trap命令
+
+trap命令可以在shell脚本中捕捉signal。
+
+`test.sh`如下：
+```sh
+#! /bin/bash
+
+trap "echo TRAP SIGTERM" TERM
+
+for i in `seq 1 100`
+do
+    echo $i
+    sleep 1
+done
+```
+
+运行脚本
+```sh
+# 窗口1
+chmod u+x test.sh
+./test.sh
+
+# 窗口2
+ps ax | grep test.sh | head -1 | awk {'print $1'} | xargs kill -15
+```
 
 # 参考
 
