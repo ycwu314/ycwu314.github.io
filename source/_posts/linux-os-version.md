@@ -83,10 +83,6 @@ centos-release-7-5.1804.el7.centos.x86_64
 ```
 
 ```sh
-# redhat, centos
-[root@host143 ~]# cat /etc/redhat-release 
-CentOS Linux release 7.5.1804 (Core)
-
-[root@host143 ~]# cat /etc/centos-release
-CentOS Linux release 7.5.1804 (Core)
+[root@host143 ~]# cat /etc/system-release
+CentOS Linux release 7.5.1804 (Core) 
 ```
