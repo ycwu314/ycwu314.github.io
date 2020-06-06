@@ -1,25 +1,23 @@
 ---
 title: iptables docker
 date: 2020-05-25 19:35:05
-tags:
-categories:
-keywords:
-description:
+tags: [linux, docker]
+categories: [docker]
+keywords: [docker iptables]
+description: docker在iptables中增加chain，实现网络隔离和转发（其中一种方式）。
 ---
-{% asset_img slug [title] %}
-<!-- more -->
-
-
 
 # docker增加的chain
 
-docker v18以后有4个chain：
+docker v18以后有4个iptables chain：
 - DOCKER
 - DOCKER-USER
 - DOCKER-ISOLATION-STAGE-1
 - DOCKER-ISOLATION-STAGE-2
+<!-- more -->
 
-1. DOCKER链和DOCKER-USER链
+
+## DOCKER链和DOCKER-USER链
 
 DOCKER链处理理从宿主机到docker0的IP数据包。
 如果有自定义的规则，并且在`DOCKER` chain之前生效，则使用`DOCKER-USER`。
@@ -34,7 +32,7 @@ target     prot opt source               destination
 RETURN     all  --  anywhere             anywhere
 ```
 
-2. DOCKER-ISOLATION-STAGE链
+## DOCKER-ISOLATION-STAGE链
 
 2条DOCKER-ISOLATION-STAGE链是为了隔离在不同的bridge网络之间的容器。
 
@@ -135,14 +133,6 @@ docker默认设置FORWARD链为DROP。
 ```
 iptables -I DOCKER-USER -i src_if -o dst_if -j ACCEPT
 ```
-
-
-# docker host driver
-
-```
-docker run --rm -d --network host --name my_nginx nginx
-```
-
 
 
 # 参考
