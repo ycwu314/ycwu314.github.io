@@ -12,8 +12,11 @@ description: 整理iptables学习笔记。
 # 工作流程
 
 iptables能够访问底层的netfilter模块。
-iptables的核心是四表五链，一般流程如下：
+找到一张图，比较精简的阐述netfilter处理包的流程：
+{% asset_img netfilter-traversal.png netfilter-traversal %}
 <!-- more -->
+
+下面这张图就更加详细：
 {% asset_img FW-IDS-iptables-Flowchart-v2019-04-30-1.png iptables-flowchart %}
 (图片来源：[iptables-processing-flowchart](https://stuffphilwrites.com/2014/09/iptables-processing-flowchart/))
 
@@ -76,7 +79,7 @@ raw
 如果目标是用户定义的链，并且数据包成功穿过第二条链，目标将移动到原始链中的下一个规则。
 目标扩展可以被终止（像内置目标一样）或者不终止（像用户定义链一样）。
 
-
+常见的target：
 ```
 ACCEPT：
 允许数据包通过。
@@ -101,6 +104,12 @@ This target is only valid in the nat table, in the POSTROUTING and INPUT chains,
 
 MASQUERADE：
 This target is only valid in the nat table, in the POSTROUTING chain. 
+
+RETURN：
+在自定义链执行完毕后使用返回，来返回原规则链
+
+MARK：
+增加防火墙标记
 ```
 
 # 3种基本路由情况
@@ -155,7 +164,7 @@ Options:
                     jump to chain with no return
 -match	-m match
 				extended match (may load extension)
---numeric	-n		numeric output of addresses and ports
+--numeric	-n		Numeric output.  IP addresses and port numbers will be printed in numeric format.  By default, the program will try to display them as host names, network names, or services (whenever applicable).
 [!] --out-interface -o output name[+]
 				network interface name ([+] for wildcard)
   --table	-t table	table to manipulate (default: `filter')
@@ -167,7 +176,29 @@ Options:
   --exact	-x		expand numbers (display exact values)
 
 ```
+
+输出一个链的详情：
+```
+iptables -nvL <chain>
+```
+
 iptables match / target有一堆扩展，参见：[iptables-extensions](http://ipset.netfilter.org/iptables-extensions.man.html)。
+可以简单查看match / target的参数：
+```sh
+[root@host143 ~]# iptables -m iprange --help
+
+iprange match options:
+[!] --src-range ip[-ip]    Match source IP in the specified range
+[!] --dst-range ip[-ip]    Match destination IP in the specified range
+
+
+[root@host143 ~]# iptables -j DNAT --help
+DNAT target options:
+ --to-destination [<ipaddr>[-<ipaddr>]][:port[-port]]
+				Address to map destination to.
+[--random] [--persistent]
+```
+
 
 使用iptables，要确定操作的chain、过滤条件（ip、端口、协议）、目标动作。
 
@@ -374,3 +405,4 @@ iptables -A PREROUTING -i eth0 -p tcp --dport 80 -m state --state NEW -m nth --c
 - [iptables详解](https://www.cnblogs.com/metoy/p/4320813.html)
 - [A Deep Dive into Iptables and Netfilter Architecture](https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture)
 - [25个iptables常用示例](https://www.cnblogs.com/bill1015/p/6847841.html)
+- [LINUX FIREWALL](https://tin6150.github.io/psg/firewall.html)
