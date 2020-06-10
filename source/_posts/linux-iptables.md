@@ -23,10 +23,10 @@ iptables能够访问底层的netfilter模块。
 
 # 表 tables
 
->raw表：关闭nat表上启用的连接追踪机制；iptable_raw
->mangle表：拆解报文，做出修改，并重新封装 的功能；iptable_mangle
->nat表：network address translation，网络地址转换功能；内核模块：iptable_nat
->filter表：负责过滤功能，防火墙；内核模块：iptables_filter
+>raw表：关闭nat表上启用的连接追踪机制； 
+>mangle表：拆解报文，做出修改，并重新封装 的功能； 
+>nat表：network address translation，网络地址转换功能； 
+>filter表：负责过滤功能，防火墙； 
 >security 用于强制访问控制网络规则（例如：SELinux )
 
 优先级次序（由高而低）：
@@ -74,7 +74,7 @@ raw
 数据包的过滤基于`规则`。规则由一个`目标`（数据包包匹配所有条件后的动作）和很多匹配（导致该规则可以应用的数据包所满足的条件）指定。
 
 目标使用 `-j` 或者 `--jump` 选项指定。目标可以是用户定义的链（例如，如果条件匹配，跳转到之后的用户定义的链，继续处理）、一个内置的特定目标或者是一个目标扩展。
-**内置目标**是 `ACCEPT`， `DROP`， `QUEUE` 和 `RETURN`，**目标扩展**是 `REJECT` and `LOG`。
+**内置目标**是 `ACCEPT`， `DROP`， `QUEUE` 和 `RETURN`，**目标扩展**有 `REJECT` 、 `LOG` 等。
 如果目标是内置目标，数据包的命运会立刻被决定并且在当前表的数据包的处理过程会停止。
 如果目标是用户定义的链，并且数据包成功穿过第二条链，目标将移动到原始链中的下一个规则。
 目标扩展可以被终止（像内置目标一样）或者不终止（像用户定义链一样）。
@@ -118,7 +118,7 @@ MARK：
 
 1. 入站数据流向
 
-从外界到达防火墙的数据包，先被PREROUTING规则链处理（是否修改数据包地址等），之后会进行路由选择（判断该数据包应该发往何处），如果数据包 的目标主机是防火墙本机（比如说Internet用户访问防火墙主机中的web服务器的数据包），那么内核将其传给INPUT链进行处理（决定是否允许通 过等），通过以后再交给系统上层的应用程序（比如Apache服务器）进行响应。
+从外界到达防火墙的数据包，先被PREROUTING规则链处理（是否修改数据包地址等），之后会进行路由选择（判断该数据包应该发往何处），如果数据包的目标主机是防火墙本机（比如说Internet用户访问防火墙主机中的web服务器的数据包），那么内核将其传给INPUT链进行处理（决定是否允许通过等），通过以后再交给系统上层的应用程序（比如Apache服务器）进行响应。
 
 2. 转发数据流向
 
@@ -223,6 +223,11 @@ iptables-save > /etc/sysconfig/iptables
 service iptables save
 ```
 
+导入iptables-save保存的规则
+```
+iptables-restore < files_saved_by_iptables-save
+```
+
 
 ## 禁止转发
 
@@ -254,6 +259,7 @@ iptables -A INPUT -s x.x.x.x -j DROP
 ```sh
 iptables -A INPUT -i eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
 # 只对已经建立连接的出站
+# 如果是ftp，则还要增加 RELATED
 iptables -A OUTPUT -o eth0 -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
 ```
 这里使用了match的state模块。为了解决一个安全问题：**怎样判断这些报文是为了回应我们之前发出的报文，还是主动向我们发送的报文呢**？
@@ -336,6 +342,8 @@ iptables -t nat -A PREROUTING -d 11.22.33.44 -p tcp --dport 80 -j DNAT --to-dest
 iptables -t nat -A PREROUTING -s 192.168.100.0/24 -j SNAT --to-source 1.1.1.1
 ```
 
+贴一张网上对比snat和dnat的表格：
+{% asset_img snat-vs-dnat.png snat和dnat对比 %}
 
 
 ## MASQUERADE
@@ -398,6 +406,16 @@ iptables -A PREROUTING -i eth0 -p tcp --dport 80 -m state --state NEW -m nth --c
     Match one packet every nth packet. It works only with the nth mode (see also the --packet option).
 >--packet p
     Set the initial counter value (0 <= p <= n-1, default 0) for the nth mode.
+
+
+## docker iptables使用snat访问外网
+
+网上看到的图，形象生动：
+{% asset_img docker-iptables-snat.png %}
+
+{% asset_img docker-iptables-snat-2.png %}
+
+
 
 # 参考
 

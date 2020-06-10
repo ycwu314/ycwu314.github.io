@@ -19,7 +19,7 @@ docker v18以后有4个iptables chain：
 
 ## DOCKER链和DOCKER-USER链
 
-DOCKER链处理理从宿主机到docker0的IP数据包。
+DOCKER链处理从宿主机到docker0的IP数据包。
 如果有自定义的规则，并且在`DOCKER` chain之前生效，则使用`DOCKER-USER`。
 ```sh
 [root@master-29 ~]# iptables --list DOCKER
@@ -40,7 +40,7 @@ RETURN     all  --  anywhere             anywhere
 >DOCKER-ISOLATION-STAGE-1链过滤源地址是bridge网络（默认docker0）的IP数据包，匹配的IP数据包再进入DOCKER-ISOLATION-STAGE-2链处理，不匹配就返回到父链FORWARD。
 >在DOCKER-ISOLATION-STAGE-2链中，进一步处理目的地址是bridge网络的IP数据包，匹配的IP数据包表示该IP数据包是从一个bridge网络的网桥发出，到另一个bridge网络的网桥，这样的IP数据包来自其他bridge网络，将被直接DROP；不匹配的IP数据包就返回到父链FORWARD继续进行后续处理。
 
-DOCKER-ISOLATION-STAGE-1处理sourc为docker0的流量。
+DOCKER-ISOLATION-STAGE-1处理source为docker0的流量。
 DOCKER-ISOLATION-STAGE-2处理dest为docker0的流量。
 ```
 [root@master-29 ~]# iptables -nvL DOCKER-ISOLATION-STAGE-1
@@ -126,7 +126,7 @@ filter表规则：
 iptables -I DOCKER-USER -i ext_if ! -s 192.168.1.1 -j DROP
 ```
 
-##允许docker主机转发流量
+# 允许docker主机转发流量
 
 docker默认设置FORWARD链为DROP。
 如果docker主机恰好是router，则需要设置：

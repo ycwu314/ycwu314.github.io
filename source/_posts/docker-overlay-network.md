@@ -7,17 +7,15 @@ keywords: [docker etcd overlay]
 description: 使用etcd集群搭建docker overlay网络
 ---
 
-
 # 部署结构
 
 两台机器143、109，使用2376端口通信。
-使用docker compose搭建etcd机器，部署在143。
+使用docker compose搭建etcd集群，部署在143。
 
 {% asset_img overlay.png overlay %}
 <!-- more -->
 
 # 使用docker compose部署etcd集群
-
 
 ```yml
 version: '3'
@@ -103,7 +101,7 @@ Redirecting to /bin/systemctl restart docker.service
 - `--cluster-store`是分布式存储，支持etcd、consul、zookeeper。
 - `--cluster-advertise`是本docker实例对外公告的地址
 
-这里挖了个坑：143机器上使用docker-compose部署了etcd集群，那么docker重启并没有自动拉起etcd集群，导致报错。
+这里挖了个坑：143机器上使用docker-compose部署了etcd集群，那么docker重启并没有自动拉起docker compose的etcd集群，导致报错。
 使用`journalctl -fu docker`看到的日志：
 ```
 Error response from daemon: pool configuration failed because of 100: Key not found (/docker/network/v1.0/ipam) [28]
@@ -153,7 +151,7 @@ f0adf93c5be7        docker_gwbridge          bridge              local
 ```
 
 
-# 观察网络连通性
+# 观察容器网络连通性
 
 在143执行
 ```
@@ -253,8 +251,6 @@ docker run --network myoverlay --rm -it --name alpine_109 alpine:3.11.6 sh
 overlay网络分配了子网`10.0.0.0/24`。
 
 
-
-
 测试网络联通性，在alpine_143 ping alpine_109:
 ```
 / # ping 10.0.0.3
@@ -268,4 +264,6 @@ PING 10.0.0.3 (10.0.0.3): 56 data bytes
 round-trip min/avg/max = 0.234/0.337/0.440 ms
 ```
 
+重温题图：
+{% asset_img overlay.png overlay %}
 
