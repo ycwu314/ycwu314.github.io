@@ -22,8 +22,6 @@ bridge的一个作用是在容器化环境联通不同network namespace：
 {% asset_img linux-bridge-with-veth.png %}
 
 
-
-
 # brctl 命令
 
 brctl是linux中操作网桥的命令。
