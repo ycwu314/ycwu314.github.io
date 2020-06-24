@@ -344,7 +344,7 @@ drwxr-xr-x 45 root root 1380 6月  18 06:50 ..
 
 ## exec 在指定netns运行程序
 
-上面提到，新建的netns会自带lo设备，并且处于关闭状态：
+新建的netns会自带lo设备，并且处于关闭状态：
 ```sh
 [root@host143 ~]# ip netns exec ns1 ip link
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
@@ -390,6 +390,7 @@ root      93332  0.0  0.0 112732   972 pts/1    S+   16:06   0:00 grep --color=a
 
 ## 连接两个netns
 
+连接2个netns，可以使用veth设备。
 ```sh
 # 创建2个netns
 [root@host143 ~]# ip netns add ns1
@@ -456,6 +457,8 @@ rtt min/avg/max/mdev = 0.030/0.051/0.090/0.028 ms
 
 
 # ip route 
+
+路由相关。
 
 ```sh
 [root@host143 ~]# ip route 
