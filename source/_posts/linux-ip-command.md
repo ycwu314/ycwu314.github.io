@@ -546,7 +546,91 @@ TODO：以后再补充其他路由操作
 
 # ip neighbor
 
-TODO
+ip neigh命令可以替代arp命令，用于操作arp缓存。
+```sh
+[root@host143 ~]# ip neigh help
+Usage: ip neigh { add | del | change | replace }
+                { ADDR [ lladdr LLADDR ] [ nud STATE ] | proxy ADDR } [ dev DEV ]
+       ip neigh { show | flush } [ proxy ] [ to PREFIX ] [ dev DEV ] [ nud STATE ]
+                                 [ vrf NAME ]
+
+STATE := { permanent | noarp | stale | reachable | none |
+           incomplete | delay | probe | failed }
+```
+
+## 显示
+
+```sh
+# 或者 ip neigh show
+[root@host143 ~]# ip neigh
+172.25.21.175 dev ens192 lladdr 0c:c4:7a:6c:40:06 REACHABLE
+172.25.22.109 dev ens192  FAILED
+172.25.23.21 dev ens192 lladdr 4c:ed:fb:3e:c4:70 REACHABLE
+172.25.21.4 dev ens192 lladdr ac:1f:6b:1a:e1:74 STALE
+```
+
+1. lladdr是`link layer address`的缩写。
+
+2. 最后一列是nud状态，`Neighbour Unreachability Detection`：
+
+```
+permanent
+       the neighbour entry is valid forever and can be
+       only be removed administratively.
+
+noarp  the neighbour entry is valid. No attempts to
+       validate this entry will be made but it can be
+       removed when its lifetime expires.
+
+reachable
+       the neighbour entry is valid until the
+       reachability timeout expires.
+
+stale  the neighbour entry is valid but suspicious.
+       This option to ip neigh does not change the
+       neighbour state if it was valid and the address
+       is not changed by this command.
+
+none   this is a pseudo state used when initially
+       creating a neighbour entry or after trying to
+       remove it before it becomes free to do so.
+
+incomplete
+       the neighbour entry has not (yet) been
+       validated/resolved.
+
+delay  neighbor entry validation is currently delayed.
+
+probe  neighbor is being probed.
+
+failed max number of probes exceeded without success,
+       neighbor validation has ultimately failed.
+```
+这里面最难理解的是stale。
+
+arp缓存项的reachable状态对于外发包是可用的，对于stale状态的arp缓存项而言，它实际上是不可用的。
+如果本地发出的包使用了这个stale状态的arp缓存表项，那么就将状态机推进到delay状态，如果在“垃圾收集”定时器到期后还没有人使用该邻居，那么就有可能删除这个表项了。
+
+## 添加、删除
+
+so easy。
+```
+ip neigh add 192.168.0.1 dev ethX
+
+ip neigh del 192.168.0.1 dev ethX
+```
+
+## 刷新缓存
+
+`ip neigh flush`必须要有参数，否则不执行。参数和`show`对应。
+```sh
+[root@host143 ~]# ip neigh flush
+Flush requires arguments.
+
+[root@host143 ~]# ip neigh flush nud stale
+```
+注意，不会刷新状态为`permanent`、`noarp`的缓存项。
+
 
 # 参考
 
