@@ -239,8 +239,13 @@ Inactive(anon):    19424 kB
 Active(file):    1165984 kB
 Inactive(file):  1742048 kB
 
+# 不能pageout/swapout的内存页，包括VM_LOCKED的内存页、SHM_LOCK的共享内存页
 Unevictable:           0 kB
+# 被mlock()系统调用锁定的内存大小。
+# 被锁定的内存因为不能pageout/swapout，会从Active/Inactive LRU list移到Unevictable LRU list上
+# “Mlocked”并不是独立的内存空间，它与以下统计项重叠：LRU Unevictable，AnonPages，Shmem，Mapped等。
 Mlocked:               0 kB
+
 SwapTotal:       1679356 kB
 SwapFree:        1679356 kB
 
@@ -290,3 +295,6 @@ DirectMap1G:    10485760 kB
 ```
 
 
+# 参考
+
+- [/PROC/MEMINFO之谜](http://linuxperf.com/?cat=7)

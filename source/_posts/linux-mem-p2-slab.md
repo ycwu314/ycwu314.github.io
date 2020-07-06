@@ -43,8 +43,8 @@ Node 0, zone   Normal     54     20     27    103     85     37     33     12   
 ```
 
 linux支持numa架构。
-Node是物理处理器。
-Zone是内存区域。
+Node是处理器节点，每个节点都有自己的一块内存。
+Zone是内存区域，代表不同范围的内存。
 - DMA是低16MB内存，出于历史原因保留。
 - DMA32只出现在64bit linux，是低4GB内存（`2^32`字节）。
 - Normal在32bit和64bit所指向的内存空间不同。
@@ -88,7 +88,11 @@ slab的优点：
 - slab 缓存分配器通过对类似大小的对象进行缓存而提供这种功能，从而避免了常见的碎片问题。
 - 支持硬件缓存对齐和着色
 
-后续在深入[slab源码](https://elixir.bootlin.com/linux/v5.7.6/source/mm/slab.c)
+发现一张很好的图，对初步了解slab有帮助。
+{% asset_img slab-detail.webp %}
+
+后续再深入[slab源码](https://elixir.bootlin.com/linux/v5.7.6/source/mm/slab.c)。
+
 
 # /proc/slabinfo
 
