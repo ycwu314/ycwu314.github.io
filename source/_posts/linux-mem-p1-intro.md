@@ -66,7 +66,7 @@ cached包括page cache和SReclaimable。
 ## 手动清空caches
 
 99.99%的情况下，都没有必要去手动清理caches，交给linux内存管理就好。
-有些场景可能需要，比如IO benchmark。
+有些场景可能需要，比如 IO benchmark。
 
 >file: /proc/sys/vm/drop_caches
 >variable: vm.drop_caches
@@ -90,7 +90,7 @@ cached包括page cache和SReclaimable。
 ## available
 
 通常关注的是`available`字段：
->Estimation of how much memory is available for starting new applications, withouswapping. 
+>Estimation of how much memory is available for starting new applications, without swapping. 
 
 available是估算值，大致为
 ```
@@ -162,18 +162,18 @@ VSZ包括进程可以访问的所有内存，包括进入交换分区的内容�
 
 ## SHR和PSS
 
-SHR内存被多个进程共享，可能导致加起来RSS比物理内存还要大。
-另外，线程共享同一个地址空间，所以一个进程内部的所有线程有相同的RSS，VSZ和PSS。
+SHR内存被多个进程共享，可能导致各个进程加起来（RSS+SHR）比物理内存还要大。
 
 因为SHR会被反复计算，因此引入了PSS内存的概念：
 >PSS = SHR / (共享这份SHR的进程数)
 >The "proportional set size" (PSS) of a process is the count of pages it has in memory, where each page is divided by the number of processes sharing it.
 >So if a process has 1000 pages all to itself, and 1000 shared with one other process, its PSS will be 1500
 
+另外，线程共享同一个地址空间，所以一个进程内部的所有线程有相同的RSS，VSZ和PSS。
 
 ## 小结
 
-内存方面，top关注RES，ps关注RSS即可。
+内存方面，top主要关注RES，ps关注RSS。
 
 # vmstat
 
