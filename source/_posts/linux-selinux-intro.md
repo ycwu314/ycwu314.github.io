@@ -150,6 +150,35 @@ sealert -a /var/log/audit/audit.log
 还有一个常用的命令：restorecon，用来恢复SELinux文件属性。
 一个文件受selinux策略配置，那么移动后可能不能正常访问，可以使用restorecon恢复。
 
+
+# 回到问题
+
+在Centos7.5.1804上使用自动化脚本初始化节点，还有安装应用组件，其中包括关闭selinux步骤。
+遇到的问题是，关闭selinux步骤成功，但是安装的应用组件不能被正常访问。但是重启虚拟机后就正常。
+于是再找一台全新的机器，重复实验，保留现场。
+检查日志，发现
+```
+[WARNING]: SELinux state change will take effect next reboot
+```
+执行的脚本是临时关闭selinux，同时修改`/etc/selinux/config`永久关闭，但是没有重启。
+理论上是临时关闭成功，但是status还是enabled。
+```sh
+[root@localhost ~]# getenforce
+Permissive
+[root@localhost ~]# sestatus 
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   permissive
+Mode from config file:          disabled
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Max kernel policy version:      31
+```
+最后加上关闭selinux后的重启步骤。
+
+
 # 其他
 
 和SELinux功能相似的是AppArmor。
