@@ -93,6 +93,18 @@ slab的优点：
 
 后续再深入[slab源码](https://elixir.bootlin.com/linux/v5.7.6/source/mm/slab.c)。
 
+`/proc/meminfo`提供了slab的基本情况
+```sh
+[root@localhost conf]# cat /proc/meminfo
+Slab:             237756 kB
+SReclaimable:     161696 kB
+SUnreclaim:        76060 kB
+```
+
+其中：
+SReclaimable: slab中可回收的部分。调用kmem_getpages()时加上SLAB_RECLAIM_ACCOUNT标记，表明是可回收的，计入SReclaimable，否则计入SUnreclaim。
+SUnreclaim: slab中不可回收的部分。
+Slab: slab中所有的内存，等于以上两者之和。
 
 # /proc/slabinfo
 
@@ -157,10 +169,27 @@ sharedavail
 ```
 因为对象对齐（object alignment）和slab cache overheadd，对象不会完全和pages适配。
 
+# slub
+
+slab、slub、slob都是内存分配器。
+
+slab是传统的内存分配器，在实践中有如下不足（来自[Linux SLUB 分配器详解](https://www.ibm.com/developerworks/cn/linux/l-cn-slub/index.html)）：
+- 较多复杂的队列管理。在 SLAB 分配器中存在众多的队列，例如针对处理器的本地对象缓存队列，slab 中空闲对象队列，每个 slab 处于一个特定状态的队列中，甚至缓冲区控制结构也处于一个队列之中。有效地管理这些不同的队列是一件费力且复杂的工作。
+- slab 管理数据和队列的存储开销比较大。每个 slab 需要一个 struct slab 数据结构和一个管理所有空闲对象的 kmem_bufctl_t（4 字节的无符号整数）的数组。当对象体积较少时，kmem_bufctl_t 数组将造成较大的开销（比如对象大小为32字节时，将浪费 1/8 的空间）。为了使得对象在硬件高速缓存中对齐和使用着色策略，还必须浪费额外的内存。同时，缓冲区针对节点和处理器的队列也会浪费不少内存。测试表明在一个 1000 节点/处理器的大规模 NUMA 系统中，数 GB 内存被用来维护队列和对象的引用。
+缓冲区内存回收比较复杂。
+- 对 NUMA 的支持非常复杂。SLAB 对 NUMA 的支持基于物理页框分配器，无法细粒度地使用对象，因此不能保证处理器级缓存的对象来自同一节点。
+- 冗余的 Partial 队列。SLAB 分配器针对每个节点都有一个 Partial 队列，随着时间流逝，将有大量的 Partial slab 产生，不利于内存的合理使用。
+- 性能调优比较困难。针对每个 slab 可以调整的参数比较复杂，而且分配处理器本地缓存时，不得不使用自旋锁。
+- 调试功能比较难于使用。
+
+于是诞生了slub。
+>SLUB 分配器特点是简化设计理念，同时保留 SLAB 分配器的基本思想：每个缓冲区由多个小的 slab 组成，每个 slab 包含固定数目的对象。
+>SLUB 分配器简化了kmem_cache，slab 等相关的管理数据结构，摒弃了SLAB 分配器中众多的队列概念，并针对多处理器、NUMA 系统进行优化，从而提高了性能和可扩展性并降低了内存的浪费。
+>为了保证内核其它模块能够无缝迁移到 SLUB 分配器，SLUB 还保留了原有 SLAB 分配器所有的接口 API 函数。
 
 # 参考
-
 
 - [Allocating kernel memory (buddy system and slab system)](https://www.geeksforgeeks.org/operating-system-allocating-kernel-memory-buddy-system-slab-system/)
 - [Linux slab 分配器剖析](https://www.ibm.com/developerworks/cn/linux/l-linux-slab-allocator/index.html)
 - [proc(5) — Linux manual page](https://man7.org/linux/man-pages/man5/proc.5.html)
+- [Linux SLUB 分配器详解](https://www.ibm.com/developerworks/cn/linux/l-cn-slub/index.html)
