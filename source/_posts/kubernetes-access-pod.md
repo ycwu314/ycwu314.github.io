@@ -1,9 +1,9 @@
 ---
-title: kubernates访问pod
+title: kubernetes访问pod
 date: 2019-09-29 14:26:41
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates port-forward, kubernate pod nodeport]
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes port-forward, kubernete pod nodeport]
 description:
 ---
 
@@ -53,7 +53,7 @@ kubernetes   ClusterIP   10.152.183.1     <none>        443/TCP          25d
 mytomcat     NodePort    10.152.183.222   <none>        7000:31364/TCP   69m
 ```
 
-kubernates使用iptables创建了路由规则
+kubernetes使用iptables创建了路由规则
 ```
 # iptables-save | grep 10.152.183.222
 -A KUBE-SERVICES ! -s 10.152.183.0/24 -d 10.152.183.222/32 -p tcp -m comment --comment "default/mytomcat: cluster IP" -m tcp --dport 7000 -j KUBE-MARK-MASQ

@@ -1,9 +1,9 @@
 ---
-title: kubernates的label和annotation
+title: kubernetes的label和annotation
 date: 2019-10-25 18:35:12
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates label, kubernates annotation]
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes label, kubernetes annotation]
 description: Label和Annotation都可以把扩展数据附加到Kubernetes资源对象，从而方便微服务的管理。
 ---
 

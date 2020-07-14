@@ -1,7 +1,7 @@
 ---
 title: nacos k8s mysql standalone 部署
 date: 2020-01-15 18:27:07
-tags: [nacos, kubernates]
+tags: [nacos, kubernetes]
 categories: [nacos]
 keywords: [nacos kuberates]
 description: 部署nacos k8s standalone模式，使用单个mysql作为存储。

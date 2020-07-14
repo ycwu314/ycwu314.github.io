@@ -1,13 +1,13 @@
 ---
-title: kubernates yaml文件工具
+title: kubernetes yaml文件工具
 date: 2019-09-29 17:35:03
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates yaml export, kubectl --dry-run]
-description: kubernates yaml文件工具。
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes yaml export, kubectl --dry-run]
+description: kubernetes yaml文件工具。
 ---
 
-kubernates推荐使用yaml文件定义对象，而非直接使用kubectl执行定义create/run命令。
+kubernetes推荐使用yaml文件定义对象，而非直接使用kubectl执行定义create/run命令。
 <!-- more -->
 # 导出已有资源的yaml
 
@@ -16,9 +16,9 @@ kubernates推荐使用yaml文件定义对象，而非直接使用kubectl执行�
 # kubectl get pod mytomcat-7d68ffdbfb-xjcz4 --export  -o yaml > mytomcat.yml
 Flag --export has been deprecated, This flag is deprecated and will be removed in future.
 ```
-注意，未来版本的kubernates会去掉`--export`参数。[这里](https://github.com/kubernetes/kubernetes/pull/73787)有相关的争论，感兴趣可以阅读。
+注意，未来版本的kubernetes会去掉`--export`参数。[这里](https://github.com/kubernetes/kubernetes/pull/73787)有相关的争论，感兴趣可以阅读。
 
-如果没有`--export`参数，那么get资源会显示status相关的输出，对于定义kubernates对象来说是多余的。
+如果没有`--export`参数，那么get资源会显示status相关的输出，对于定义kubernetes对象来说是多余的。
 
 # `--dry-run`
 

@@ -1,10 +1,10 @@
 ---
-title: kubernates pod lifecycle
+title: kubernetes pod lifecycle
 date: 2019-10-06 11:55:22
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates pod 生命周期, pod lifecycle]
-description: kubernates pod 提供readinessProbe、livenessProbe、readinessGates等方式对容器/pod进行检查。restartPolicy对异常的pod进行处理。
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes pod 生命周期, pod lifecycle]
+description: kubernetes pod 提供readinessProbe、livenessProbe、readinessGates等方式对容器/pod进行检查。restartPolicy对异常的pod进行处理。
 ---
 # Pod lifecycle & status
 

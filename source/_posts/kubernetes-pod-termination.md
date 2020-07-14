@@ -1,10 +1,10 @@
 ---
-title: kubernates pod 优雅关闭
+title: kubernetes pod 优雅关闭
 date: 2019-10-08 20:01:17
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates pod termination, k8s pod 优雅关闭]
-description: kubernates pod 接受关闭命令后，进入优雅关闭阶段，处理preStop hook，发送SIGTERM信号。如果
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes pod termination, k8s pod 优雅关闭]
+description: kubernetes pod 接受关闭命令后，进入优雅关闭阶段，处理preStop hook，发送SIGTERM信号。如果
 ---
 
 # 优雅关闭
@@ -32,7 +32,7 @@ description: kubernates pod 接受关闭命令后，进入优雅关闭阶段，�
 当grace peroid结束后，k8s向还没结束的pod发送SIGKILL信号。
 
 关于pod lifecycle hook，在这篇文章有介绍：
-- {% post_link kubernates-pod-lifecycle %}
+- {% post_link kubernetes-pod-lifecycle %}
 
 关于sigterm、sigkill的区别，可以看这篇文章：
 - {% post_link linux-signal %}

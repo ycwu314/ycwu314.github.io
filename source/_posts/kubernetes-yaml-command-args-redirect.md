@@ -1,10 +1,10 @@
 ---
-title: kubernates yaml中command重定向的写法
+title: kubernetes yaml中command重定向的写法
 date: 2019-10-07 23:06:18
-tags: [kubernates, 技巧]
-categories: [kubernates]
-keywords: [kubernates command redirect, kubernates command 重定向]
-description: kubernates解析yaml文件的command和args有问题，不支持重定向操作符。需要使用`sh -c <command args>`方式替代。
+tags: [kubernetes, 技巧]
+categories: [kubernetes]
+keywords: [kubernetes command redirect, kubernetes command 重定向]
+description: kubernetes解析yaml文件的command和args有问题，不支持重定向操作符。需要使用`sh -c <command args>`方式替代。
 ---
 
 在init container的实验中，通过echo重定向方式创建文件并且写入内容。

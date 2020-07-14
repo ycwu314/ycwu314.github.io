@@ -1,8 +1,8 @@
 ---
 title: microk8s之k8s.gcr.io访问问题
 date: 2019-09-28 17:12:04
-tags: [kubernates, microk8s]
-categories: [kubernates]
+tags: [kubernetes, microk8s]
+categories: [kubernetes]
 keywords: [microk8s k8s.gcr.io, k8s.gcr.io 不能访问]
 description: 手动导入k8s.gcr.io镜像到microk8s.ctr。
 ---

@@ -12,7 +12,7 @@ description: 一些yaml格式使用笔记。
 
 # 用冒号和空格表示键值对 `key: value`
 
-kubernates yaml 文件报错：
+kubernetes yaml 文件报错：
 >error: yaml: line 2: mapping values are not allowed in this context
 
 `key: value`，注意在value和“:"之间要有一个空格。
@@ -53,7 +53,7 @@ expected alphabetic or numeric character, but found
 
 ## tab
 
-kubernates yaml报错：
+kubernetes yaml报错：
 >error: yaml: line 3: found character that cannot start any token
 
 YAML文件里面不能出现tab键。

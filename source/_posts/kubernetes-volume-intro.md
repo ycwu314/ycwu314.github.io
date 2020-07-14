@@ -1,9 +1,9 @@
 ---
-title: kubernates volume 简介
+title: kubernetes volume 简介
 date: 2019-10-07 17:30:46
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates volume]
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes volume]
 description: volume解决了2个问题。容器内部数据持久化；以及一个pod中多个容器共享文件。
 ---
 # volume 简介
@@ -26,7 +26,7 @@ Volume的核心是包含一些数据的目录，Pod 中的容器可以访问该�
 Pod 中的每个容器必须独立地指定每个卷的挂载位置。
 
 init容器的实验就使用了volume：
-- {% post_link kubernates-pod-init-container %}
+- {% post_link kubernetes-pod-init-container %}
 
 ```yml
 apiVersion: v1

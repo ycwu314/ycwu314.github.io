@@ -1,15 +1,15 @@
 ---
 title: kubernetes内存泄漏文章分享
 date: 2020-07-03 11:42:37
-tags: [kubernates, linux]
-categories: [kubernates]
+tags: [kubernetes, linux]
+categories: [kubernetes]
 keywords: [no space left on device, SLUB: Unable to allocate memory on node, memcg]
 description: 在linux 3.10上遇到k8s内存泄漏问题，分享几篇相关的好文章。
 ---
 
 # 背景
 
-公司使用老版本的linux 3.10内核，使用kubernates时不时遇到内存泄漏导致pod重启的问题。
+公司使用老版本的linux 3.10内核，使用kubernetes时不时遇到内存泄漏导致pod重启的问题。
 于是查了资料，分享几篇文章和笔记，后续再深入研究。
 <!-- more -->
 
@@ -109,7 +109,7 @@ $ kubelet GOFLAGS="-tags=nokmem"
 
 # 扩展：container_memory_working_set_bytes 和 oom-killer
 
-kubernates有几个和内存相关的指标：
+kubernetes有几个和内存相关的指标：
 >container_memory_max_usage_bytes(最大可用内存) >
 >container_memory_usage_bytes(已经申请的内存+工作集使用的内存) >
 >container_memory_working_set_bytes(工作集内存) >

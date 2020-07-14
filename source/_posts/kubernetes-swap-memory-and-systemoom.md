@@ -1,10 +1,10 @@
 ---
-title: kubernates swap memory
+title: kubernetes swap memory
 date: 2019-10-20 15:13:03
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates swap memory, kubernates systemoom]
-description: kubernates不建议使用swap memory。k8s v1.8以后默认不支持swap，并且会启动报错。swap会使得内存限额和调度器变得复杂。
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes swap memory, kubernetes systemoom]
+description: kubernetes不建议使用swap memory。k8s v1.8以后默认不支持swap，并且会启动报错。swap会使得内存限额和调度器变得复杂。
 ---
 
 # 问题背景
@@ -48,7 +48,7 @@ NAME          TYPE   SIZE  USED PRIO
 /swapfile.new file     2G   48K   -3
 ```
 
-于是查阅一些资料，了解kubernates对swap的使用情况。
+于是查阅一些资料，了解kubernetes对swap的使用情况。
 
 # `--fail-swap-on`
 
@@ -67,7 +67,7 @@ NAME          TYPE   SIZE  USED PRIO
 >having swap available has very strange and bad interactions with memory limits. 
 >For example, a container that hits its memory limit would then start spilling over into swap
 
-2. kubernates不是为了swap而设计。由于pod使用内存的复杂性，kubernates缺少一个足够聪明的策略去协调不同pod对内存/swap的使用。k8s官方对此觉得产出投入比不高，不如把时间花在提高稳定性上。
+2. kubernetes不是为了swap而设计。由于pod使用内存的复杂性，kubernetes缺少一个足够聪明的策略去协调不同pod对内存/swap的使用。k8s官方对此觉得产出投入比不高，不如把时间花在提高稳定性上。
 
 >Support for swap is non-trivial. Guaranteed pods should never require swap. Burstable pods should have their requests met without requiring swap. BestEffort pods have no guarantee. The kubelet right now lacks the smarts to provide the right amount of predictable behavior here across pods.
 >We discussed this topic at the resource mgmt face to face earlier this year. We are not super interested in tackling this in the near term relative to the gains it could realize. 

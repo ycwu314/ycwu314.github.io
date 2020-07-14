@@ -1,10 +1,10 @@
 ---
-title: kubernates 资源限制
+title: kubernetes 资源限制
 date: 2020-01-16 11:05:18
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates 资源限制]
-description: kubernates 资源单位和限制方式。
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes 资源限制]
+description: kubernetes 资源单位和限制方式。
 ---
 
 # 资源单位

@@ -1,9 +1,9 @@
 ---
-title: kubernates externalTrafficPolicy 笔记
+title: kubernetes externalTrafficPolicy 笔记
 date: 2020-01-17 10:12:41
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates externalTrafficPolicy]
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes externalTrafficPolicy]
 description:
 ---
 

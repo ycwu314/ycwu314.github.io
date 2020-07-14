@@ -1,9 +1,9 @@
 ---
-title: kubernates Pod、ReplicationSet、Deployment、Service初体验
+title: kubernetes Pod、ReplicationSet、Deployment、Service初体验
 date: 2019-09-30 17:53:35
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates pod deployment]
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes pod deployment]
 description: 使用Deployment来创建ReplicaSet，ReplicaSet在后台创建pod。port和nodePort都是service的端口，前者暴露给集群内客户访问服务，后者暴露给集群外客户访问服务。从这两个端口到来的数据都需要经过反向代理kube-proxy流入后端pod的targetPod，从而到达pod上的容器内。
 ---
 
@@ -41,7 +41,7 @@ spec:
 
 # Pod
 
-Pod是kubernates中最基本的应用执行单元。代表一个在k8s集群运行的进程。
+Pod是kubernetes中最基本的应用执行单元。代表一个在k8s集群运行的进程。
 当Pod被创建后，都会被Kubernetes调度到集群的Node上。
 通常不会直接使用Pod，而是通过controller操作。
 ```
@@ -148,7 +148,7 @@ Deployment操作ReplicationSet来调节pod数量到指定的replicas（见OldRep
 
 # Service
 
-{% asset_img kubernates-connectivity.jpg kubernates-connectivity %}
+{% asset_img kubernetes-connectivity.jpg kubernetes-connectivity %}
 
 一个服务后端的Pods可能会随着生存灭亡而发生IP的改变，service的出现，给服务提供了一个固定的IP，而无视后端Endpoint的变化。
 Service定义了这样一种抽象：逻辑上的一组Pod，一种可以访问它们的策略 —— 通常称为微服务。
@@ -221,7 +221,7 @@ Events:                   <none>
 
 # servcie和端口的常见问题
 
-为了能够在kubernates外面访问到service，会暴露nodePort。一个常见的问题是，只在service的yaml文件设置了`spec.ports.nodePort`，没有更新`spec.type`为`NodePort`（默认为`ClusterIP`），导致出现下面报错：
+为了能够在kubernetes外面访问到service，会暴露nodePort。一个常见的问题是，只在service的yaml文件设置了`spec.ports.nodePort`，没有更新`spec.type`为`NodePort`（默认为`ClusterIP`），导致出现下面报错：
 ```
 The Service “nacos-headless” is invalid: spec.ports[0].nodePort: Forbidden: may not be used when type is 'ClusterIP'
 ```

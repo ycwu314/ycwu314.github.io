@@ -1,8 +1,8 @@
 ---
 title: 低版本jdk不能正常识别pod内存限制的case
 date: 2020-04-13 17:48:22
-tags: [kubernates, java]
-categories:  [kubernates]
+tags: [kubernetes, java]
+categories:  [kubernetes]
 keywords: [java cgroups]
 description: 低版本Java 8 不支持cgroups，导致内存计算使用了物理机内存大小。
 ---

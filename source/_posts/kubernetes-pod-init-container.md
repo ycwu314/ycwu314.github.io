@@ -1,9 +1,9 @@
 ---
-title: kubernates pod init container
+title: kubernetes pod init container
 date: 2019-10-06 14:01:18
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates init container]
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes init container]
 description: init container 能够执行初始化操作。Init 容器会按顺序在网络和数据卷初始化之后启动。 每个容器必须在下一个容器启动之前成功退出。如果由于运行时或失败退出，导致容器启动失败，它会根据 Pod 的 restartPolicy 指定的策略进行重试。
 ---
 

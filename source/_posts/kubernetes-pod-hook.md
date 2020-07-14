@@ -1,9 +1,9 @@
 ---
-title: kubernates pod hook
+title: kubernetes pod hook
 date: 2019-10-07 18:54:12
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates pod hook]
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes pod hook]
 description: pod有2个钩子：PostStart和PreStop。钩子处理程序的日志不会在 Pod 事件中公开。要使用describe命令在Events中查看。
 ---
 

@@ -1,9 +1,9 @@
 ---
-title: kubernates pod preset
+title: kubernetes pod preset
 date: 2019-10-08 10:20:18
-tags: [kubernates]
-categories: [kubernates]
-keywords: [kubernates pod preset]
+tags: [kubernetes]
+categories: [kubernetes]
+keywords: [kubernetes pod preset]
 description: pod preset 可以把公共信息注入到pod，从而简化pod模板的编写。
 ---
 
