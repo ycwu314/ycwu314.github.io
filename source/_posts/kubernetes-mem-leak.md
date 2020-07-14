@@ -119,5 +119,51 @@ container_memory_usage_bytes包含了cache，如filesystem cache，当存在mem 
 container_memory_working_set_bytes 更能体现出mem usage，oom killer也是根据container_memory_working_set_bytes 来决定是否oom kill的。
 
 
+# slub内存泄漏debug
 
+推荐大佬的几篇文章：
+- [怎样诊断SLAB泄露问题](http://linuxperf.com/?p=148)
+- [如何诊断SLUB问题](http://linuxperf.com/?p=184)
+- [用KMEMLEAK检测内核内存泄漏](http://linuxperf.com/?p=188)
 
+内存泄漏的种类：
+>- 内存泄露（leak），alloc之后忘了free，导致内存占用不断增长；
+>- 越界（overrun），访问了alloc分配的区域之外的内存，覆盖了不属于自己的数据；
+>- 使用已经释放的内存（use after free），正常情况下，已经被free释放的内存是不应该再被读写的，否则就意味着程序有bug；
+>- 使用未经初始化的数据（use uninitialised bytes），缺省模式下alloc分配的内存是不被初始化的，内存值是随机的，直接使用的话后果可能是灾难性的。
+
+slub引入了red zone和poisoning机制，提供了更加方便的debug方式。
+
+{% asset_img slub-object.png slub对象格式 %}
+
+引用大佬的文章：
+>Red zone来自于橄榄球术语，是指球场底线附近的区域，slub通过在每一个对象后面额外添加一块red zone区域来帮助检测越界(overrun)问题，在red zone里填充了特征字符，如果代码访问到了red zone就意味着越界了。
+>Poisoning是通过往slub对象中填充特征字符的方式来检测use-after-free、use-uninitialised等问题，比如在分配slub对象时填充0x5a，在释放时填充0x6b，然后debug代码检查时如果看到本该是0x6b的位置变成了别的内容，就可能是发生了use-after-free，而本该是0x5a的位置如果变成了其它内容就意味着可能是use-uninitialised问题。
+
+开启slub debug方式见：[如何诊断SLUB问题](http://linuxperf.com/?p=184)。
+
+跟踪slub内核内存的另一个工具是kmemleak。
+>kmemleak通过追踪kmalloc(), vmalloc(), kmem_cache_alloc()等函数，把分配内存的指针和大小、时间、stack trace等信息记录在一个rbtree中，等到调用free释放内存时就把相应的记录从rbtree中删除。
+
+通过`/sys/kernel/debug/kmemleak`查看信息。
+kmemleak的扫描算法存在误报的可能。
+
+要启用kmemleak，前提是内核编译时在“Kernel hacking”中开启了 CONFIG_DEBUG_KMEMLEAK 选项。
+```sh
+[root@localhost bin]# cat /boot/config-`uname -r`  | grep -i kmem
+CONFIG_MEMCG_KMEM=y
+# CONFIG_DEVKMEM is not set
+CONFIG_HAVE_DEBUG_KMEMLEAK=y
+# CONFIG_DEBUG_KMEMLEAK is not set
+CONFIG_HAVE_ARCH_KMEMCHECK=y
+```
+
+挂载以下文件系统：
+```
+# mount -t debugfs nodev /sys/kernel/debug/
+```
+
+默认每10分钟扫描内存一次，也可以手动触发
+```
+echo scan > /sys/kernel/debug/kmemleak
+```
