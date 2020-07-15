@@ -65,3 +65,35 @@ nacos-config-spring-boot-starter会引入nacos-spring-context依赖，对应关�
 - 或者，把nacos-spring-context 0.3.4中的几个java文件收到拷贝到项目，并且`@Component`在spring中激活：
 
 {% asset_img copy-nacosrefresh-component.png copy-nacosrefresh-component %}
+
+# nacos client日志和数据缓存
+
+nacos client会在启动应用的用户目录创建日志和数据缓存，可以方便排查问题
+```
+# 日志
+~/logs/nacos/config.log
+~/logs/nacos/naming.log
+
+# 数据缓存
+~/nacos/config/<配置中心>-<名空间>/snapshot-tenant/<名空间>/<group>/<data id>
+```
+
+日志文件可以看到nacos client访问nacos server的情况
+```
+2020-07-15 15:53:19.279 ERROR [com.alibaba.nacos.client.Worker.longPolling.fixed-nacos-center.v-base_30848-a85a37ef-5bec-478c-a60f-0b11f10b3da4:c.a.n.c.
+java.net.ConnectException: no available server, currentServerAddr : http://nacos-center.v-base:30848                                                    
+        at com.alibaba.nacos.client.config.http.ServerHttpAgent.httpPost(ServerHttpAgent.java:178) ~[nacos-client-1.2.0.jar!/:na]                       
+        at com.alibaba.nacos.client.config.http.MetricsHttpAgent.httpPost(MetricsHttpAgent.java:64) ~[nacos-client-1.2.0.jar!/:na]                      
+        at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateConfigStr(ClientWorker.java:386) [nacos-client-1.2.0.jar!/:na]                  
+        at com.alibaba.nacos.client.config.impl.ClientWorker.checkUpdateDataIds(ClientWorker.java:354) [nacos-client-1.2.0.jar!/:na]                    
+        at com.alibaba.nacos.client.config.impl.ClientWorker$LongPollingRunnable.run(ClientWorker.java:521) [nacos-client-1.2.0.jar!/:na]               
+        at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [na:1.8.0_221]                                                       
+        at java.util.concurrent.FutureTask.run(FutureTask.java:266) [na:1.8.0_221]                                                                      
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180) [na:1.8.0_221]         
+        at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293) [na:1.8.0_221]                
+        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_221]                                               
+        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_221]                                               
+        at java.lang.Thread.run(Thread.java:748) [na:1.8.0_221]
+```
+
+数据目录可以看到是否拉取到最新数据。

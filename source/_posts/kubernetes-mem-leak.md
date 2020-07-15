@@ -90,7 +90,7 @@ CONFIG_MEMCG_SWAP_ENABLED=y
 CONFIG_MEMCG_KMEM=y
 ```
 
-kubelet 和 runc 都会给 memory cgroup 开启 kmem accounting，所以要规避这个问题，就要保证kubelet 和 runc 都别开启 kmem accounting。（但是不如直接升级内核）
+kubelet 和 runc 都会给 memory cgroup 开启 kmem accounting，所以要规避这个问题，就要保证kubelet 和 runc 都关闭 kmem accounting。（但是不如直接升级内核利索）
 
 解决方案有2个：
 1. 关闭 kmem accounting：
