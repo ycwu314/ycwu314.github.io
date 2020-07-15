@@ -62,6 +62,12 @@ cgroup configuration for process caused \"mkdir
 no space left on device
 ```
 
+因为不能释放内存，导致cpu stuck
+```sh
+[root@master-29 ~]# dmesg -T | grep 'soft lockup'
+[五 7月  3 00:05:57 2020] kernel:BUG: soft lockup - CPU#0 stuck for 38s! [kworker/0:1:25758]
+```
+
 # kmem accounting
 
 cgroup-v1的说明：[Memory Resource Controller](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v1/memory.html)
@@ -93,7 +99,7 @@ CONFIG_MEMCG_KMEM=y
 kubelet 和 runc 都会给 memory cgroup 开启 kmem accounting，所以要规避这个问题，就要保证kubelet 和 runc 都关闭 kmem accounting。（但是不如直接升级内核利索）
 
 解决方案有2个：
-1. 关闭 kmem accounting：
+1. 修改内核启动参数，关闭 kmem accounting：
 ```
 cgroup.memory=nokmem
 ```
@@ -106,6 +112,29 @@ $ kubelet GOFLAGS="-tags=nokmem"
 2. 升级内核版本
 升级 Linux 内核至 kernel-3.10.0-1075.el7 及以上就可以修复这个问题，详细可见 [slab leak causing a crash when using kmem control group](https://bugzilla.redhat.com/show_bug.cgi?id=1507149#c101)，其在发行版中 CentOS 7.8 已经发布。
 
+
+# 扩展：修改内核启动参数
+
+上面`cgroup.memory=nokmem`需要修改内核启动参数。
+查看当前内核启动参数
+```sh
+[root@localhost ~]# cat /proc/cmdline 
+BOOT_IMAGE=/vmlinuz-3.10.0-1062.el7.x86_64 root=/dev/mapper/centos-root ro crashkernel=auto rd.lvm.lv=centos/root rd.lvm.lv=centos/swap rhgb quiet LANG=zh_CN.UTF-8
+```
+
+修改内核启动参数，通过修改启动器参数实现。
+在centos 7 上默认使用grub2启动器，对应文件为`/boot/grub2/grub.cfg`。
+搜索上面输出的内容，在末尾增加即可
+```sh
+# 省略一堆
+        else
+          search --no-floppy --fs-uuid --set=root 6c8ad179-1280-424f-b0b0-bbb1760af720
+        fi
+        linux16 /vmlinuz-3.10.0-1062.el7.x86_64 root=/dev/mapper/centos-root ro crashkernel=auto rd.lvm.lv=centos/root rd.lvm.lv=centos/swap rhgb quiet LANG=zh_CN.UTF-8 cgroup.memory=nokmem 
+        initrd16 /initramfs-3.10.0-1062.el7.x86_64.img
+```
+
+ps. [aliyun linux的内核启动参数](https://help.aliyun.com/document_detail/111881.html)
 
 # 扩展：container_memory_working_set_bytes 和 oom-killer
 
