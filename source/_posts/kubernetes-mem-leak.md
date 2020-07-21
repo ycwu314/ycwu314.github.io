@@ -4,7 +4,7 @@ date: 2020-07-03 11:42:37
 tags: [kubernetes, linux]
 categories: [kubernetes]
 keywords: [no space left on device, SLUB: Unable to allocate memory on node, memcg]
-description: 在linux 3.10上遇到k8s内存泄漏问题，分享几篇相关的好文章。
+description: 在linux 3.10内核上遇到k8s内存泄漏问题，分享几篇相关的好文章。
 ---
 
 # 背景
