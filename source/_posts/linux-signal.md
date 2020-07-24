@@ -45,6 +45,14 @@ sigterm可以实现进程的优雅关闭。（`kill -15`）
 通常是在终端的控制进程结束时, 通知同一session内的各个作业, 这时它们与控制终端不再关联。
 nohup命令可以让进程忽略sighup信号。
 
+# 信号0
+
+在keepalived健康检查脚本，看到同事使用`killall -0 keepalived`来检测进程。
+第一次见到信号0：
+>"signal 0" is kind of like a moral equivalent of "ping".
+>Using "kill -0 NNN" in a shell script is a good way to tell if PID "NNN" is alive or not:
+>signal 0 is just used to check process is exists or not.
+
 
 # trap命令
 
