@@ -116,12 +116,24 @@ curl 127.0.0.1:8001
 
 # konga
 
-此处省略一堆手动安装步骤，因为最后使用了docker部署。
+此处省略一堆手动安装步骤，因为最后使用了docker部署。这里只保留验证postgres相关步骤。
 
 konga支持的数据库：mysql，postgres，mongo。
 konga使用sails做ORM框架，不支持postgres 12。2，经测试11.8是可以的。
-通过`package.json`，发现sails-postgres的版本是0.11.4，手动升级到1.0.2，结果waterline不兼容
+konga需要初始化数据库
+```sh
+# var conString = "postgres://username:password@localhost/database";
+node ./bin/konga.js  prepare --adapter postgres --uri postgresql://localhost:5432/konga
 ```
+然后就报错了
+```
+error: A hook (`orm`) failed to load!
+error: Failed to prepare database: error: column r.consrc does not exist
+```
+
+通过`package.json`，发现sails-postgres的版本是0.11.4，手动升级到1.0.2，结果waterline不兼容
+```sh
+[root@localhost konga]# npm install
 [root@localhost konga]# npm start
 
 > kongadmin@0.14.9 start /data/konga
