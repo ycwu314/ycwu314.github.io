@@ -102,8 +102,64 @@ Route要在Service中创建！
 这里有个操作上的坑，多选项的配置，要使用回车键才能正常录入！
 {% asset_img kong-create-route-2.png %}
 
-Route上有2个配置项值得留意：Strip Path和Preserve Host。
+Route上有2个配置项值得留意：Strip Path和Preserve Host，都会影响访问upstream。
 {% asset_img kong-create-route-3.png %}
+
+
+### Strip Path
+
+启用strip_uri属性来指示Kong在代理此API时，在上游请求的URI中不应包含匹配的URI前缀。
+
+```
+GET /service/path/to/resource HTTP/1.1
+Host:
+```
+kong代理到上游服务的真实uri为（此时的uri不包含uris中配置的内容，少了/service部分）
+```
+GET /path/to/resource HTTP/1.1
+Host: my-api.com
+```
+
+### Preserve Host
+
+Preserve Host：当启用代理时，KONG默认将API的 upstream_url 的值配置为上游服务主机的 host 。
+
+客户端发送请求：
+```
+GET / HTTP/1.1
+Host: service.com
+```
+
+1. Preserve Host=fase
+```json
+{
+    "name": "my-api",
+    "upstream_url": "http://my-api.com",
+    "hosts": ["service.com"],
+}
+```
+
+KONG会从API的upstream_url中提取HOST值，在做代理时，会向上游服务发送类似的请求：
+```
+GET / HTTP/1.1
+Host: my-api.com
+```
+
+2. Preserve Host=true
+```json
+{
+    "name": "my-api",
+    "upstream_url": "http://my-api.com",
+    "hosts": ["service.com"],
+    "preserve_host": true
+}
+```
+
+KONG将会保留客户端发送来的HOST值，在做代理时，会向上游服务发送以下的请求：
+```
+GET / HTTP/1.1
+Host: service.com
+```
 
 ## 验证
 
