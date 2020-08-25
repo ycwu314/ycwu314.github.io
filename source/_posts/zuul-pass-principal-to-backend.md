@@ -2,7 +2,7 @@
 title: zuul向后端服务传递Principal
 date: 2020-08-25 11:12:25
 tags: [zuul, java]
-categories: [java]
+categories: [zuul]
 keywords: [zuul principal]
 description: 
 ---
@@ -126,7 +126,7 @@ public class TransmitPrincipalFilter extends ZuulFilter {
 
     @Override
     public String filterType() {
-        return "pre";
+        return FilterConstants.PRE_TYPE;
     }
 
     /**

@@ -279,6 +279,73 @@ public void doFilter(ServletRequest request, ServletResponse response)
 官方的filter和配置顺序，参见`HttpSecurityBuilder#addFilter()`：
 {% asset_img standard-filter-and-order.png %}
 
+filter配置顺序，定义在FilterComparator
+```java
+final class FilterComparator implements Comparator<Filter>, Serializable {
+	private static final int INITIAL_ORDER = 100;
+	private static final int ORDER_STEP = 100;
+	private final Map<String, Integer> filterToOrder = new HashMap<>();
+
+	FilterComparator() {
+		Step order = new Step(INITIAL_ORDER, ORDER_STEP);
+		put(ChannelProcessingFilter.class, order.next());
+		put(ConcurrentSessionFilter.class, order.next());
+		put(WebAsyncManagerIntegrationFilter.class, order.next());
+		put(SecurityContextPersistenceFilter.class, order.next());
+		put(HeaderWriterFilter.class, order.next());
+		put(CorsFilter.class, order.next());
+		put(CsrfFilter.class, order.next());
+		put(LogoutFilter.class, order.next());
+		filterToOrder.put(
+			"org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter",
+				order.next());
+		filterToOrder.put(
+				"org.springframework.security.saml2.provider.service.servlet.filter.Saml2WebSsoAuthenticationRequestFilter",
+				order.next());
+		put(X509AuthenticationFilter.class, order.next());
+		put(AbstractPreAuthenticatedProcessingFilter.class, order.next());
+		filterToOrder.put("org.springframework.security.cas.web.CasAuthenticationFilter",
+				order.next());
+		filterToOrder.put(
+			"org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter",
+				order.next());
+		filterToOrder.put(
+				"org.springframework.security.saml2.provider.service.servlet.filter.Saml2WebSsoAuthenticationFilter",
+				order.next());
+		put(UsernamePasswordAuthenticationFilter.class, order.next());
+		put(ConcurrentSessionFilter.class, order.next());
+		filterToOrder.put(
+				"org.springframework.security.openid.OpenIDAuthenticationFilter", order.next());
+		put(DefaultLoginPageGeneratingFilter.class, order.next());
+		put(DefaultLogoutPageGeneratingFilter.class, order.next());
+		put(ConcurrentSessionFilter.class, order.next());
+		put(DigestAuthenticationFilter.class, order.next());
+		filterToOrder.put(
+				"org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationFilter", order.next());
+		put(BasicAuthenticationFilter.class, order.next());
+		put(RequestCacheAwareFilter.class, order.next());
+		put(SecurityContextHolderAwareRequestFilter.class, order.next());
+		put(JaasApiIntegrationFilter.class, order.next());
+		put(RememberMeAuthenticationFilter.class, order.next());
+		put(AnonymousAuthenticationFilter.class, order.next());
+		filterToOrder.put(
+			"org.springframework.security.oauth2.client.web.OAuth2AuthorizationCodeGrantFilter",
+				order.next());
+		put(SessionManagementFilter.class, order.next());
+		put(ExceptionTranslationFilter.class, order.next());
+		put(FilterSecurityInterceptor.class, order.next());
+		put(SwitchUserFilter.class, order.next());
+	}
+
+```
+
+HttpSecurity先对filter排序，再构建SecurityFilterChain。
+```java
+protected DefaultSecurityFilterChain performBuild() {
+	filters.sort(comparator);
+	return new DefaultSecurityFilterChain(requestMatcher, filters);
+}
+```
 
 接下来的主角是FilterSecurityInterceptor。
 
