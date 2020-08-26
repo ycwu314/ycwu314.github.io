@@ -126,3 +126,5 @@ public boolean shouldFilter() {
 }
 ```
 
+画了一张图，整理上面核心类的关系和流程：
+{% asset_img arch.png %}

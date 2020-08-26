@@ -3,10 +3,12 @@ title: spring security系列5：CORS
 date: 2020-08-25 15:40:25
 tags: [spring, java]
 categories: [spring]
-keywords: []
+keywords: [cors spring security]
 description:
 ---
-{% asset_img slug [title] %}
+
+CORS filter源码分析。
+
 <!-- more -->
 
 # CorsConfiguration
