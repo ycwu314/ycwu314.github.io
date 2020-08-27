@@ -29,6 +29,7 @@ description:
 ```yml
 chaos:
   monkey:
+    enabled: true
     assaults:
       level: 10
       latencyRangeStart: 500
