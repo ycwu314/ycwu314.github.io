@@ -107,7 +107,6 @@ SLO filter要配置在SSO filter之前！
 
 SingleSignOutHttpSessionListener则是清理session，避免内存泄漏。
 
-后来发现好几个tomcat应用要修改，直接在tomcat全局的web.xml修改。
 
 # 源码分析
 
@@ -384,5 +383,8 @@ public final class SamlCompliantLogoutMessageCreator implements LogoutMessageCre
 
 
 
+# 参考资料
 
+[Java Apereo CAS Client](https://github.com/apereo/java-cas-client)。
+后来发现这里有官方cas client的集成方式，包括单点登录和单点登出。
 
