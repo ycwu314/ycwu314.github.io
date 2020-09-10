@@ -127,3 +127,4 @@ fetch问题在于兼容性。IE全家桶不支持。另外，大量使用xhr类�
 # 参考资料
 
 - [使用 Fetch](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)
+- [fetch API 和 Ajax（XMLHttpRequest）的差异](https://www.jianshu.com/p/373c348737f6)
