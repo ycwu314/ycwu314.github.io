@@ -5,7 +5,7 @@ tags: [爬虫]
 categories: [爬虫]
 keywords: [爬虫]
 description: 代号guardian of muse的反爬行动。
-hide_index: true
+top: 990
 ---
 
 站点被爬之后，才意识到站点虽小，防爬工作不能少。下面是我的反爬经历，持续更新：
