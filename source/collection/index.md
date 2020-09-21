@@ -28,4 +28,3 @@ https相关原理，并且结合抓包、nginx配置实践。
 # kubernates
 
 kubernates 学习札记。
-- {% post_link kubernates-collection %}
