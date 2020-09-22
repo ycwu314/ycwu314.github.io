@@ -10,7 +10,7 @@ description:
 # what is
 
 OAuth2提供了Access Token来解决授权第三方客户端访问受保护资源的问题。
-OIDC在这个基础上提供了ID Token来解决第三方客户端标识用户身份认证的问题。
+OpenID Connect(缩写为OIDC)在这个基础上提供了ID Token来解决第三方客户端标识用户身份认证的问题。
 
 <!-- more -->
 
@@ -18,17 +18,17 @@ OIDC在这个基础上提供了ID Token来解决第三方客户端标识用户�
 
 # 基本术语和流程
 
-OIDC有很多组件，最核心的是core。
+OpenID Connect有很多组件，最核心的是core。
 {% asset_img OpenIDConnect-arch.png %}
 
-OIDC定义了几个术语：
+OpenID Connect定义了几个术语：
 - EU：End User：一个人类用户。
 - RP：Relying Party ,用来代指OAuth2中的受信任的客户端，身份认证和授权信息的消费方；
 - OP：OpenID Provider，有能力提供EU认证的服务（比如OAuth2中的授权服务），用来为RP提供EU的身份认证信息；
 - ID Token：JWT格式的数据，包含EU身份认证的信息。
 - UserInfo Endpoint：用户信息接口（受OAuth2保护），当RP使用Access Token访问时，返回授权用户的信息
 
-OIDC流程：
+OpenID Connect流程：
 1. The RP (Client) sends a request to the OpenID Provider (OP).
 2. The OP authenticates the End-User and obtains authorization.
 3. The OP responds with an ID Token and usually an Access Token.
@@ -58,7 +58,7 @@ OIDC流程：
 
 其中AuthN=Authentication，表示认证；AuthZ=Authorization，代表授权。
 
-上面说OIDC和Oauth 2的结合点在：
+OpenID Connect和Oauth 2的结合点在：
 1. AuthN的时候，scope必须包含openid，这样就可以表明这是一个OIDC的请求。
 2. AuthZ的返回，包含ID token。
 
@@ -70,7 +70,7 @@ ps：OIDC官方定义的一些scope：
 
 # ID token
 
-OIDC在Oauth 2上的核心扩展是ID token，是一个授权服务器提供的包含用户信息（由一组Cliams构成以及其他辅助的Cliams）的JWT格式的数据结构。
+OpenID Connect在Oauth 2上的核心扩展是ID token，是一个授权服务器提供的包含用户信息（由一组Cliams构成以及其他辅助的Cliams）的JWT格式的数据结构。
 
 ID Token的主要构成部分：
 - iss = Issuer Identifier：必须。提供认证信息者的唯一标识。一般是一个https的url（不包含querystring和fragment部分）。
@@ -84,16 +84,16 @@ ID Token的主要构成部分：
 - amr = Authentication Methods References：可选。表示一组认证方法。
 - azp = Authorized party：可选。结合aud使用。只有在被认证的一方和受众（aud）不一致时才使用此值，一般情况下很少使用。
 
-OIDC还定义了一堆官方的claims：[StandardClaims](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)。
+OpenID Connect还定义了一堆官方的claims：[StandardClaims](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims)。
 
 **ID Token必须使用JWS进行签名和JWE加密。**
 
-ID token是OIDC的精髓所在：
-- statless session。因此后端服务可以更加灵活的扩容。
+ID token是OpenID Connect的精髓所在：
+- stateless session。因此后端服务可以更加灵活的扩容。
 - 向第三方传递身份。这个id可以传递给第三方应用，或者后端服务，用于识别身份。
 - token交换。ID token也可以用来交换access token。
 
-# OIDC验证流程
+# OpenID Connect验证流程
 
 OIDC基于Oauth 2，支持3种认证方式：
 - 授权码模式
@@ -105,13 +105,13 @@ OIDC基于Oauth 2，支持3种认证方式：
 
 在实现中，一个常见的改进是加入验证阶段promt字段。
 以微软的OIDC实现为例：[Microsoft 标识平台和 OpenID Connect 协议](https://docs.microsoft.com/zh-cn/azure/active-directory/develop/v2-protocols-oidc)
->表示需要的用户交互类型。 此时唯一有效值为 login、none 和 consent。 
+>prompt表示需要的用户交互类型。 此时唯一有效值为 login、none 和 consent。 
 >prompt=login 声明将强制用户在该请求上输入凭据，从而取消单一登录。 
 >而 prompt=none 声明截然相反。 此声明确保用户不会看到任何交互式提示。 如果请求无法通过单一登录静默完成，Microsoft 标识平台终结点就会返回错误。 
 >prompt=consent 声明会在用户登录后触发 OAuth 同意对话框。 该对话框要求用户向应用授予权限。
 
 
-# OIDC和SSO
+# OpenID Connect和SSO
 
 之前研究了CAS的SSO，OpenID Connect也是可以做SSO的。
 目前正处于draft状态。
@@ -180,7 +180,7 @@ OIDC基于Oauth 2，支持3种认证方式：
 
 ```
 
-其中定义了新的grant_type：urn:ietf:params:oauth:grant-type:token-exchange。
+其中定义了新的grant_type：`urn:ietf:params:oauth:grant-type:token-exchange`。
 （Oauth 2协议的好处是可以利用grant_type来自定义流程）
 
 参见：
@@ -205,7 +205,7 @@ back方式由OIDC server负责向各个服务发送logout请求。back方式相�
 - 在Oauth 2请求中加入`scope=openid`
 - Oauth 2授权响应增加ID token
 - ID token是JWT，并且使用JWE或者JWS保护
-- ID token包含了基本的用户信息
+- ID token包含了基本的用户信息，比如用户id
 - OIDC可以扩展支持SSO
 
 # 资料 
