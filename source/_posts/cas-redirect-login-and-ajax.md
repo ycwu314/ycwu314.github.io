@@ -86,16 +86,13 @@ public class CopeWithXhrRedirectStrategy implements AuthenticationRedirectStrate
     @Override
     public void redirect(HttpServletRequest request, HttpServletResponse response, String potentialRedirectUrl) throws IOException {
         String headerRequestedWith = request.getHeader("X-Requested-With");
+        // ajax请求
         if (!StringUtils.isEmpty(headerRequestedWith)) {
-            // ajax请求
-            if (response instanceof HttpServletResponseWrapper) {
-                HttpServletResponseWrapper responseWrapper = (HttpServletResponseWrapper) response;
-                responseWrapper.setStatus(200);
-                responseWrapper.setContentType("text/plain");
-                try {
-                    responseWrapper.getWriter().write(customRedirectUrl(potentialRedirectUrl));
-                } catch (IOException e) {
-                }
+            response.setStatus(200);
+            response.setContentType("text/plain");
+            try {
+                response.getWriter().write(customRedirectUrl(potentialRedirectUrl));
+            } catch (IOException e) {
             }
         } else {
             response.sendRedirect(potentialRedirectUrl);
