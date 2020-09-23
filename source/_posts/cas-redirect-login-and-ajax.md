@@ -40,8 +40,128 @@ CAS协议登录流程涉及到302重定向：
 1. 302换成401、403。xhr返回判断是否error。
 2. 302换成200，在json中返回跳转信息。
 
+ajax增加全局setup，处理自定义协议即可。
+
 虽然简单，但是对原生的CAS协议有入侵，抓包分析对不上。
-祖传代码使用这个方案，简单粗暴。
+
+实现有2个选项：
+- 在cas client
+- 在网关处理
+
+这里使用cas-client-autoconfig-support接入cas。
+
+1. 引入依赖
+```xml
+        <dependency>
+            <groupId>net.unicon.cas</groupId>
+            <artifactId>cas-client-autoconfig-support</artifactId>
+            <version>2.3.0-GA</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jasig.cas.client</groupId>
+            <artifactId>cas-client-core</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+```
+
+application.yml增加配置
+```yaml
+cas:
+  server-url-prefix: http://xxx/cas
+  server-login-url: http://xxx/cas/login
+  client-host-url: http://xxxx
+  validation-type: cas
+```
+
+启动类增加
+```java
+@EnableCasClient
+```
+
+2. 自定义AuthenticationRedirectStrategy，从而处理xhr请求
+```java
+public class CopeWithXhrRedirectStrategy implements AuthenticationRedirectStrategy {
+
+    @Override
+    public void redirect(HttpServletRequest request, HttpServletResponse response, String potentialRedirectUrl) throws IOException {
+        String headerRequestedWith = request.getHeader("X-Requested-With");
+        if (!StringUtils.isEmpty(headerRequestedWith)) {
+            // ajax请求
+            if (response instanceof HttpServletResponseWrapper) {
+                HttpServletResponseWrapper responseWrapper = (HttpServletResponseWrapper) response;
+                responseWrapper.setStatus(200);
+                responseWrapper.setContentType("text/plain");
+                try {
+                    responseWrapper.getWriter().write(customRedirectUrl(potentialRedirectUrl));
+                } catch (IOException e) {
+                }
+            }
+        } else {
+            response.sendRedirect(potentialRedirectUrl);
+        }
+    }
+
+    private String customRedirectUrl(String redirectUrl) {
+        return "{\"status\":403,\"redirectURL\":\"" + redirectUrl + "\"}";
+    }
+}
+
+```
+
+3. 覆盖CasClientConfigurerAdapter配置
+```java
+@Configuration
+public class CasConfiguration extends CasClientConfigurerAdapter {
+
+    @Override
+    public void configureAuthenticationFilter(FilterRegistrationBean authenticationFilter) {
+        // filter参数的注入方式
+        super.configureAuthenticationFilter(authenticationFilter);
+        authenticationFilter.getInitParameters().put("authenticationRedirectStrategyClass","xxxx.CopeWithXhrRedirectStrategy");
+
+    }
+}
+
+```
+
+相关入口在AuthenticationFilter：
+```java
+public class AuthenticationFilter extends AbstractCasFilter {
+
+    protected void initInternal(final FilterConfig filterConfig) throws ServletException {
+        if (!isIgnoreInitConfiguration()) {
+            // more codes
+            
+            final Class<? extends AuthenticationRedirectStrategy> authenticationRedirectStrategyClass = getClass(ConfigurationKeys.AUTHENTICATION_REDIRECT_STRATEGY_CLASS);
+
+            if (authenticationRedirectStrategyClass != null) {
+                this.authenticationRedirectStrategy = ReflectUtils.newInstance(authenticationRedirectStrategyClass);
+            }
+        }
+    }
+
+}  
+```
+
+4. 在前端增加全局的ajax setup，处理自定义协议。
+
+5. springboot 2.x securtiy优先级比cas filter高，因此会拦截掉请求。
+这里改为全部放行，由cas client拦截。
+
+```java
+@Configuration
+public class BeanConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .anyRequest().permitAll().and().logout().permitAll();//配置不需要登录验证
+    }
+
+}
+
+```
 
 # 方案2： 增加响应头
 
