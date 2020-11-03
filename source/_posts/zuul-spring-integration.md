@@ -128,3 +128,16 @@ public boolean shouldFilter() {
 
 画了一张图，整理上面核心类的关系和流程：
 {% asset_img arch.png %}
+
+# zuul本地路由
+
+把流量转发到本地zuul自定义的controller处理。使用`forward`路由：
+```yaml
+zuul:
+  sensitive-headers:
+  routes:
+    # 本地路由
+    login-service:
+      path: /rest_login/**
+      url: forward:/rest_login
+```
