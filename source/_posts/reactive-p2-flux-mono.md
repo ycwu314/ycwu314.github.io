@@ -407,8 +407,25 @@ BB
 bb1
 ```
 
+# 辅助功能
 
+观察所有stream的信号，并且输出到日志
+```java
+Flux.just(1,2,3).log().subscribe(System.out::println);
+```
 
+输出
+```
+16:52:29.605 [main] INFO reactor.Flux.Array.1 - | onSubscribe([Synchronous Fuseable] FluxArray.ArraySubscription)
+16:52:29.613 [main] INFO reactor.Flux.Array.1 - | request(unbounded)
+16:52:29.613 [main] INFO reactor.Flux.Array.1 - | onNext(1)
+1
+16:52:29.613 [main] INFO reactor.Flux.Array.1 - | onNext(2)
+2
+16:52:29.613 [main] INFO reactor.Flux.Array.1 - | onNext(3)
+3
+16:52:29.614 [main] INFO reactor.Flux.Array.1 - | onComplete()
+```
 
 
 # 参考
