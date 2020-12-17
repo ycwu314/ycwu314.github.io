@@ -18,9 +18,11 @@ StepVerifier通过订阅流，然后消费其产生的信号，逐个比较元�
 @Test
 public void testStepVerifier() {
     Flux a = Flux.just(1, 2, 3, 4).concatWith(Mono.error(new RuntimeException("err")));
+    // 使用create方法创建
     StepVerifier.create(a)
             .expectNext(1)
             .expectNext(2)
+            // 支持一次检查多个value
             .expectNext(3, 4)
             .expectError(RuntimeException.class)
             .verify();
@@ -63,6 +65,7 @@ StepVerifier.create(a)
 
 StepVerifier使用VirtualTimeScheduler来解决上面问题：
 >Prepare a new StepVerifier in a controlled environment using `VirtualTimeScheduler` to manipulate a virtual clock via `StepVerifier.Step.thenAwait`. 
+>
 >The scheduler is injected into all `Schedulers` factories, 
 >which means that any operator created within the lambda without a specific scheduler will use virtual time. 
 
