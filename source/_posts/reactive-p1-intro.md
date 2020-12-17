@@ -7,7 +7,7 @@ keywords:
 description: 反应式编程简介。
 ---
 
-了解反应式编程的概念，project reactor官网的介绍文章（[Introduction to Reactive Programming](https://projectreactor.io/docs/core/release/reference/#intro-reactive)）不错，下面是笔记整理。
+project reactor官网（[Introduction to Reactive Programming](https://projectreactor.io/docs/core/release/reference/#intro-reactive)）的笔记整理。
 <!-- more -->
 
 # what
@@ -20,9 +20,10 @@ wiki百科对于反应式编程的描述：
 划重点：
 - 异步编程
 - 数据流
-- 变化传播
+- 变化传递
 
 反应式编程通常使用Observer设计模式实现。
+
 reactive streams模式和Iterator设计模式类似，但是Iterator是pull-based，reactive streams是push-based。
 
 和反应式编程相对应的是命令式（imperative）编程。
@@ -31,12 +32,12 @@ reactive streams模式和Iterator设计模式类似，但是Iterator是pull-base
 在反应式编程中，与之对应的是Publisher-Subscriber。
 Publisher通知Subscriber新产生的值。“push”这个动作是“reactive”的关键。另外，计算逻辑以声明式（declarative）方式描述（TODO）。
 
-除了push，反应式编程还提供异常处理、完成通知等aspect (就是钩子嘛)。error-handling和completion都会终止流。
+除了push，反应式编程还提供异常处理、完成通知等aspect。error-handling和completion都会终止流。
 
 
 # why
 
-阻塞式编程方式容易编写代码，但是停等的工作方式很浪费性能。
+阻塞式编程方式容易编写代码，但是停等（stop-wait）的工作方式很浪费性能。
 要提升程序性能：
 - 并发，使用更多线程、更多硬件资源
 - 提高当前资源的使用效率
