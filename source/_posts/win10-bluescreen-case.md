@@ -4,9 +4,10 @@ date: 2020-07-09 10:01:12
 tags: [故障案例, win10]
 categories: [故障案例]
 keywords: [win10 蓝屏]
-description: 一次处理win10自动更新后蓝屏的案例。
+description: 处理win10自动更新后蓝屏的案例。
 ---
 
+# 通过minidump排查故障
 
 上周bug 10自动更新后，时不时蓝屏，一天发生几次，不能正常使用了。
 蓝屏代码是`WIN32K_POWER_WATCHDOG_TIMEOUT`。
@@ -25,4 +26,26 @@ description: 一次处理win10自动更新后蓝屏的案例。
 先尝试更新驱动，从intel官网下载了27开头的最新驱动。
 安装完后重启，目前1天多没再发生蓝屏。
 
+# 离线安装win10 update cab
+
+更新于2020.12.22。
+
+bug 10 自动安装了2004更新，之后待机蓝屏。
+网上查找到是通病，巨硬在2020年11月提供了可选的kb4586853补丁，还没推送到全渠道。
+不想开启windows insider做白老鼠，于是手动安装。
+
+1. 下载安装包。通过关键字查找下载地址：
+- https://www.catalog.update.microsoft.com/home.aspx
+
+2. 下载的是cab文件，双击打开是压缩包，没有安装程序。可以通过命令行安装。
+
+1). 搜索CMD右键以管理员权限运行
+
+2). 选择下面任意一个命令安装更新（文件名需要全目录）
+
+>dism /online /add-package /packagepath:文件名
+
+或者
+
+>start /w pkgmgr /ip /m:文件名
 

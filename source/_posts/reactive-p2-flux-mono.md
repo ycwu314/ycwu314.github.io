@@ -106,6 +106,55 @@ Flux.just(1, 2, 3)
 
 # 流的高级操作
 
+## create
+
+create可以自定义创建元素的方式。
+```java
+// 输出20以内的奇数
+Flux.create(emitter -> {
+    for (int i = 1; i < 20; i += 2) {
+        emitter.next(i);
+    }
+    emitter.complete();
+}).subscribe(System.out::println);
+```
+
+
+## defer函数
+
+`defer`是懒初始化，**每次**subscribe的时候都会调用supplier获取publisher实例。
+如果Supplier每次返回的实例不同，则可以构造出和subscribe次数相关的Flux源数据流。
+如果每次都返回相同的实例，则和from(Publisher<? extends T> source)效果一样。
+
+```java
+@Test
+public void testDefer() {
+    Flux a = Flux.just(new Date());
+    Flux b = Flux.defer(() -> Flux.just(new Date()));
+
+    a.subscribe(i -> System.out.println("a\t" + i));
+    b.subscribe(i -> System.out.println("b\t" + i));
+
+    try {
+        Thread.sleep(3000L);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+
+    a.subscribe(i -> System.out.println("a\t" + i));
+    b.subscribe(i -> System.out.println("b\t" + i));
+}
+```
+
+```
+a	Wed Dec 23 17:09:32 CST 2020
+b	Wed Dec 23 17:09:32 CST 2020
+a	Wed Dec 23 17:09:32 CST 2020
+b	Wed Dec 23 17:09:35 CST 2020
+```
+两次订阅a流，数据一致。
+第二次订阅b流，又执行`new Date()`得到元素，因此两次订阅数值不一样。
+
 ## buffer
 
 缓冲value，打包到一个List，再发射。
