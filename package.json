@@ -31,7 +31,7 @@
     "hexo-wordcount": "^6.0.1"
   },
   "devDependencies": {
-    "ajv": "^6.9.1",
+    "ajv": "^6.12.3",
     "ajv-keywords": "^3.4.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^4.12.1"
