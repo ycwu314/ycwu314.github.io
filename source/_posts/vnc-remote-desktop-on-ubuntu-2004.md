@@ -101,3 +101,14 @@ vncserver -kill :1
 
 调整默认的终端应用。
 {% asset_img slug vnc-xfce-terminal.png %}
+
+## xfce中无法调整桌面分辨率
+
+{% asset_img slug xfce-config.png %}
+
+改为在vnc窗口启动时配置geometry。
+
+
+## 调整xfce
+
+Alt+鼠标右键+拖动。
