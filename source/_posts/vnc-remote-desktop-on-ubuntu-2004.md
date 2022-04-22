@@ -1,7 +1,7 @@
 ---
 title: ubuntu 20.04上使用vnc远程桌面连接
 date: 2022-04-19 16:48:39
-tags: [linux]
+tags: [linux, kvm]
 categories: [linux]
 keywords: [vncserver]
 description: ubuntu 20.04上使用vnc远程桌面连接。
