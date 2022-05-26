@@ -81,6 +81,7 @@ k3s是符合kubernetes规范的、轻量级实现。相比原来的kubernetes，
 
 ## k3s server
 
+`k3s-install.sh`安装脚本自动创建systemd k3s.service。
 ```
 sudo -s
 
