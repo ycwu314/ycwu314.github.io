@@ -1,0 +1,77 @@
+baseURL: //truth-seeker.justnft.eu.org/
+relativeURLs: true
+canonifyURLs: true
+theme: hugo-theme-stack
+title: Truth Seeker's site
+languageCode: zh-CN
+languageName: 简体中文
+hasCJKLanguage: true
+# 首次构建时间长，容易timeout
+timeout: 120s
+
+author:
+  name: Truth Seeker
+  email: 
+  link: https://truth-seeker.justnft.eu.org/
+
+
+# 下面是 Stack 主题的参数
+
+
+params:
+    #设置网站首页要展示的Section
+    mainSections:
+        - posts
+    featuredImageField: image
+    # RSS 是否开启全内容 / false 则为只有摘要
+    rssFullContent: false 
+    favicon:  # 浏览器 Tab 页的网站图标
+
+    article:
+        toc: true
+        readingTime: true
+        license:
+            enabled: true
+            default: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0</a>'
+
+    imageProcessing:
+        cover:
+            enabled: true
+        content:
+            enabled: true
+
+    widgets: #右边的小部件。注意search和archives还要进一步设置才能使用，参见前文
+        enabled:
+            - search
+            - archives
+            - tag-cloud
+
+        archives:
+            limit: 5
+
+        tagCloud:
+            limit: 10
+    
+
+menu:
+    main:
+        - identifier: home
+          name: Home
+          url: /
+          weight: -100
+          params:
+              newTab: false
+              icon: home
+
+        - identifier: tags
+          name: Tags
+          url: /tags
+          weight: -85
+          params:
+              newTab: false
+              icon: hash
+
+
+markup:
+  highlight:
+    noClasses: false
