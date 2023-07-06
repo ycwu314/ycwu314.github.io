@@ -19,6 +19,10 @@ author:
 
 
 params:
+    sidebar:
+        avatar:
+            src: avatar.png
+
     #设置网站首页要展示的Section
     mainSections:
         - posts

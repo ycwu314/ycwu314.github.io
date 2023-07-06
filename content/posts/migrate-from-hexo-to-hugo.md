@@ -151,5 +151,8 @@ sed命令可以在匹配行的前面（`/i`）和后面（`/a`）插入换行，
 ls -d */ | tr -d '/' | xargs -i sed -i -e "/\!\[/i\\\n" -e "/\!\[/a\\\n" {}/index.md
 ```
 
+# 部署到github pages
 
+以前是hexo + Travis 构建，现在使用github action自动构建。
+直接按照 https://gohugo.io/hosting-and-deployment/hosting-on-github/ 操作就。
 
