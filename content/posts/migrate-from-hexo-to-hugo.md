@@ -9,6 +9,8 @@ description: hexo构建慢、在电脑间迁移麻烦，换成hugo了。
 - hexo构建太慢。现在博客hexo构建一次要几十秒。对比hugo只要2秒不到。
 - hexo在不同电脑间迁移成本高。hexo基于nodejs体系，需要安装nodejs环境，下载一大堆依赖包，如果出现版本冲突，还要手动修改node_modules的源文件，非常麻烦。而hugo只需要下载一个二进制包即可，非常方便。
 
+ps. 更新于2023.9.7：
+hugo首次全量构建比较慢，后续增量构建则很快。默认构建timeout为30s，可以在config配置文件调整。
 
 # hugo版本问题
 
