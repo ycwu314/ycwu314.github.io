@@ -2,6 +2,7 @@
 title: "windows连接特定dns后缀的case"
 date: 2023-09-07T14:12:20+08:00
 tags: [windows]
+categories: [windows]
 ---
 
 第一次遇到这个奇怪的case，记录下。

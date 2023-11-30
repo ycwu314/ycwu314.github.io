@@ -1,6 +1,8 @@
 ---
 title: Windows Server安全加固
 date: 2023-11-20T18:04:50+08:00
+tags: [windows]
+categories: [windows]
 description: 第一次玩win小鸡，看安全日志被爆破中。。。
 ---
 

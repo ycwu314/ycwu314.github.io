@@ -2,6 +2,7 @@
 title: "Linux utmp wtmp btmp文件"
 date: 2023-11-09T11:36:28+08:00
 tags: [linux]
+categories: [linux]
 description: utmp、wtmp 和 btmp 都是二进制文件，用于记录 Linux 系统上的登录、注销和登录尝试。
 ---
 
