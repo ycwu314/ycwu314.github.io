@@ -71,6 +71,14 @@ https://github.com/s3ql/s3ql
 
 TODO。
 
+## s3proxy
+
+https://github.com/gaul/s3proxy
+
+使用java编写的存储网关。支持s3等多种存储。可以方便暴露为Restful接口，或者进行二次开发。
+
+but不适合我的使用场景。
+
 ## seaweedfs
 
 https://github.com/seaweedfs/seaweedfs
