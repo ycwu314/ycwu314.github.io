@@ -29,6 +29,9 @@ metrics icon
 
 然后进去创建访问配置。
 
+https://truthseeker.grafana.net/connections/add-new-connection/hmInstancePromId?src=hg_notification_trial
+
+
 # prometheus node exporter docker
 
 收集本地系统信息。使用9100端口。
