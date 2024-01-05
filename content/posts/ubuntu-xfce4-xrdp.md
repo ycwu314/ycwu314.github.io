@@ -1,9 +1,9 @@
 ---
-title: "Ubuntu 22.04 安装 xfce4 桌面，以及开启xrdp"
+title: "Ubuntu 22.04 安装xfce4桌面，以及开启xrdp"
 date: 2024-01-05T10:34:09+08:00
 tags: ["linux"]
 categories: ["linux"]
-description: 
+description: 为了增强 linkwarden 的抓取能力，安装linux桌面再折腾chrome。
 ---
 
 
@@ -15,9 +15,16 @@ description:
 
 # 安装xfce4桌面
 
+
+xubuntu-desktop包含xfce和其他工具包，更加开箱即用。
+
+xfce4更加轻量，占用资源更少，但是可能缺少部分工具包。比如安装chrome的时候发现少了一些库，需要手动安装。
+
+综合考虑，直接安装xfce4。
+
 ```bash
 # xfce4
-apt install xubuntu-desktop -y
+apt install xfce4 -y
 
 # 启动时默认启动图形化桌面环境
 systemctl set-default graphical.target
@@ -25,9 +32,14 @@ systemctl set-default graphical.target
 # 新建一个用户并赋予 sudo 权限用来登录桌面环境
 useradd -d /home/truthseeker2077 -m truthseeker2077
 passwd truthseeker2077
+# 添加root权限
 usermod -a -G sudo truthseeker2077
 ```
 
+passwd只接受交互式输入密码。自动化工具中可以使用chpasswd修改用户密码；或者使用expect工具。
+```bash
+echo 'username:password' | chpasswd
+```
 
 # 安装和配置xrdp
 
