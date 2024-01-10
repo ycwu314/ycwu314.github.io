@@ -15,7 +15,7 @@ dpkg -i google-chrome-stable_current_amd64.deb
 rm -f google-chrome-stable_current_amd64.deb
 ```
 
-第一行的apt安装前置依赖，因为是xfce4环境，默认缺少以内容导致报错：
+第一行的apt安装前置依赖，因为是xfce4环境，默认缺少以下内容导致报错：
 ```
 dpkg: dependency problems prevent configuration of google-chrome-stable:
  google-chrome-stable depends on fonts-liberation; however:
