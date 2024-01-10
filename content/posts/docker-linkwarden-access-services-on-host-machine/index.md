@@ -101,6 +101,14 @@ systemctl start socat-proxy-9222
 systemctl status socat-proxy-9222
 ```
 
+## 题外话： Windows 开发者模式
+
+最初在win上开启chrome的remote debug，遇到一个问题，
+
+>Windows Device Portal must be enabled in order to connect.
+
+需要开启windows的开发者模式: https://learn.microsoft.com/en-us/windows/uwp/debug-test-perf/device-portal-desktop
+
 # docker 容器访问宿主机端口
 
 本地环境：ubuntu 22.04 LTS， docker 1.24。
