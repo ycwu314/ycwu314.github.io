@@ -201,3 +201,27 @@ update-alternatives --config x-session-manager
 
 ![lock screen](lock-screen.png)
 
+# 安装拼音输入法
+
+## 安装和启动ibus
+
+```bash
+apt install -y ibus ibus-pinyin
+
+# 设置IBus作为默认的输入法框架。
+im-config -n ibus
+
+# 在xfce4会话中，打开终端并运行以下命令来启动IBus输入法框架：
+ibus-daemon -drx
+```
+
+可能需要重新登录，或者重启xfce4桌面。
+
+## 配置和添加中文输入法
+
+- 在系统托盘区域找到IBus图标，右键单击它，选择“Preferences”（首选项）。
+- 在“Input Method”（输入法）选项卡中，点击“Add”（添加）按钮。
+- 在弹出的窗口中，选择“Chinese (Pinyin)”（中文（拼音））作为输入法，然后点击“Add”（添加）按钮。
+- 关闭窗口。
+
+
