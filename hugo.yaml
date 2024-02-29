@@ -55,7 +55,7 @@ params:
 
         tagCloud:
             limit: 10
-    
+    math: true    
 
 menu:
     main:
@@ -79,3 +79,17 @@ menu:
 markup:
   highlight:
     noClasses: false
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+        enable: true
+

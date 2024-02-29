@@ -3,6 +3,9 @@
     <head>
         {{- partial "head/head.html" . -}}
         {{- block "head" . -}}{{ end }}
+        {{ if .Param "math" }}
+            {{ partialCached "math.html" . }}
+        {{ end }}
     </head>
     <body class="{{ block `body-class` . }}{{ end }}">
         {{- partial "head/colorScheme" . -}}
