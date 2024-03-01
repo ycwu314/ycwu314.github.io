@@ -1,4 +1,4 @@
-baseURL: //truth-seeker.justnft.eu.org/
+baseURL: //truthseeker.free.hr/
 relativeURLs: true
 canonifyURLs: true
 theme: hugo-theme-stack
@@ -12,7 +12,7 @@ timeout: 120s
 author:
   name: Truth Seeker
   email: 
-  link: https://truth-seeker.justnft.eu.org/
+  link: https://truthseeker.free.hr/
 
 
 # 下面是 Stack 主题的参数
