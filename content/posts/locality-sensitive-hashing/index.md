@@ -1,15 +1,25 @@
 ---
-title: "Locality Sensitive Hashing"
+title: "LSH 局部敏感哈希"
 date: 2024-03-02T11:37:52+08:00
-draft: true
 tags: ["AI"]
 categories: ["AI"]
-description: 
+description: 局部敏感哈希(Locality-Sensitive Hashing, LSH) 是一种解决在海量的高维数据集中查找与查询数据点（query data point）近似最相邻的某个或某些数据点的方法。
 ---
+
+![](traditional-hash.png)
+
+传统哈希算法，尽量减少冲突。对于hash冲突元素，使用开链表方式存储。
+
+![](lsh.png)
+
+局部敏感哈希，把相似的元素哈希到同一个value，方便加速相似检索。
 
 # LSH
 
-局部敏感哈希（Locality Sensitive Hashing，LSH）是一种用于高效近似近邻搜索的技术。它是在大规模数据集中，通过将相似的数据映射到相同的哈希桶中，从而加速近似的相似性搜索。
+局部敏感哈希(Locality-Sensitive Hashing, LSH) 是一种解决在海量的高维数据集中查找与查询数据点（query data point）近似最相邻的某个或某些数据点的方法。
+
+LSH并不能保证一定能够查找到与query data point最相邻的数据，而是减少需要匹配的数据点个数的同时保证查找到最近邻的数据点的概率很大。
+
 
 LSH的基本思想是将数据集中的每个数据点通过哈希函数映射到一个哈希值，使得相似的数据点具有相似的哈希值。通过这种方式，相似的数据点有很高的概率会被映射到相同的哈希桶中，从而可以在相似的哈希桶中进行快速搜索，减少了搜索的范围。
 
@@ -20,7 +30,7 @@ LSH的关键在于设计合适的哈希函数，使得相似的数据点在哈�
 - Jaccard LSH：适用于集合数据的相似性搜索，如文档、DNA序列等。它通过将集合中的元素进行随机采样，并将元素的签名进行哈希，得到哈希值。
 - Cosine LSH：适用于高维向量空间中的近似最近邻搜索。它通过将向量进行随机投影，并对投影结果进行二值化，得到哈希值。
 
-LSH并不能保证一定能够查找到与query data point最相邻的数据，而是减少需要匹配的数据点个数的同时保证查找到最近邻的数据点的概率很大。
+
 
 # LSH应用领域
 
@@ -38,7 +48,6 @@ LSH并不能保证一定能够查找到与query data point最相邻的数据，�
 
 6. 图像识别：在图像识别和计算机视觉领域，LSH可用于图像搜索、图像分类和对象识别等任务。通过将图像特征进行哈希映射，可以快速找到与查询图像相似的候选图像。
 
-这些是LSH广泛应用的一些典型领域，但并不限于此。由于其高效的近似相似性搜索能力，LSH在许多需要处理大规模数据和高维数据的应用中都具有重要的作用。
 
 # LSH哈希函数
 
@@ -69,3 +78,7 @@ LSH并不能保证一定能够查找到与query data point最相邻的数据，�
 | LSH Forest          | 高维向量空间中的相似性搜索、数据索引           | 多个哈希函数的组合                                               | 构建多个哈希树，每个哈希树对数据进行哈希映射，查找相似候选数据 |
 | Multi-Probe LSH     | 近似最近邻搜索                               | 多探针哈希函数                                                 | 引入多个探针进行哈希桶选择，提高相似数据映射到相同桶的概率   |
 
+# 资料
+
+- [Locality Sensitive Hashing (LSH): The Illustrated Guide](https://www.pinecone.io/learn/series/faiss/locality-sensitive-hashing/)
+- [Locality Sensitive Hashing | Stanford University](https://web.stanford.edu/class/cs246/slides/03-lsh.pdf)
