@@ -80,7 +80,7 @@ markup:
   highlight:
     noClasses: false
   goldmark:
-    extensions:
+    extensions:    
       passthrough:
         delimiters:
           block:
@@ -92,4 +92,5 @@ markup:
           - - \(
             - \)
         enable: true
+
 
