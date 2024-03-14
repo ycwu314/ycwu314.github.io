@@ -257,5 +257,5 @@ IVFPQ（inverted file with product quantization）算法是一种用于高维向
 - [Similarity Search with IVFPQ](https://towardsdatascience.com/similarity-search-with-ivfpq-9c6348fd4db3)
 - [Product Quantizers for k-NN Tutorial Part 1](https://mccormickml.com/2017/10/13/product-quantizer-tutorial-part-1/)
 - [Product Quantization for Similarity Search](https://towardsdatascience.com/product-quantization-for-similarity-search-2f1f67c5fddd)
-- [Similarity Search with IVFPQ](https://towardsdatascience.com/similarity-search-with-ivfpq-9c6348fd4db3)
+
 
