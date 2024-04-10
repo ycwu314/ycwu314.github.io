@@ -82,3 +82,6 @@ conda activate label-studio
 
 然后发现图片正常能够加载了。
 
+# 其他
+
+lable studio上传文件，django会重写文件名。因此尽量把文件放在s3存储。
