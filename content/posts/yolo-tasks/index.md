@@ -74,6 +74,13 @@ class_index, x1, y1, x2, y2, x3, y3, x4, y4
 | pose     | -pose    |
 | obb      | -obb     |
 
+yolo模型名字通常有`n`、`s`、`m`、`l`、`x`，从左往右代表模型尺寸变大、识别精度提高、识别速度越慢。
+
+| YOLOv8n | YOLOv8s | YOLOv8m | YOLOv8l | YOLOv8x |
+| -------- | -------- | -------- | -------- | -------- |
+| nano | small | medium | large | extra large |
+
+
 # 资料
 
 - https://docs.ultralytics.com/zh/tasks/
