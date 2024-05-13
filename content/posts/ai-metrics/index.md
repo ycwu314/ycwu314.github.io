@@ -91,33 +91,46 @@ Confusion Matrix 是一个 square matrix，通常用来评价二分类问题，�
 图片来源：towardsdatascience.com
 
 
-```
 两者的分子都是True Positive。
 
-Precision（精度）：TP / (TP + FP)
-它的分母是`real class为True`
-
-Recall（召回率）：TP / (TP + FN)
-它的分母是`predict class为True`
-```
-
+精确度和召回率之间也存在权衡--精确度越高，召回率越低，反之亦然。
 
 **精确率**：
 
+
+```
+Precision（精度）：TP / (TP + FP)
+```
+
 主要关注的是模型在预测为正例的样本中，有多少是真正的正例。
 
-它的分母是`real class为True`，其中包括True Positive和False Positive。
+它的分母是`predict class为True`，包括了TP和FP。FP越少，精确度越高。
 
 在一些应用场景中，如垃圾邮件过滤、风险控制等，`需要尽量减少误报率`，即提高精确率。
 
 
 **召回率**：
 
+```
+Recall（召回率）：TP / (TP + FN)
+```
+
 主要关注的是模型能够尽可能多地识别出实际正例样本，即尽量减少漏掉正例的情况。
 
-它的分母是`predict class为True`，其中包括True Positive和False Negative。
+它的分母是`real class为True`，包括了TP和FN。FN越少，召回率越高。
 
 在一些应用场景中，如医学诊断、安全检测等，尽可能高的召回率很重要，`即尽量减少漏检率`。
+
+
+**如何记忆**
+
+这篇文章提供了一个技巧，相当不错：
+https://towardsdatascience.com/precision-and-recall-made-simple-afb5e098970f
+
+
+- precision是P开头，对应分母是predict class为True。
+- recall是R开头，对应分母是real class为True。
+
 
 
 # F1 score
