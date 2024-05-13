@@ -20,10 +20,10 @@ description:
 
 # IoU
 
-IOU（Intersection over Union）是一种常用的评价 metrics，在目标检测、图像分割等领域中使用。它衡量的是预测框（Predicted Bounding Box）与真实框（Ground Truth Bounding Box）之间的相似度。
-IOU 的计算公式如下：
+IoU（Intersection over Union）是一种常用的评价 metrics，在目标检测、图像分割等领域中使用。它衡量的是预测框（Predicted Bounding Box）与真实框（Ground Truth Bounding Box）之间的相似度。
+IoU 的计算公式如下：
 ```
-IOU = (预测框 ∩ 真实框) / (预测框 ∪ 真实框)
+IoU = (预测框 ∩ 真实框) / (预测框 ∪ 真实框)
 ```
 
 其中，∩ 表示交叠面积，∪ 表示并集面积。
@@ -33,23 +33,23 @@ IOU = (预测框 ∩ 真实框) / (预测框 ∪ 真实框)
 并集面积 = (x2 - x1) × (y2 - y1) + (x4 - x3) × (y4 - y3) - 交叠面积
 ```
 
-然后，计算 IOU 值：
+然后，计算 IoU 值：
 ```
-IOU = 交叠面积 / 并集面积
+IoU = 交叠面积 / 并集面积
 ```
 
-IOU 值越大，表示预测框与真实框越相似。通常情况下，IOU 值在 0 到 1 之间，1 表示完全重叠，0 表示不重叠。
+IoU 值越大，表示预测框与真实框越相似。通常情况下，IoU 值在 0 到 1 之间，1 表示完全重叠，0 表示不重叠。
 
-在目标检测中，常用 IOU 阈值来判断预测框是否是正确的检测结果，`一般来说，IOU 阈值设为 0.5 或 0.7`，即当 IOU 值大于或等于阈值时，认为预测框是正确的检测结果。
+在目标检测中，常用 IoU 阈值来判断预测框是否是正确的检测结果，`一般来说，IoU 阈值设为 0.5 或 0.7`，即当 IoU 值大于或等于阈值时，认为预测框是正确的检测结果。
 
 
 # mAP50, mAP75, and mAP50-95
 
 mAP50-95 是目标检测算法的evaluation metric之一，即`Mean Average Precision（mAP）`的一个 variant。
-* mAP：是平均精度（Average Precision）的均值，它衡量了检测算法在不同 IOU 阈值下的性能。IOU（Intersection over Union）是目标检测中的评价 metrics，表示预测框与真实框的交叠面积占预测框和真实框总面积的比例。
-* AP50、AP75 等：分别表示在 IOU 阈值为 0.5、0.75 时的平均精度。
-* mAP50-95：是指在 IOU 阈值从 0.5 到 0.95 之间，以 0.05 为步长，计算 AP 值，然后取其平均值。这个 metrics 能够更好地反映检测算法在不同难度级别下的性能。
-例如，如果某个检测算法的 mAP50-95 值为 0.6，则表示该算法在 IOU 阈值从 0.5 到 0.95 之间的平均精度为 0.6。
+* mAP：是平均精度（Average Precision）的均值，它衡量了检测算法在不同 IoU 阈值下的性能。IoU（Intersection over Union）是目标检测中的评价 metrics，表示预测框与真实框的交叠面积占预测框和真实框总面积的比例。
+* AP50、AP75 等：分别表示在 IoU 阈值为 0.5、0.75 时的平均精度。
+* mAP50-95：是指在 IoU 阈值从 0.5 到 0.95 之间，以 0.05 为步长，计算 AP 值，然后取其平均值。这个 metrics 能够更好地反映检测算法在不同难度级别下的性能。
+例如，如果某个检测算法的 mAP50-95 值为 0.6，则表示该算法在 IoU 阈值从 0.5 到 0.95 之间的平均精度为 0.6。
 
 
 # 混淆矩阵
@@ -80,24 +80,44 @@ Confusion Matrix 是一个 square matrix，通常用来评价二分类问题，�
 在目标检测中，Confusion Matrix 也可以用于评价检测结果的质量，例如：
 * TP：正确检测到的目标数
 * FN：漏检的目标数
-* FP：虚警的目标数
+* FP：虚警的目标数（指侦察设备在单位时间内将噪声或其他干扰信号误判为威胁辐射源信号）
 * TN：正确拒绝的非目标数
-
-![](Precisionrecall.svg.png)
-
-
-参考资料：https://en.wikipedia.org/wiki/Precision_and_recall
-
 
 ## Precision 和 Recall
 
+
+![](precision-and-recall.png)
+
+图片来源：towardsdatascience.com
+
+
 ```
+两者的分子都是True Positive。
+
 Precision（精度）：TP / (TP + FP)
+它的分母是`real class为True`
+
 Recall（召回率）：TP / (TP + FN)
+它的分母是`predict class为True`
 ```
 
-- 精确率：主要关注的是模型在预测为正例的样本中，有多少是真正的正例。在一些应用场景中，如垃圾邮件过滤、风险控制等，`需要尽量减少误报率`，即提高精确率。
-- 召回率：主要关注的是模型能够尽可能多地识别出实际正例样本，即尽量减少漏掉正例的情况。在一些应用场景中，如医学诊断、安全检测等，尽可能高的召回率很重要，`即尽量减少漏检率`。
+
+**精确率**：
+
+主要关注的是模型在预测为正例的样本中，有多少是真正的正例。
+
+它的分母是`real class为True`，其中包括True Positive和False Positive。
+
+在一些应用场景中，如垃圾邮件过滤、风险控制等，`需要尽量减少误报率`，即提高精确率。
+
+
+**召回率**：
+
+主要关注的是模型能够尽可能多地识别出实际正例样本，即尽量减少漏掉正例的情况。
+
+它的分母是`predict class为True`，其中包括True Positive和False Negative。
+
+在一些应用场景中，如医学诊断、安全检测等，尽可能高的召回率很重要，`即尽量减少漏检率`。
 
 
 # F1 score
