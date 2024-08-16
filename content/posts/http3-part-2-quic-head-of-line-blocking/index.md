@@ -37,3 +37,8 @@ QUIC协议通过引入多路复用和流的概念，有效地解决了TCP的队�
 - 流的概念： QUIC将数据分成多个流，每个流可以有不同的优先级和流量控制参数，使得QUIC能够更好地适应不同的应用场景。
 
 ![](http2-vs-quic-multiplexing.jpg)
+
+# 参考资料
+
+- [Head-of-Line Blocking in QUIC and HTTP/3: The Details](https://calendar.perfplanet.com/2020/head-of-line-blocking-in-quic-and-http-3-the-details/)
+
